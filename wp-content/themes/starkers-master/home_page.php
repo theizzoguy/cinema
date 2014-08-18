@@ -94,11 +94,7 @@ wp_reset_query();
 		}
 
 ?>
-
-<?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header' ) ); ?>
-
-	
-	<?php
+<?php
 		//echo '<ul class="test">';
 			$i=0;
 			$currentdate=date('Y-m-d');
@@ -137,44 +133,69 @@ wp_reset_query();
 			}//end for
 	//echo'</ul>';	
 	
-		#getting by category
-		#get category names
-		#pass them as arguments
-		print_r($cats_array);
-		
-		foreach($cats_array as $slug):
-			$args = array(
-			    'post_type' => 'movie',
-			    'posts_per_page' => -1,
-			    'tax_query' => array(
-			        array(
-			            'taxonomy' => 'movie_category',
-			            'field' => 'slug',
-			            'terms' => $slug,
-				        )
-				     )
-				);
-			   
-			   query_posts( $args );
+#getting by category, category slugs are got from a function above
+	#get category names
+	#pass them as arguments
+	print_r($cats_array);
+	foreach($cats_array as $slug):
+		$args = array(
+		    'post_type' => 'movie',
+		    'posts_per_page' => -1,
+		    'tax_query' => array(
+		        array(
+		            'taxonomy' => 'movie_category',
+		            'field' => 'slug',
+		            'terms' => $slug,
+			        )
+			     )
+			);
+		   
+		   query_posts( $args );
+		   // The Loop through categories
+			while ( have_posts() ) : the_post();
+			  
+			    the_title();
+			    $start= get_post_meta( get_the_ID(), 'movie_start_date', true );
+				$startdate_cat[]=$start;
+				//getting end date
+				$end= get_post_meta( get_the_ID(), 'movie_end_date', true );
+				$enddate_cat[]=$end;
+				$cinema= get_post_meta( get_the_ID(), 'movie_select', true );
+			    //echo $cinema."<br>";
+			    $slide_img= get_post_meta( get_the_ID(), '_cmb_slider_image', true );
+				$slider_cat[]=$slide_img;
+			    echo"<img src=\"$slide_img\">";
+			endwhile;
+		endforeach;
+#generating dates in between function
 
-				// The Loop
-				while ( have_posts() ) : the_post();
-				  
-				    the_title();
-				    $start= get_post_meta( get_the_ID(), 'movie_start_date', true );
-					$startdate[]=$start;
-					//getting end date
-					$end= get_post_meta( get_the_ID(), 'movie_end_date', true );
-					$enddate[]=$end;
-					$cinema= get_post_meta( get_the_ID(), 'movie_select', true );
-				    //echo $cinema."<br>";
-
-				    
-				endwhile;
-			endforeach;
-			
+function MydateRange($first, $last) { 
+	$step = '+1 day';
+	$format = 'l.d.F.Y'; 
+	$dates = array();
+    $current = strtotime($first);
+    $last = strtotime($last);
+    while( $current <= $last ) { 
+          $dates[] = date($format, $current);
+         $current = strtotime($step, $current);
+    }
+    #print_r($dates);
+    return $dates;
+}
+#get day month and date for each date
+function fndate($date_array){
+	foreach($date_array as $mydate):
+		$date=explode('.',$mydate);
+		$day=$date[0];
+		$date_numeral=$date[1];
+		$date_text=$date[2];
+		$year=$date[3];
+		echo"<br>$day<br>";
+	endforeach;
+	
+}
+#testing
+$arr=MydateRange($startdate_cat[0],$enddate_cat[0]);
+fndate($arr);
 	?>
 	
-	
-<?php Starkers_Utilities::get_template_parts( array( 'parts/shared/footer','parts/shared/html-footer') ); ?>
-

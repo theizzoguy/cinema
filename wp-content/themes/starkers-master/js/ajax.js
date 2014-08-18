@@ -1,7 +1,7 @@
 jQuery(document).ready(function($) {
 	$(function(){
 		//fields
-		var obj={$val_adults:0,$val_kids:0,k_c:false,a_c:false}
+		//var obj={$val_adults:0,$val_kids:0,k_c:false,a_c:false}
 		var amount={$ticket:0,kids:0,kids_sum:0,adults_sum:0,seats_kids:0,seats_adults:0}
 		var movie={$name:null};var cinema_room={$name:null};var show_time={$current:"",$movieTime:false}
 		var date={$day:"",$date:"",$month:"",$year:"",$row:""}
