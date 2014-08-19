@@ -337,6 +337,7 @@
 					'options' => array(
 						'buy' => __( 'Buy', 'cmb' ),
 						'trailer' => __( 'Trailer', 'cmb' ),
+						'vote' => __( 'Vote', 'cmb' ),
 						'schedule' => __( 'schedule', 'cmb' ),
 					),
 					// 'inline'  => true, // Toggles display to inline
