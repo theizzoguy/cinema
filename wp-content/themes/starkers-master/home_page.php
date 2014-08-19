@@ -30,12 +30,14 @@ while ($featured->have_posts()) : $featured->the_post();
  //getting cinema room
  $grp= get_post_meta( get_the_ID(), '_featured_repeat_group', true );
  $data= get_post_meta( get_the_ID(), 'movie_repeatable', true );
+
  foreach ($grp as $grp_val){
-	$caption[]=$grp_val['caption'];
-	$copy[]=$grp_val['copy'];
+	$caption[]=$grp_val['_featured_caption'];
+	$copy[]=$grp_val['_featured_copy'];
 	$tab_name[]=$grp_val['tab'];
 	$featured_images[]=$grp_val['image'];
 	$buttons[]=$grp_val['_featured_icons'];
+	#print_r($grp_val);
 	}
 endwhile;
 }// end if
@@ -207,7 +209,7 @@ function fndate($date_array){
 		$date_numeral=$date[1];
 		$date_text=$date[2];
 		$year=$date[3];
-		#echo"<br>$day<br>";
+		
 	endforeach;
 	
 }

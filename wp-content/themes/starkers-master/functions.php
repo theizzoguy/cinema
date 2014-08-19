@@ -304,16 +304,18 @@
 				'fields'      => array(
 			
 					array(
-						'name' => 'Caption',
-						'description' => '',
-						'id'   => 'caption',
-						'type' => 'text',
+					'name'    => __( 'Caption', 'cmb' ),
+					'desc'    => __( '', 'cmb' ),
+					'id'      => $prefix . 'caption',
+					'type'    => 'wysiwyg',
+					'options' => array( 'textarea_rows' => 2, ),
 					),
 					array(
-						'name' => 'Copy',
-						'description' => '',
-						'id'   => 'copy',
-						'type' => 'textarea',
+					'name'    => __( 'Copy', 'cmb' ),
+					'desc'    => __( '', 'cmb' ),
+					'id'      => $prefix . 'copy',
+					'type'    => 'wysiwyg',
+					'options' => array( 'textarea_rows' => 5, ),
 					),
 					array(
 						'name' => 'Slide Name',
