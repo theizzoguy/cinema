@@ -136,7 +136,7 @@ wp_reset_query();
 #getting by category, category slugs are got from a function above
 	#get category names
 	#pass them as arguments
-	print_r($cats_array);
+	#print_r($cats_array);
 	foreach($cats_array as $slug):
 		$args = array(
 		    'post_type' => 'movie',
@@ -154,7 +154,7 @@ wp_reset_query();
 		   // The Loop through categories
 			while ( have_posts() ) : the_post();
 			  
-			    the_title();
+			    #the_title();
 			    $start= get_post_meta( get_the_ID(), 'movie_start_date', true );
 				$startdate_cat[]=$start;
 				//getting end date
@@ -164,7 +164,7 @@ wp_reset_query();
 			    //echo $cinema."<br>";
 			    $slide_img= get_post_meta( get_the_ID(), '_cmb_slider_image', true );
 				$slider_cat[]=$slide_img;
-			    echo"<img src=\"$slide_img\">";
+			    #echo"<img src=\"$slide_img\">";
 			endwhile;
 		endforeach;
 #generating dates in between function
@@ -190,7 +190,7 @@ function fndate($date_array){
 		$date_numeral=$date[1];
 		$date_text=$date[2];
 		$year=$date[3];
-		echo"<br>$day<br>";
+		#echo"<br>$day<br>";
 	endforeach;
 	
 }
@@ -198,4 +198,230 @@ function fndate($date_array){
 $arr=MydateRange($startdate_cat[0],$enddate_cat[0]);
 fndate($arr);
 	?>
-	
+<?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header' ) ); ?>
+<div class="container">
+			<ul class="header">
+				<li class="menu">
+					<ul>
+						<li><a href="#">home</a></li>
+						<li><a href="#">what's showing</a></li>
+						<li><a href="#">community</a></li>
+					</ul>
+				</li>
+				<li class="logo"><a href="#">logo</a></li>
+				<li class="quick-buy"><a href="#">quick buy</a>
+					<ul>
+						<li class="what-movie"><a href="#">what movie would you like to watch?</a>
+							<ul>
+								<li><a href="#">Dawn of the Planet Of The Apes</a></li>
+								<li><a href="#">Xmen: Days Of Future Past</a></li>
+								<li><a href="#">22 Jump Street</a></li>
+								<li><a href="#">Think Like a Man too</a></li>
+								<li><a href="#">Step Up 3D</a></li>
+							</ul>
+						</li>
+						<li class="when"><a href="#">when exactly?</a>
+							<ul>
+								<li><a href="#">13 August</a></li>
+								<li><a href="#">14 August</a></li>
+								<li><a href="#">15 August</a></li>
+								<li><a href="#">16 August</a></li>
+								<li><a href="#">17 August</a></li>
+								<li><a href="#">18 August</a></li>
+								<li><a href="#">19 August</a></li>
+								<li><a href="#">20 August</a></li>
+							</ul>
+						</li>
+						<li class="what-time"><a href="#">at what time?</a>
+							<ul>
+								<li><a href="#">11:30am</a></li>
+								<li><a href="#">11:30am</a></li>
+								<li><a href="#">11:30am</a></li>
+								<li><a href="#">11:30am</a></li>
+								<li><a href="#">11:30am</a></li>
+							</ul>
+						</li>
+						<li class="adults"><a href="#">1 adult</a>
+							<ul>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#">6</a></li>
+								<li><a href="#">7</a></li>
+								<li><a href="#">8</a></li>
+								<li><a href="#">9</a></li>
+							</ul>
+						</li>
+						<li class="kids"><a href="#">0 kids</a>
+							<ul>
+								<li><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#">6</a></li>
+								<li><a href="#">7</a></li>
+								<li><a href="#">8</a></li>
+								<li><a href="#">9</a></li>
+							</ul>
+						</li>
+						<li class="buy-now"></li>
+					</ul>
+				</li>
+				<li class="sign-up"></li>
+				<li class="search"></li>
+			</ul>
+			<ul class="feature-slider">
+				<li class="hottest">
+					<div class="gradient-overlay">
+						<img id="bkg" src="images/apes(f).jpg"/>
+					</div>
+					<ul>
+						<li class="caption">
+							<h1>the apes take top spot in the cinema</h1>
+							<h2>come find out for yourself why this is the hottest this summers' blockbusters</h2>
+						</li>
+						<li class="buttons">
+							<a href="#"><span></span>buy tickets</a>
+							<a href="#"><span></span>buy tickets</a>
+						</li>
+					</ul>
+					<div class="notification"></div>
+				</li>
+				<li class="coming-soon">
+					<ul>
+						<li class="caption">
+							<h1>you can't afford to miss this</h1>
+							<h2>The excitement is electrifying as the countdown to the premiere 
+of the summers biggest blockbuster continues. Are you READDDY!!!</h2>
+						</li>
+						<li class="buttons">
+							<a href="#"><span></span>buy tickets</a>
+							<a href="#"><span></span>trailer</a>
+						</li>
+					</ul>
+					<div class="notification"></div>
+				</li>
+				<li class="community-promo">
+					<ul>
+						<li class="caption">
+							<h1>look out guardians</h1>
+							<h2>Vote for your favourite "Guardians of the Galaxy" character 
+poster! This week features our favourite villains</h2>
+						</li>
+						<li class="buttons">
+							<a href="#"><span></span>buy tickets</a>
+						</li>
+					</ul>
+					<div class="notification"></div>
+				</li>
+				<li class="cinema-promo">
+					<ul>
+						<li class="caption">
+							<h1>summer is finally here again</h1>
+							<h2>And with our new online ticketing system, and personalised alerts, 
+you can not afford to miss a single blockbuster this time round</h2>
+						</li>
+						<li class="buttons">
+							<a href="#"><span></span>buy tickets</a>
+							<a href="#"><span></span>trailer</a>
+						</li>
+					</ul>
+					<div class="notification"></div>
+				</li>
+			</ul>
+			<div class="movie-slider">
+				<div class="highlight-slider"></div>
+				<div id="tabs">
+					<ul>
+						<li>
+							<a href="#tab1">in cinema now</a>
+							<ul class="filter">
+								<li><a href="#"></a></li>
+								<li><a href="#"></a></li>
+								<li><a href="#"></a></li>
+								<li><a href="#"></a></li>
+								<li><a href="#"></a></li>
+							</ul>
+						</li><li>
+							<a href="#tab2">coming soon</a>
+							<ul class="filter">
+								<li><a href="#"></a></li>
+								<li><a href="#"></a></li>
+								<li><a href="#"></a></li>
+								<li><a href="#"></a></li>
+								<li><a href="#"></a></li>
+							</ul>
+						</li>
+					</ul>
+					<div id="tab1">
+						<ul class="now-showing">
+							<li>
+								<img src="images/gdzyl.jpg"/>
+								<button></button>
+							</li>
+							<li>
+								<img src="images/xmn.jpg"/>
+								<button></button>
+							</li>
+							<li>
+								<img src="images/cap.jpg"/>
+								<button></button>
+							</li>
+							<li>
+								<img src="images/krsh.jpg"/>
+								<button></button>
+							</li>
+							<li>
+								<img src="images/apes.jpg"/>
+								<button></button>
+							</li>
+							<li>
+								<img src="images/avg.jpg"/>
+								<button></button>
+							</li>
+							<li>
+								<img src="images/22js.jpg"/>
+								<button></button>
+							</li>
+							<li>
+								<img src="images/ff2.jpg"/>
+								<button></button>
+							</li>
+							
+						</ul>
+					</div>
+					<div id="tab2">
+						<ul class="coming-soon">
+							<li>
+								<img>
+								<button></button>
+							</li>
+							<li>
+								<img>
+								<button></button>
+							</li>
+							<li>
+								<img>
+								<button></button>
+							</li>
+							<li>
+								<img>
+								<button></button>
+							</li>
+							<li>
+								<img>
+								<button></button>
+							</li>
+							
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+			<div class="community"></div>
+		</div>
+</body>
+</html>
+<?php #Starkers_Utilities::get_template_parts( array( 'parts/shared/footer','parts/shared/html-footer') ); ?>

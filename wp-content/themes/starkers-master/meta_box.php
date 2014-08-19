@@ -716,6 +716,12 @@ $fields = array(
 		'sanitizer' => array( // array of sanitizers with matching kets to next array
 			),
 	'repeatable_fields' => array ( // array of fields to be repeated
+	  array( // Text Input
+		'label'	=> 'Traile', // <label>
+		'desc'	=> '', // description
+		'id'	=> $prefix.'textoo', // field id and name
+		'type'	=> 'file' // type of field
+		),
 	array(
     'label' => 'Select Time',
     'desc'  => 'select the various times the movie will show',
@@ -737,8 +743,10 @@ $fields = array(
 		 '22:00' => array (
             'label' => '10:00 Pm',
             'value' => '22:00'
-        )
+        ),
+      
     )
+ 
 ),
 )
 )

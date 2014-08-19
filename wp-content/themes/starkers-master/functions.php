@@ -21,7 +21,7 @@
 	add_filter('show_admin_bar', '__return_false');
 	
 	//removing menu items
-function remove_admin_menu_items() {
+  function remove_admin_menu_items() {
 	remove_menu_page('edit.php');
 	  $remove_menu_items = array(__('Appearance'),__('Links'), __('Tools'));
 	  global $menu;
@@ -109,9 +109,21 @@ function remove_admin_menu_items() {
 	 */
 	 /*metaboxes for home page*/
 	
-	 /*work post type*/
+	 /*========================================================================================================================
+	
+	     Movie Post type
+	
+	======================================================================================================================== */
+
+	/**/
+
+	 
+	 
 	 add_action( 'init', 'my_custom_post_movie');
 	 add_action( 'init', 'my_taxonomies_movie', 0 );
+	 add_action( 'init', 'cmb_initialize_cmb_meta_boxes', 9999 );
+	 #meta box class
+	 
 	// regester the post type function
 	function my_custom_post_movie() {
 	//labels	
@@ -136,7 +148,7 @@ function remove_admin_menu_items() {
 		'description'   => 'Holds movie specific data',
 		'public'        => true,
 		'menu_position' => 5,
-		'supports'      => array( 'title','editor'),
+		'supports'      => array( 'title'),
 	
 		'has_archive'   => true,
 	  );
@@ -167,64 +179,183 @@ function remove_admin_menu_items() {
 		register_taxonomy( 'movie_category', 'movie', $args );
 	}
 	
-	add_filter( 'cmb_meta_boxes', 'cmb_sample_metaboxes' );
-	function cmb_sample_metaboxes( array $meta_boxes ) {
-	$prefix = '_cmb_';
+	add_filter( 'cmb_meta_boxes', 'cmb_movie_metaboxes' );
+	function cmb_movie_metaboxes( array $meta_boxes ) {
+	#movie post type meta box
+		$prefix = '_cmb_';
+		$meta_boxes['movie_metabox'] = array(
+			'id'         => 'movie_metabox',
+			'title'      => __( 'Movie datail part A', 'cmb' ),
+			'pages'      => array( 'movie', ), // Post type
+			'context'    => 'normal',
+			'priority'   => 'high',
+			'show_names' => true, // Show field names on the left
+			// 'cmb_styles' => true, // Enqueue the CMB stylesheet on the frontend
+			'fields'     => array(
+				
+				array(
+					'name' => __( 'Multiple images', 'cmb' ),
+					'desc' => __( 'Upload an image or enter a URL.', 'cmb' ),
+					'id'   => $prefix . 'multiple_images',
+					'description' => 'images for individuals page',
+					'type' => 'file_list',
+				),
+				
+				array(
+					'name' => __( 'Slider', 'cmb' ),
+					'desc' => __( 'Upload an image or enter a URL.', 'cmb' ),
+					'id'   => $prefix . 'slider_image',
+					'type' => 'file',
+				),
+			
+			),
+		);
 	
-	$meta_boxes['test_metabox'] = array(
-		'id'         => 'test_metabox',
-		'title'      => __( 'Movie datail part A', 'cmb' ),
-		'pages'      => array( 'movie', ), // Post type
-		'context'    => 'normal',
-		'priority'   => 'high',
-		'show_names' => true, // Show field names on the left
-		// 'cmb_styles' => true, // Enqueue the CMB stylesheet on the frontend
+		return $meta_boxes;
+	}
+
+/* ========================================================================================================================
+	
+	Featured Content Post type
+	
+	======================================================================================================================== */
+
+	/**/
+	 add_action( 'init', 'my_custom_post_featured');
+	 add_action( 'init', 'my_taxonomies_featured', 0 );
+	 
+	// regester the post type function
+	function my_custom_post_featured() {
+	//labels	
+	$labels = array(
+		'name'               => _x( 'Featured Content', 'post type general name' ),
+		'singular_name'      => _x( 'Featured Content', 'post type singular name' ),
+		'add_new'            => _x( 'Add Featured Content', 'featured' ),
+		'add_new_item'       => __( 'Add New featured Content' ),
+		'edit_item'          => __( 'Edit featured Content' ),
+		'new_item'           => __( 'New featured Content' ),
+		'all_items'          => __( 'All featured Content' ),
+		'view_item'          => __( 'View featured Content' ),
+		'search_items'       => __( 'Search featured Content' ),
+		'not_found'          => __( 'No featured Content found' ),
+		'not_found_in_trash' => __( 'No featured Conetnt found in the Trash' ), 
+		'parent_item_colon'  => '',
+		'menu_name'          => 'Featured Content'
+	  );
+	  //arguments
+	  $args = array(
+		'labels'        => $labels,
+		'description'   => 'Holds featured Content specific data',
+		'public'        => true,
+		'menu_position' => 5,
+		'supports'      => array( 'title'),
+	
+		'has_archive'   => true,
+	  );
+	
+	register_post_type( 'featured', $args ); 
+	}
+	// function for creating the featured category/taxonomy
+	function my_taxonomies_featured() {
+		$labels = array(
+		'name'              => _x( 'Genres', 'taxonomy general name' ),
+		'singular_name'     => _x( 'Genres', 'taxonomy singular name' ),
+		'search_items'      => __( 'Search featured Categories' ),
+		'all_items'         => __( 'All  Genres' ),
+		'parent_item'       => __( 'Parent Genre' ),
+		'parent_item_colon' => __( 'Parent Genre:' ),
+		'edit_item'         => __( 'Edit Genre' ), 
+		'update_item'       => __( 'Update Genres' ),
+		'add_new_item'      => __( 'Add Genre' ),
+		'new_item_name'     => __( 'New Genre' ),
+		'menu_name'         => __( 'Genre' ),
+		
+		);
+		$args = array(
+		'labels' => $labels,
+		'hierarchical' => true,
+		'show_ui' =>true,
+		);
+		register_taxonomy( 'featured_category', 'featured', $args );
+	}
+	
+	add_filter( 'cmb_meta_boxes', 'cmb_featured_metaboxes' );
+	function cmb_featured_metaboxes( array $meta_boxes ) {
+	#featured post type meta box
+		$prefix = '_featured_';
+		
+	
+	    $meta_boxes['field_group'] = array(
+		'id'         => 'field_group',
+		'title'      => __( 'Featured Content Slides', 'cmb' ),
+		'pages'      => array( 'featured', ),
 		'fields'     => array(
 			array(
-				'name' => __( 'Movie Caption', 'cmb' ),
-				'desc' => __( '', 'cmb' ),
-				'id'   => $prefix . 'cap_text',
-				'type' => 'textarea',
-			),
+				'id'          => $prefix . 'repeat_group',
+				'type'        => 'group',
+				'description' => __( 'Featured Content Slidess', 'cmb' ),
+				'options'     => array(
+					'group_title'   => __( 'Entry {#}', 'cmb' ), // {#} gets replaced by row number
+					'add_button'    => __( 'Add Another Entry', 'cmb' ),
+					'remove_button' => __( 'Remove Entry', 'cmb' ),
+					'sortable'      => true, // beta
+				),
+				// Fields array works the same, except id's only need to be unique for this group. Prefix is not needed.
+				'fields'      => array(
 			
-			array(
-				'name' => __( 'Featured Image', 'cmb' ),
-				'desc' => __( 'Upload an image or enter a URL.', 'cmb' ),
-				'id'   => $prefix . 'featured_image',
-				'type' => 'file',
+					array(
+						'name' => 'Caption',
+						'description' => '',
+						'id'   => 'caption',
+						'type' => 'text',
+					),
+					array(
+						'name' => 'Copy',
+						'description' => '',
+						'id'   => 'copy',
+						'type' => 'textarea',
+					),
+					array(
+						'name' => 'Slide Name',
+						'description' => 'Tab name',
+						'id'   => 'tab',
+						'type' => 'text',
+					),
+					array(
+						'name' => 'Slide',
+						'id'   => 'image',
+						'type' => 'file',
+					),
+				
+				   array(
+					'name'    => __( 'Buttons', 'cmb' ),
+					'desc'    => __( 'select buttons to appear on the slide', 'cmb' ),
+					'id'      => $prefix . 'icons',
+					'type'    => 'multicheck',
+					'options' => array(
+						'check1' => __( 'Buy', 'cmb' ),
+						'check2' => __( 'Trailer', 'cmb' ),
+						'check3' => __( 'Date', 'cmb' ),
+					),
+					// 'inline'  => true, // Toggles display to inline
+				),
+					
+				),
 			),
-			array(
-				'name' => __( 'Multiple images', 'cmb' ),
-				'desc' => __( 'Upload an image or enter a URL.', 'cmb' ),
-				'id'   => $prefix . 'multiple_images',
-				'type' => 'file_list',
-			),
-			
-			array(
-				'name' => __( 'Slider', 'cmb' ),
-				'desc' => __( 'Upload an image or enter a URL.', 'cmb' ),
-				'id'   => $prefix . 'slider_image',
-				'type' => 'file',
-			),
-		
 		),
 	);
-
-	return $meta_boxes;
-}
-
-add_action( 'init', 'cmb_initialize_cmb_meta_boxes', 9999 );
-
-function cmb_initialize_cmb_meta_boxes() {
-
-	if ( ! class_exists( 'cmb_Meta_Box' ) )
+	
+		return $meta_boxes;
+	}
+	
+	
+	
+	function cmb_initialize_cmb_meta_boxes() {
+		 if ( ! class_exists( 'cmb_Meta_Box' ) )
 		require_once 'Custom-Metaboxes-and-Fields-for-WordPress-master/init.php';
 
-}
+      }
 
-	
-	
-	
 	function starkers_comment( $comment, $args, $depth ) {
 		$GLOBALS['comment'] = $comment; 
 		?>
