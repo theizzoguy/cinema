@@ -67,22 +67,24 @@ body{width:100%;background-color: #000;font-family: avenir;font-size: 16px;color
 /*1. HEADER*/
 .header{position:absolute;top:0px;left:0px;width:100%;text-transform: uppercase;background-color: rgba(0,0,0,0.25); font-size:0.875em/* 14pt/16pt */;z-index:5;vertical-align: middle;}
 .header li{display:inline-block;float:left;}
-.header a{display:block;padding-top:1em/* 15px/41px */;padding-bottom:1em;}
+.header a{display:block;padding:2em 3em}
  
 /*1.1 menu*/
 .menu{width:25.3125%;padding:0px 7.5%;}
-.menu li{display:inline-block; margin-right: 7.03125%/* 90px/1280px */;}
+.menu li{display:inline-block; /* margin-right: 7.03125% 90px/1280px */;}
 .menu li:last-child{margin-right: 0px;}
 .menu a{color:rgba(255,255,255,0.45); font-size:0.875em/* 14pt/16pt */; }
-.menu a:hover,.menu a:active {color:rgba(255,255,255,1);text-decoration: none;}
+.menu a:hover,.menu a:active {color:rgba(255,255,255,1);text-decoration: none;background:rgba(255,255,255,0.15);}
 .logo{display:inline-block;margin: 0px auto;margin-right:2%;text-indent: -9999px;padding-top:1em/* 15px/41px */;padding-bottom:1em; }
 .logo a{width:64px;height:30px;background-image: url("../images/logo.png");padding:0px;}
  
 /*1.2 quick-buy*/ 
 .quick-buy{position:relative;}
-.quick-buy a{color:rgba(255,255,255,0.45); font-size:0.875em/* 14pt/16pt */; }
-.quickbuy > ul{background:rgba(255,255,255,0.45);position:absolute;left:-99999px;}
-
+.quick-buy a{color:rgba(255,255,255,0.45); font-size:0.875em/* 14pt/16pt */;font-weight: 700; }
+.quick-buy ul{position:absolute;left:-9999px;}
+.quick-buy  ul li a{color:rgba(255,255,255,0.45);background-color:rgba(0,0,0,0.45);border-left:1px solid rgba(0,0,0,0.9);padding:15px; white-space:nowrap;}
+.quick-buy a:hover, quick-buy a:active{color:rgba(255,255,255,1);background:rgba(255,255,255,0.15);}
+.quick-buy:hover ul{left:0px;}
 
 
 /*2.0 FEATURE-SLIDER*/
