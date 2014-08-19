@@ -17,7 +17,7 @@
 
 	require_once( 'external/starkers-utilities.php' );
 	require_once( 'meta_box.php');
-	require'ajax.php';
+	#require'ajax.php';
 	add_filter('show_admin_bar', '__return_false');
 	
 	//removing menu items
@@ -67,6 +67,16 @@
 	*/
 
 	function starkers_script_enqueuer() {
+		wp_register_script( 'bxslider', get_template_directory_uri().'/js/jquery.bxslider.min.js', array( 'jquery' ) );
+		wp_enqueue_script('bxslider');
+		
+		wp_register_style( 'bxcss', get_stylesheet_directory_uri().'/css/jquery.bxslider.css', '', '', 'screen' );
+        wp_enqueue_style( 'bxcss' );
+        
+        wp_register_script( 'site', get_template_directory_uri().'/js/site.js', array( 'jquery' ) );
+		wp_enqueue_script('site');
+		
+		
 		/*wp_register_script( 'ui', get_template_directory_uri().'/js/jquery.ui.core.js', array( 'jquery' ) );
 		wp_enqueue_script( 'ui' );
 		wp_register_script( 'widget', get_template_directory_uri().'/js/jquery.ui.widget.js', array( 'jquery' ) );
@@ -85,9 +95,7 @@
         wp_enqueue_style( 'juicalender' );
 		wp_register_style( 'slick', get_stylesheet_directory_uri().'/css/slick.css', '', '', 'screen' );
         wp_enqueue_style( 'slick' );
-		wp_register_script( 'slickjs', get_template_directory_uri().'/js/slick.min.js', array( 'jquery' ) );
-		wp_enqueue_script( 'slickjs' );
-		wp_register_script( 'date', get_template_directory_uri().'/js/jquery.ui.datepicker.min.js', array( 'jquery' ) );
+				wp_register_script( 'date', get_template_directory_uri().'/js/jquery.ui.datepicker.min.js', array( 'jquery' ) );
 		wp_enqueue_script( 'date' );*/
 		}	
 	function my_theme_styles() {
