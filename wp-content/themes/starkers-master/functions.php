@@ -333,9 +333,9 @@
 					'id'      => $prefix . 'icons',
 					'type'    => 'multicheck',
 					'options' => array(
-						'check1' => __( 'Buy', 'cmb' ),
-						'check2' => __( 'Trailer', 'cmb' ),
-						'check3' => __( 'Date', 'cmb' ),
+						'buy' => __( 'Buy', 'cmb' ),
+						'trailer' => __( 'Trailer', 'cmb' ),
+						'schedule' => __( 'schedule', 'cmb' ),
 					),
 					// 'inline'  => true, // Toggles display to inline
 				),

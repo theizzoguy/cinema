@@ -14,9 +14,33 @@
         #echo 'seats : '.$bck;
 			}
      }
-endwhile; 
- endif; ?>
+ endwhile; 
+endif; 
+wp_reset_query();  
+ ?>
 <?php
+$type = 'featured';
+$args=array('post_type' => $type,'post_status' => 'publish','posts_per_page' => -1,'ignore_sticky_posts"'=> 1);
+global $post;
+$featured= new WP_Query($args);
+if( $featured->have_posts() ) {
+while ($featured->have_posts()) : $featured->the_post(); 
+ $f_name= get_the_title();	
+ $featured_name[]=$f_name;
+ //getting cinema room
+ $grp= get_post_meta( get_the_ID(), '_featured_repeat_group', true );
+ $data= get_post_meta( get_the_ID(), 'movie_repeatable', true );
+ foreach ($grp as $grp_val){
+	$caption[]=$grp_val['caption'];
+	$copy[]=$grp_val['copy'];
+	$tab_name[]=$grp_val['tab'];
+	$featured_images[]=$grp_val['image'];
+	$buttons[]=$grp_val['_featured_icons'];
+	}
+endwhile;
+}// end if
+wp_reset_query(); 
+
 $type = 'movie';
 $args=array('post_type' => $type,'post_status' => 'publish','posts_per_page' => -1,'ignore_sticky_posts"'=> 1);
 global $post;
@@ -95,12 +119,11 @@ wp_reset_query();
 
 ?>
 <?php
-		//echo '<ul class="test">';
 			$i=0;
 			$currentdate=date('Y-m-d');
+			
 			foreach( $movie_names as $key=> $mymovie){
-		
-				$myend=$enddate[$key];
+		       $myend=$enddate[$key];
 				// all movies that are showing now and coming soon, end date is greater than current date
 				//Now showing movie first show date is equal or greater than current date
 				if($myend>$currentdate){
@@ -111,21 +134,15 @@ wp_reset_query();
 					// comming soon , first show date is greater than current date
 						if($start>$currentdate){
 							$days_between = ceil(abs($start_date - $current) / 86400); //using cieling to round off
-							//echo 'days left too show: '.$days_between;
+							
 							}else{
 								//echo "already showing";
 							}
-							
-					//getting movie src
-					$src=$slider[$key];
-					$src2=$cmb_featured[$key];
-					//echo '<li>'.$src.'</li>';
-					//echo"<li><img src=\"$src\"></li>";
-					//echo"<li><img src=\"$src2\"></li>";
-					//getting movie names
+					//getting movie src for movies that are valid
+					$valid_src[]=$slider[$key];
+					$movie_arr[]=$mymovie;
 					$movie_name=$mymovie;
-					//echo $movie_name;
-					//remove spaces between movie names 
+				  //remove spaces between movie names 
 					$movie=str_replace(" ","",$mymovie);
 					    //$date=$startdate[$key];
 					$i++;
@@ -273,63 +290,25 @@ fndate($arr);
 				<li class="search"></li>
 			</ul>
 			<ul class="feature-slider">
-				<li class="hottest">
-					<div class="gradient-overlay">
-						<img id="bkg" src="images/apes(f).jpg"/>
-					</div>
-					<ul>
-						<li class="caption">
+				<?php
+				foreach($featured_images as $key=>$f_image):
+					
+					echo "<li class='hottest'>";
+					echo "<div class='gradient-overlay'><img id='bkg' src=\"$f_image\"/></div>";
+					echo "<ul>
+						  <li class='caption'>
 							<h1>the apes take top spot in the cinema</h1>
 							<h2>come find out for yourself why this is the hottest this summers' blockbusters</h2>
 						</li>
-						<li class="buttons">
-							<a href="#"><span></span>buy tickets</a>
-							<a href="#"><span></span>buy tickets</a>
+						<li class='buttons'>
+							<a href=''><span></span>buy tickets</a>
+							<a href=''><span></span>buy tickets</a>
 						</li>
 					</ul>
-					<div class="notification"></div>
-				</li>
-				<li class="coming-soon">
-					<ul>
-						<li class="caption">
-							<h1>you can't afford to miss this</h1>
-							<h2>The excitement is electrifying as the countdown to the premiere 
-of the summers biggest blockbuster continues. Are you READDDY!!!</h2>
-						</li>
-						<li class="buttons">
-							<a href="#"><span></span>buy tickets</a>
-							<a href="#"><span></span>trailer</a>
-						</li>
-					</ul>
-					<div class="notification"></div>
-				</li>
-				<li class="community-promo">
-					<ul>
-						<li class="caption">
-							<h1>look out guardians</h1>
-							<h2>Vote for your favourite "Guardians of the Galaxy" character 
-poster! This week features our favourite villains</h2>
-						</li>
-						<li class="buttons">
-							<a href="#"><span></span>buy tickets</a>
-						</li>
-					</ul>
-					<div class="notification"></div>
-				</li>
-				<li class="cinema-promo">
-					<ul>
-						<li class="caption">
-							<h1>summer is finally here again</h1>
-							<h2>And with our new online ticketing system, and personalised alerts, 
-you can not afford to miss a single blockbuster this time round</h2>
-						</li>
-						<li class="buttons">
-							<a href="#"><span></span>buy tickets</a>
-							<a href="#"><span></span>trailer</a>
-						</li>
-					</ul>
-					<div class="notification"></div>
-				</li>
+					<div class='notification'></div>";
+					echo "</li>";	 
+					endforeach
+				?>
 			</ul>
 			<div class="movie-slider">
 				<div class="highlight-slider"></div>
@@ -357,40 +336,14 @@ you can not afford to miss a single blockbuster this time round</h2>
 					</ul>
 					<div id="tab1">
 						<ul class="now-showing">
-							<li>
-								<img src="images/gdzyl.jpg"/>
-								<button></button>
-							</li>
-							<li>
-								<img src="images/xmn.jpg"/>
-								<button></button>
-							</li>
-							<li>
-								<img src="images/cap.jpg"/>
-								<button></button>
-							</li>
-							<li>
-								<img src="images/krsh.jpg"/>
-								<button></button>
-							</li>
-							<li>
-								<img src="images/apes.jpg"/>
-								<button></button>
-							</li>
-							<li>
-								<img src="images/avg.jpg"/>
-								<button></button>
-							</li>
-							<li>
-								<img src="images/22js.jpg"/>
-								<button></button>
-							</li>
-							<li>
-								<img src="images/ff2.jpg"/>
-								<button></button>
-							</li>
-							
+						<?php
+							#getting all images
+							foreach ($valid_src as $src):
+								echo"<li> <img src=\"$src\"/></li>";
+								endforeach; 
+							?>
 						</ul>
+							
 					</div>
 					<div id="tab2">
 						<ul class="coming-soon">
