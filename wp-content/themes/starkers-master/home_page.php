@@ -225,7 +225,7 @@ fndate($arr);
 						<li><a href="#">community</a></li>
 					</ul>
 				</li>
-				<li class="logo"><a href="#">logo</a></li>
+				<li class="logo clearfix"><a href="#">logo</a></li>
 				<li class="quick-buy"><a href="#">quick buy</a>
 					<ul>
 						<li class="what-movie"><a href="#">what movie would you like to watch?</a>
@@ -286,7 +286,7 @@ fndate($arr);
 						<li class="buy-now"></li>
 					</ul>
 				</li>
-				<li class="sign-up"></li>
+				<li class="sign-up clearfix"></li>
 				<li class="search"></li>
 			</ul>
 			<ul class="feature-slider">

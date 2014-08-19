@@ -66,7 +66,7 @@ body{width:100%;background-color: #000;font-family: avenir;font-size: 16px;color
 
 /*1. HEADER*/
 .header{position:absolute;top:0px;left:0px;width:100%;text-transform: uppercase;background-color: rgba(0,0,0,0.25); font-size:0.875em/* 14pt/16pt */;z-index:5;vertical-align: middle;}
-.header li{display:inline-block;}
+.header li{display:inline-block;float:left;}
 .header a{display:block;padding-top:1em/* 15px/41px */;padding-bottom:1em;}
  
 /*1.1 menu*/
@@ -81,17 +81,7 @@ body{width:100%;background-color: #000;font-family: avenir;font-size: 16px;color
 /*1.2 quick-buy*/ 
 .quick-buy{position:relative;}
 .quick-buy a{color:rgba(255,255,255,0.45); font-size:0.875em/* 14pt/16pt */; }
-.quick-buy ul{display:none;position:absolute;top:4.5625em;left:0px;width:100% /*560px/1280px*/;opacity: 0;visibility: hidden;
-  -webkit-transiton: opacity 0.2s;
-  -moz-transition: opacity 0.2s;
-  -ms-transition: opacity 0.2s;
-  -o-transition: opacity 0.2s;
-  -transition: opacity 0.2s;}
-.quick-buy  ul li{display:inline-block;}
-.quick-buy ul li ul{display:none;}
-.quick-buy  ul li a{color:rgba(255,255,255,0.45);background-color:rgba(0,0,0,0.45);border-left:1px solid rgba(0,0,0,0.9);padding:1em 1.786%;}
-.quick-buy  ul li a:hover{color:rgba(255,255,255,1);background-color:rgba(0,0,0,0.75)}
-.quick-buy:active ul{display:inline-block;opacity:1;visibility:visible;}
+.quickbuy > ul{background:rgba(255,255,255,0.45);position:absolute;left:-99999px;}
 
 
 
@@ -128,4 +118,4 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
 
 
-.coming-soon, .community-promo, .cinema-promo, .community, #tab2{display:none;}
+.what-movie ul, .when ul, .what-time ul, .adults ul, .kids ul,.coming-soon, .community-promo, .cinema-promo, .community, #tab2{display:none;}
