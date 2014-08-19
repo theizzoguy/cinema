@@ -79,12 +79,12 @@ body{width:100%;background-color: #000;font-family: avenir;font-size: 16px;color
 .logo a{width:64px;height:30px;background-image: url("../images/logo.png");padding:0px;}
  
 /*1.2 quick-buy*/ 
-.quick-buy{position:relative;}
+/*.quick-buy{position:relative;}*/
 .quick-buy a{color:rgba(255,255,255,0.45); font-size:0.875em/* 14pt/16pt */;font-weight: 700; }
-.quick-buy ul{position:absolute;left:-9999px;}
-.quick-buy  ul li a{color:rgba(255,255,255,0.45);background-color:rgba(0,0,0,0.45);border-left:1px solid rgba(0,0,0,0.9);padding:15px; white-space:nowrap;}
-.quick-buy a:hover, quick-buy a:active{color:rgba(255,255,255,1);background:rgba(255,255,255,0.15);}
-.quick-buy:hover ul{left:0px;}
+.quick-buy ul{position:absolute;opacity:0;}
+.quick-buy  ul li a{color:rgba(255,255,255,0.45);background-color:rgba(0,0,0,0.45);border-left:1px solid rgba(0,0,0,0.9);padding:20px; white-space:nowrap;}
+.quick-buy a:hover, quick-buy a:active{color:rgba(255,255,255,1);background:rgba(255,255,255,0.15);text-decoration: none;}
+.quick-buy:hover ul{opacity:1;}
 
 
 /*2.0 FEATURE-SLIDER*/
