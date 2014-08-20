@@ -31,13 +31,14 @@ while ($featured->have_posts()) : $featured->the_post();
  $grp= get_post_meta( get_the_ID(), '_featured_repeat_group', true );
  $data= get_post_meta( get_the_ID(), 'movie_repeatable', true );
 
- foreach ($grp  as $grp_val){
+ foreach ($grp as $grp_val){
 	$caption[]=$grp_val['_featured_caption'];
 	$copy[]=$grp_val['_featured_copy'];
 	$tab_name[]=$grp_val['tab'];
 	$featured_images[]=$grp_val['image'];
 	$buttons[]=$grp_val['_featured_icons'];
-}
+	#print_r($grp_val);
+	}
 endwhile;
 }// end if
 wp_reset_query(); 
@@ -227,7 +228,8 @@ fndate($arr);
 					</ul>
 				</li>
 				<li class="logo clearfix"><a href="#">logo</a></li>
-				<li class="quick-buy"><a href="#">quick buy</a>
+				<li class="quick-buy">
+					<a href="#">quick buy</a>
 					<ul>
 						<li class="what-movie"><a href="#">what movie would you like to watch?</a>
 							<ul>
@@ -284,30 +286,33 @@ fndate($arr);
 								<li><a href="#">9</a></li>
 							</ul>
 						</li>
-						<li class="buy-now"></li>
+						<li class="buy-now"><a href="#">buy ticket</a></li>
 					</ul>
 				</li>
-				<li class="sign-up clearfix"></li>
+				<li class="sign-up clearfix">
+					<ul>
+						<li><a href="#">sign up</a></li>
+						<li><a href="#" class="sign-in">sign in</a></li>
+					</ul>
+				</li>
 				<li class="search"></li>
 			</ul>
 			<ul class="feature-slider">
 				<?php
 				foreach($featured_images as $key=>$f_image):
-					$caption[]=$grp_val['_featured_caption'];
-					$buttons[]=$grp_val['_featured_icons'];
-					$copy=wpautop($copy[$key]);
-					$caption=wpautop($caption[$key]);
+					
 					echo "<li class='hottest'>";
 					echo "<div class='gradient-overlay'><img id='bkg' src=\"$f_image\"/></div>";
 					echo "<ul>
-							<li class='caption'><h1>$caption</h1>";
-							echo"<h2>$copy</h2></li>";
-							echo "<li class='buttons'>";
-							foreach ($buttons as $button):
-								echo "<a href='' class=\"$button\"><span></span>buy tickets</a>";
-							endforeach; 
-							echo"</li>
-						</ul>
+						  <li class='caption'>
+							<h1>the apes take top spot in the cinema</h1>
+							<h2>come find out for yourself why this is the hottest this summers' blockbusters</h2>
+						</li>
+						<li class='buttons'>
+							<a href=''><span></span>buy tickets</a>
+							<a href=''><span></span>buy tickets</a>
+						</li>
+					</ul>
 					<div class='notification'></div>";
 					echo "</li>";	 
 					endforeach
