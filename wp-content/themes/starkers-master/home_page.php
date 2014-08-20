@@ -293,10 +293,6 @@ fndate($arr);
 			<ul class="feature-slider">
 				<?php
 				foreach($featured_images as $key=>$f_image):
-<<<<<<< HEAD
-
-=======
->>>>>>> FETCH_HEAD
 					$mycopy=$copy[$key];
 					$mycaption=$caption[$key];
 					$mybuttons=$buttons[$key];
