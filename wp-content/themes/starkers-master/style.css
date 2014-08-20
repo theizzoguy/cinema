@@ -66,7 +66,7 @@ body{width:100%;background-color: #000;font-family: avenir;font-size: 16px;color
 
 /*1. HEADER*/
 .header{position:absolute;top:0px;left:0px;width:100%;text-transform: uppercase;background-color: rgba(0,0,0,0.25); font-size:0.875em/* 14pt/16pt */;z-index:5;vertical-align: middle;}
-.header li{display:inline-block;float:left;}
+.header li{display:inline-block;float:left;vertical-align: middle}
 .header a{display:block;padding:2em 3em}
  
 /*1.1 menu*/
@@ -79,12 +79,21 @@ body{width:100%;background-color: #000;font-family: avenir;font-size: 16px;color
 .logo a{width:64px;height:30px;background-image: url("../images/logo.png");padding:0px;}
  
 /*1.2 quick-buy*/ 
-.quick-buy{position:relative;}
+.quick-buy{margin-right:10.9375%;}
 .quick-buy a{color:rgba(255,255,255,0.45); font-size:0.875em/* 14pt/16pt */;font-weight: 700; }
-.quick-buy ul{position:absolute;left:-9999px;}
-.quick-buy  ul li a{color:rgba(255,255,255,0.45);background-color:rgba(0,0,0,0.45);border-left:1px solid rgba(0,0,0,0.9);padding:15px; white-space:nowrap;}
-.quick-buy a:hover, quick-buy a:active{color:rgba(255,255,255,1);background:rgba(255,255,255,0.15);}
-.quick-buy:hover ul{left:0px;}
+.quick-buy ul{position:absolute;opacity:0;}
+.quick-buy  ul li a{color:rgba(255,255,255,0.45);background-color:rgba(0,0,0,0.45);border-left:1px solid rgba(0,0,0,0.9);padding:20px; white-space:nowrap;}
+.quick-buy a:hover, quick-buy a:active{color:rgba(255,255,255,1);background:rgba(255,255,255,0.15);text-decoration: none;}
+.quick-buy:hover > ul{opacity:1;}
+.what-movie:hover ul, .when:hover ul, .what-time:hover ul, .adults:hover ul, .kids:hover ul{opacity:1;}
+.quick-buy ul li ul li{display:block;float:none;width:100%;}
+.quick-buy .buy-now a{background-color:rgb(240,58,58);color:rgba(255,255,255,1)}
+
+/*1.2 sign-up*/
+.sign-up{padding:0.8em 0px;}
+.sign-up a{color:rgba(255,255,255,0.45); font-size:0.875em/* 14pt/16pt */;padding:1em 2em; }
+.sign-in{background-color: rgba(58,169,240,1);-moz-border-radius: 5px;-webkit-border-radius: 5px;-o-border-radius: 5px;-ms-border-radius: 5px;border-radius: 5px; }
+.sign-up .sign-in a{color:rgba(255,255,255,1);}
 
 
 /*2.0 FEATURE-SLIDER*/
@@ -120,4 +129,4 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
 
 
-.what-movie ul, .when ul, .what-time ul, .adults ul, .kids ul,.coming-soon, .community-promo, .cinema-promo, .community, #tab2{display:none;}
+.coming-soon, .community-promo, .cinema-promo, .community, #tab2{display:none;}
