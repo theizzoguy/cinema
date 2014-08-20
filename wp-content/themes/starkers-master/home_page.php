@@ -418,7 +418,40 @@ fndate($arr);
 				</div>
 				
 			</div>
-			<div class="community"></div>
+			<div class="community">
+				<ul class="social">
+					<h2>social media freebies</h2>
+					<p>join our social media family and stand a chance to win great prizes <i>every week</i></p>
+					<li class="facebook">
+						<h3><span></span>facebook</h3>
+						<p>like and/or comment on Cinema Magic facebook posts for free tickets to the movies</p>
+						<div class="like-buttons"></div>
+					</li>
+					<li class="twitter">
+						<h3><span></span>twitter</h3>
+						<p>Follow us on twitter and win a ticket to the premiere of <b>Guardian's of the Galaxy</b></p>
+						<div class="like-buttons"></div>
+					</li>
+					<li class="instagram">
+						<h3><span></span>instagram</h3>
+						<p>post a selfie at the cinema and stand a chance to be featured on the site</p>
+						<div class="like-buttons"></div>
+					</li>
+				</ul>
+				<ul class="the-experience">
+					<h2>our community</h2>
+					<li>
+						<h2>the <span><b>cine-magic</b> experience</span></h2>
+						<p>sign up to our fan community and enjoy these full benefits and more</p>
+						<ol>
+							<li>half price tuesday</li>
+							<li>2 for 1 thursday</li>
+							<li>freebie fridays</li>
+						</ol>
+						<p>not a member yet? what have you been waiting for?<button>sign up here</button></p>
+					</li>
+				</ul>
+			</div>
 		</div>
 </body>
 </html>
