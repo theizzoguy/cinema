@@ -20,7 +20,7 @@ wp_reset_query();
  ?>
 <?php
 $type = 'featured';
-$args=array('post_type' => $type,'post_status' => 'publish','posts_per_page' => -1,'ignore_sticky_posts"'=> 1);
+$args=array('post_type' => $type,'post_status' => 'publish','posts_per_page' =>1,'ignore_sticky_posts"'=> 1);
 global $post;
 $featured= new WP_Query($args);
 if( $featured->have_posts() ) {
@@ -29,15 +29,15 @@ while ($featured->have_posts()) : $featured->the_post();
  $featured_name[]=$f_name;
  //getting cinema room
  $grp= get_post_meta( get_the_ID(), '_featured_repeat_group', true );
- $data= get_post_meta( get_the_ID(), 'movie_repeatable', true );
-
  foreach ($grp  as $grp_val){
 	$caption[]=$grp_val['_featured_caption'];
 	$copy[]=$grp_val['_featured_copy'];
 	$tab_name[]=$grp_val['tab'];
 	$featured_images[]=$grp_val['image'];
 	$buttons[]=$grp_val['_featured_icons'];
+	#print_r($grp_val);
 }
+
 endwhile;
 }// end if
 wp_reset_query(); 
@@ -293,26 +293,34 @@ fndate($arr);
 			<ul class="feature-slider">
 				<?php
 				foreach($featured_images as $key=>$f_image):
-					$caption[]=$grp_val['_featured_caption'];
-					$buttons[]=$grp_val['_featured_icons'];
-					$copy=wpautop($copy[$key]);
-					$caption=wpautop($caption[$key]);
-					echo "<li class='hottest'>";
+					$mycopy=$copy[$key];
+					$mycaption=$caption[$key];
+					$mybuttons=$buttons[$key];
+					$mytab_name=$tab_name[$key];
+				    echo "<li class='hottest'>";
 					echo "<div class='gradient-overlay'><img id='bkg' src=\"$f_image\"/></div>";
 					echo "<ul>
-							<li class='caption'><h1>$caption</h1>";
-							echo"<h2>$copy</h2></li>";
+							<li class='caption'><h1>$mycaption</h1>";
+							echo"<h2>$mycopy</h2></li>";
 							echo "<li class='buttons'>";
-							foreach ($buttons as $button):
-								echo "<a href='' class=\"$button\"><span></span>buy tickets</a>";
-							endforeach; 
+							if(!empty($mybuttons)):
+								foreach ($mybuttons as $button):
+									echo "<a href='' class=\"$button\"><span></span></a>";
+								endforeach; 
+							endif;
 							echo"</li>
-						</ul>
-					<div class='notification'></div>";
-					echo "</li>";	 
+						</ul>";
+				    echo "</li>";	 
 					endforeach
 				?>
 			</ul>
+			<div id="bx-pager">
+			<?php
+			foreach ($tab_name as $key=>$tab):
+			   echo "<a data-slide-index=\"$key\" href='#'>$tab</a>";
+			endforeach;
+			?>
+			</div>
 			<div class="movie-slider">
 				<div class="highlight-slider"></div>
 				<div id="tabs">
