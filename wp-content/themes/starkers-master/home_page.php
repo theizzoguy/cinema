@@ -82,10 +82,12 @@ while ($movie->have_posts()) : $movie->the_post();
   #print_r($slide_img);
   
  $img_a= get_post_meta( get_the_ID(), '_cmb_multiple_images', true );
-    foreach($img_a as $img):
-         $cmb_multiple[]=$img;
-         #print_r($img);
-         endforeach;
+    if(!empty($img_a)):
+	    foreach($img_a as $img):
+	         $cmb_multiple[]=$img;
+	         #print_r($img);
+	         endforeach;
+	         endif;
          
   $cap= get_post_meta( get_the_ID(), '_cmb_ cap_text', true );
   $caption[]=$cap;
