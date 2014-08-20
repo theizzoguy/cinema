@@ -29,25 +29,15 @@ while ($featured->have_posts()) : $featured->the_post();
  $featured_name[]=$f_name;
  //getting cinema room
  $grp= get_post_meta( get_the_ID(), '_featured_repeat_group', true );
-<<<<<<< HEAD
  foreach ($grp  as $grp_val){
-=======
- $data= get_post_meta( get_the_ID(), 'movie_repeatable', true );
-
- foreach ($grp as $grp_val){
->>>>>>> FETCH_HEAD
 	$caption[]=$grp_val['_featured_caption'];
 	$copy[]=$grp_val['_featured_copy'];
 	$tab_name[]=$grp_val['tab'];
 	$featured_images[]=$grp_val['image'];
 	$buttons[]=$grp_val['_featured_icons'];
 	#print_r($grp_val);
-<<<<<<< HEAD
 }
 
-=======
-	}
->>>>>>> FETCH_HEAD
 endwhile;
 }// end if
 wp_reset_query(); 
@@ -237,8 +227,7 @@ fndate($arr);
 					</ul>
 				</li>
 				<li class="logo clearfix"><a href="#">logo</a></li>
-				<li class="quick-buy">
-					<a href="#">quick buy</a>
+				<li class="quick-buy"><a href="#">quick buy</a>
 					<ul>
 						<li class="what-movie"><a href="#">what movie would you like to watch?</a>
 							<ul>
@@ -295,21 +284,15 @@ fndate($arr);
 								<li><a href="#">9</a></li>
 							</ul>
 						</li>
-						<li class="buy-now"><a href="#">buy ticket</a></li>
+						<li class="buy-now"></li>
 					</ul>
 				</li>
-				<li class="sign-up clearfix">
-					<ul>
-						<li><a href="#">sign up</a></li>
-						<li><a href="#" class="sign-in">sign in</a></li>
-					</ul>
-				</li>
+				<li class="sign-up clearfix"></li>
 				<li class="search"></li>
 			</ul>
 			<ul class="feature-slider">
 				<?php
 				foreach($featured_images as $key=>$f_image):
-<<<<<<< HEAD
 					$mycopy=$copy[$key];
 					$mycaption=$caption[$key];
 					$mybuttons=$buttons[$key];
@@ -328,23 +311,6 @@ fndate($arr);
 							echo"</li>
 						</ul>";
 				    echo "</li>";	 
-=======
-					
-					echo "<li class='hottest'>";
-					echo "<div class='gradient-overlay'><img id='bkg' src=\"$f_image\"/></div>";
-					echo "<ul>
-						  <li class='caption'>
-							<h1>the apes take top spot in the cinema</h1>
-							<h2>come find out for yourself why this is the hottest this summers' blockbusters</h2>
-						</li>
-						<li class='buttons'>
-							<a href=''><span></span>buy tickets</a>
-							<a href=''><span></span>buy tickets</a>
-						</li>
-					</ul>
-					<div class='notification'></div>";
-					echo "</li>";	 
->>>>>>> FETCH_HEAD
 					endforeach
 				?>
 			</ul>
