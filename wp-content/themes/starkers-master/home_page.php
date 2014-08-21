@@ -237,9 +237,9 @@ $arr=MydateRange($startdate_cat[0],$enddate_cat[0]);
 fndate($arr);
 	?>
 <?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header' ) ); ?>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script><div class="container">
-
-			<ul class="header">
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+<div class="container">
+	<ul class="header">
 				<li class="menu">
 					<ul>
 						<li><a href="#">home</a></li>

@@ -17,7 +17,6 @@ jQuery(document).ready(function($) {
 		}
 		//toogle coming soon and now showing
 		 
-		 $( "#tabs" ).tabs();
 		
 		$('.now-showing').bxSlider({
 		 	slideWidth: 200,minSlides:1,maxSlides:maxslides,moveslides:1,auto: true,controls: true,speed:500,pause:5000,autoHover:true, 
