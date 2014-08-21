@@ -127,7 +127,7 @@ wp_reset_query();
 		       $myend=$enddate[$key];
 				// all movies that are showing now and coming soon, end date is greater than current date
 				//Now showing movie first show date is equal or greater than current date
-				if($myend>=$currentdate){
+				if($myend >= $currentdate){
 				  //number of days to first shw date
 					$start=$startdate[$key];
 					$current = strtotime($currentdate); 
@@ -137,13 +137,14 @@ wp_reset_query();
 					if($start>$currentdate){
 							$days_between = ceil(abs($start_date - $current) / 86400); //using cieling to round off
 							$coming_soon[]=$mymovie;
+							$coming_soon_src[]=$slider[$key];
 							}else{
 								//echo "already showing";
 							$showing_movie[]=$mymovie;
 							$show_times[]=$time_array[$key];
+							$showing_src[]=$slider[$key];
 							 }
 					//getting movie src for movies that are valid
-					$valid_src[]=$slider[$key];
 					$movie_arr[]=$mymovie;
 					$movie_name=$mymovie;
 				  //remove spaces between movie names 
@@ -236,6 +237,8 @@ $arr=MydateRange($startdate_cat[0],$enddate_cat[0]);
 fndate($arr);
 	?>
 <?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header' ) ); ?>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+
 <div class="container">
 			<ul class="header">
 				<li class="menu">
@@ -392,8 +395,8 @@ fndate($arr);
 					<div id="tab1">
 						<ul class="now-showing">
 						<?php
-							#getting all images
-							foreach ($valid_src as $src):
+							#getting all current images
+							foreach ($showing_src as $src):
 								echo"<li> <img src=\"$src\"/></li>";
 								endforeach; 
 							?>
@@ -402,27 +405,12 @@ fndate($arr);
 					</div>
 					<div id="tab2">
 						<ul class="coming-soon">
-							<li>
-								<img>
-								<button></button>
-							</li>
-							<li>
-								<img>
-								<button></button>
-							</li>
-							<li>
-								<img>
-								<button></button>
-							</li>
-							<li>
-								<img>
-								<button></button>
-							</li>
-							<li>
-								<img>
-								<button></button>
-							</li>
-							
+						<?php
+							#getting all coming soon images
+							foreach ($coming_soon_src as $src):
+								echo"<li> <img src=\"$src\"/></li>";
+								endforeach; 
+							?>
 						</ul>
 					</div>
 				</div>

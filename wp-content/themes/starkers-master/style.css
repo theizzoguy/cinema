@@ -133,4 +133,4 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
 
 
-.coming-soon, .community-promo, .cinema-promo, .community, #tab2{display:none;}
+.coming-soon, .community-promo, .cinema-promo, .community, #tab2{display:block;}
