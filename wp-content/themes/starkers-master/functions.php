@@ -75,22 +75,18 @@
         
         wp_register_script( 'site', get_template_directory_uri().'/js/site.js', array( 'jquery' ) );
 		wp_enqueue_script('site');
-		
-		
+				
 		/*wp_register_script( 'ui', get_template_directory_uri().'/js/jquery.ui.core.js', array( 'jquery' ) );
 		wp_enqueue_script( 'ui' );
 		wp_register_script( 'widget', get_template_directory_uri().'/js/jquery.ui.widget.js', array( 'jquery' ) );
 		wp_enqueue_script( 'widget' );
-		wp_register_script( 'tabs', get_template_directory_uri().'/js/jquery.ui.tabs.js', array( 'jquery' ) );
-		wp_enqueue_script( 'tabs' );
+		
 		wp_register_script( 'slick', get_template_directory_uri().'/js/slick.min.js', array( 'jquery' ) );
 		wp_enqueue_script( 'slick' );
 		wp_register_script( 'countdown', get_template_directory_uri().'/js/jquery.countdown.min.js', array( 'jquery' ) );
 		wp_enqueue_script( 'countdown' );
 		wp_register_script( 'validate', get_template_directory_uri().'/js/jquery.validate.min.js', array( 'jquery' ) );
 		wp_enqueue_script( 'validate' );
-		wp_register_style( 'jui', get_stylesheet_directory_uri().'/css/jqueryui.css', '', '', 'screen' );
-        wp_enqueue_style( 'jui' );
 		wp_register_style( 'juicalender', get_stylesheet_directory_uri().'/css/jquery-ui-custom.css', '', '', 'screen' );
         wp_enqueue_style( 'juicalender' );
 		wp_register_style( 'slick', get_stylesheet_directory_uri().'/css/slick.css', '', '', 'screen' );

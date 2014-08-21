@@ -237,9 +237,8 @@ $arr=MydateRange($startdate_cat[0],$enddate_cat[0]);
 fndate($arr);
 	?>
 <?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header' ) ); ?>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script><div class="container">
 
-<div class="container">
 			<ul class="header">
 				<li class="menu">
 					<ul>
@@ -375,20 +374,19 @@ fndate($arr);
 						<li>
 							<a href="#tab1">in cinema now</a>
 							<ul class="filter">
-								<li><a href="#"></a></li>
-								<li><a href="#"></a></li>
-								<li><a href="#"></a></li>
-								<li><a href="#"></a></li>
-								<li><a href="#"></a></li>
+							<?php foreach($cats_array as $slug):
+									echo"<li><a href='#$' class='$slug' name='now-showing'>$slug</a></li>";
+									endforeach;	
+							   ?>
+								
 							</ul>
 						</li><li>
 							<a href="#tab2">coming soon</a>
 							<ul class="filter">
-								<li><a href="#"></a></li>
-								<li><a href="#"></a></li>
-								<li><a href="#"></a></li>
-								<li><a href="#"></a></li>
-								<li><a href="#"></a></li>
+								<?php foreach($cats_array as $slug):
+									echo"<li><a href='#$' class='$slug' name='coming-soon'>$slug</a></li>";
+									endforeach;	
+							   ?>
 							</ul>
 						</li>
 					</ul>
