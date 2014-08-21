@@ -80,8 +80,7 @@ while ($movie->have_posts()) : $movie->the_post();
   $slide_img= get_post_meta( get_the_ID(), '_cmb_slider_image', true );
   $slider[]=$slide_img;
   #print_r($slide_img);
-  
- $img_a= get_post_meta( get_the_ID(), '_cmb_multiple_images', true );
+  $img_a= get_post_meta( get_the_ID(), '_cmb_multiple_images', true );
     if(!empty($img_a)):
 	    foreach($img_a as $img):
 	         $cmb_multiple[]=$img;
@@ -123,24 +122,26 @@ wp_reset_query();
 ?>
 <?php
 			$i=0;
-			$currentdate=date('Y-m-d');
-			
-			foreach( $movie_names as $key=> $mymovie){
+		$currentdate=date('Y-m-d');
+		foreach( $movie_names as $key=> $mymovie){
 		       $myend=$enddate[$key];
 				// all movies that are showing now and coming soon, end date is greater than current date
 				//Now showing movie first show date is equal or greater than current date
-				if($myend>$currentdate){
+				if($myend>=$currentdate){
 				  //number of days to first shw date
 					$start=$startdate[$key];
 					$current = strtotime($currentdate); 
 					$start_date = strtotime($start);
+					$showtime[]=$time_array[$key];
 					// comming soon , first show date is greater than current date
-						if($start>$currentdate){
+					if($start>$currentdate){
 							$days_between = ceil(abs($start_date - $current) / 86400); //using cieling to round off
-							
+							$coming_soon[]=$mymovie;
 							}else{
 								//echo "already showing";
-							}
+							$showing_movie[]=$mymovie;
+							$show_times[]=$time_array[$key];
+							 }
 					//getting movie src for movies that are valid
 					$valid_src[]=$slider[$key];
 					$movie_arr[]=$mymovie;
@@ -214,6 +215,22 @@ function fndate($date_array){
 	endforeach;
 	
 }
+#getting movie rating /votes
+function Getratings($movie_arg){
+		global $wpdb;
+		$table_name='Ratings';
+		$query="select rating from $table where movie='$movie_arg'";
+		$rate = $wpdb->get_row($query ,ARRAY_A);
+			foreach($seat_rows as $state):
+				if($state=='NotTaken'):
+					//update, turn to Not booked
+					$current_time=date("Y-m-d H:i:s");
+					
+				endif;
+				endforeach;//determing if taken or nt taken
+				}//looping through row from db
+			//unset seats array	
+	}
 #testing
 $arr=MydateRange($startdate_cat[0],$enddate_cat[0]);
 fndate($arr);
@@ -294,12 +311,24 @@ fndate($arr);
 			</ul>
 			<ul class="feature-slider">
 				<?php
+				#check if post is a movie and is currently showing
+				$showing=false;
+				
+				
+				
+				if(in_array($f_name,$showing_movie)){
+						#get show times and date
+						$showing=true;
+						$array=array_unique($show_times);
+						$times=implode(" ",$array);
+						$mymovie_name=$f_name;
+					}
 				foreach($featured_images as $key=>$f_image):
 					$mycopy=$copy[$key];
 					$mycaption=$caption[$key];
 					$mybuttons=$buttons[$key];
 					$mytab_name=$tab_name[$key];
-				    echo "<li class='hottest'>";
+					echo "<li class='hottest'>";
 					echo "<div class='gradient-overlay'><img id='bkg' src=\"$f_image\"/></div>";
 					echo "<ul>
 							<li class='caption'><h1>$mycaption</h1>";
@@ -307,7 +336,18 @@ fndate($arr);
 							echo "<li class='buttons'>";
 							if(!empty($mybuttons)):
 								foreach ($mybuttons as $button):
-									echo "<a href='' class=\"$button\"><span></span></a>";
+									if($button=='schedule'){
+										echo "<a href='' class=\"$button\"><span>$times</span></a>";
+										
+										}else if($button=='vote'){
+											
+											echo "<a href='' class=\"$button\"><span class='count' name='$mymovie_name'></span></a>";
+											
+											}
+											else{
+												echo "<a href='' class=\"$button\"><span></span></a>";
+												}
+									
 								endforeach; 
 							endif;
 							echo"</li>
