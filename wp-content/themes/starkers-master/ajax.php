@@ -22,24 +22,14 @@ function ratings(){
 		} else {
 		    $ip = $_SERVER['REMOTE_ADDR'];
 		}
-	
+	$table='Ratings';
 	global $wpdb;
-	//putting number to send confirmation to in  the db plus the reason, for use by sms gate way
-	$result=$wpdb->insert( 
-	'Ratings', 
-	array( 
-		'movie' =>$movie, 'rating' =>$rating,'IP'=>$ip
-	), 
-	array( 
-		'%s', '%s','%s','%d') 
-		);	
-	if(!$result){
-		echo"ERROR INSERTING VALUES IN SEND CONFIRMATION";
-		}else{
-			
-			echo "sucesssss";
-		}
-	$results=$wpdb->update( 
+	//check if movie exist in table
+	$query="select ID from $table where movie='$movie'";
+	$check= $wpdb->get_row($query ,ARRAY_A);
+	if($check!=null){
+		#update that entry
+		$results=$wpdb->update( 
 						$table, 
 						array( 
 							'movie' =>$movie,	// string
@@ -49,8 +39,25 @@ function ratings(){
 						array('movie'=>$movie),
 						array( '%s','%d','%s' )
 						);
-	
-	die(); 
+		
+	}else{
+		#insert movie entry
+		$result=$wpdb->insert( 
+		$table, 
+		array( 
+			'movie' =>$movie, 'rating' =>$rating,'IP'=>$ip
+		), 
+		array( 
+			'%s','%d','%s') 
+			);	
+		if(!$result){
+			echo"ERROR INSERTING VALUES ratings table";
+			}else{
+				
+				echo "sucesssss";
+			}
+	}//end else
+ die(); 
 	}
 add_action("wp_ajax_ratings", "ratings");
 

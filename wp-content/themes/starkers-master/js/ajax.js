@@ -3,21 +3,25 @@ $(function(){
 	history.pushState("", document.title, window.location.pathname + window.location.search);
 	
 
-	$('.count').click(function(){
+	$('.count').click(function(event){
+		alert('sdsd');
 		var $val=$(this).text();
-		var $new_val=$val +1;
-		$rated_movie=$(this).attr('name');
+		
+		var $new_val=parseInt($val) +1;
+		$movie=$(this).attr('name');
+		//insert votes in html
+		$('.count').html($new_val)
 		// remove class to disable multiple 
 		$(this).removeClass('count');
-		$votes=$new_val
-		send_vote($rated_movie,$votes)	
+		send_vote($movie,$new_val)	
+		event.preventDefault();
 		});
 	
 	function send_vote($rated_movie,$votes){
 	  jQuery.ajax({
 		 url: MyAjax.ajaxurl,
 		 type:'POST',
-		 dataType:'json',
+		 dataType:'html',
 		 data: ({action : 'ratings',movie:$rated_movie,rating:$votes}),
 		 success: function(data,state) {
 				console.log(data);

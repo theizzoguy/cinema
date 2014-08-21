@@ -218,19 +218,19 @@ function fndate($date_array){
 #getting movie rating /votes
 function Getratings($movie_arg){
 		global $wpdb;
-		$table_name='Ratings';
+		
+		$table='Ratings';
 		$query="select rating from $table where movie='$movie_arg'";
-		$rate = $wpdb->get_row($query ,ARRAY_A);
-			foreach($seat_rows as $state):
-				if($state=='NotTaken'):
-					//update, turn to Not booked
-					$current_time=date("Y-m-d H:i:s");
-					
-				endif;
-				endforeach;//determing if taken or nt taken
-				}//looping through row from db
-			//unset seats array	
-	}
+		$results = $wpdb->get_row($query ,ARRAY_A);
+		if($results == null){			
+			 $votes=0;
+			}else{
+			
+			 $votes=$results['rating'];
+		}
+	
+	return $votes;
+}
 #testing
 $arr=MydateRange($startdate_cat[0],$enddate_cat[0]);
 fndate($arr);
@@ -337,11 +337,13 @@ fndate($arr);
 							if(!empty($mybuttons)):
 								foreach ($mybuttons as $button):
 									if($button=='schedule'){
-										echo "<a href='' class=\"$button\"><span>$times</span></a>";
+										$currentdate=date('Y-m-d');
+										echo "<a href='' class=\"$button\"><span>$times $currentdate</span></a>";
 										
 										}else if($button=='vote'){
+											$rating=Getratings($mymovie_name);
 											
-											echo "<a href='' class=\"$button\"><span class='count' name='$mymovie_name'></span></a>";
+											echo "<a href='' class=\"$button\"><span class='count' name='$mymovie_name'>$rating</span></a>";
 											
 											}
 											else{
