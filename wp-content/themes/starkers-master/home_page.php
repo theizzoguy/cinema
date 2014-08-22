@@ -305,10 +305,17 @@ fndate($arr);
 								<li><a href="#">9</a></li>
 							</ul>
 						</li>
-						<li class="buy-now"></li>
+						<li class="buy-now">
+							<a href="">buy ticket</a>
+						</li>
 					</ul>
 				</li>
-				<li class="sign-up clearfix"></li>
+				<li class="sign-up clearfix">
+					<ul>
+						<li><a href="#">sign-up</a></li>
+						<li class="sign-in"><a href="#">sign in</a>
+					</li></ul>
+				</li>
 				<li class="search"></li>
 			</ul>
 			<ul class="feature-slider">
@@ -340,7 +347,7 @@ fndate($arr);
 								foreach ($mybuttons as $button):
 									if($button=='schedule'){
 										$currentdate=date('Y-m-d');
-										echo "<a href='' class=\"$button\"><span>$times $currentdate</span></a>";
+										echo "<a href='' class=\"$button\">Date<span>$times $currentdate</span></a>";
 										
 										}else if($button=='vote'){
 											$rating=Getratings($mymovie_name);
@@ -349,7 +356,7 @@ fndate($arr);
 											
 											}
 											else{
-												echo "<a href='' class=\"$button\"><span></span></a>";
+												echo "<a href='' class=\"$button\"><span>$button</span></a>";
 												}
 									
 								endforeach; 
@@ -373,20 +380,31 @@ fndate($arr);
 					<ul>
 						<li>
 							<a href="#tab1">in cinema now</a>
-							<ul class="filter">
-							<?php foreach($cats_array as $slug):
-									echo"<li><a href='#$' class='$slug' name='now-showing'>$slug</a></li>";
-									endforeach;	
-							   ?>
-								
+							<ul>
+								<li class="in-cinema-now">
+								<a href="#">genre</a>
+									<ul class="filter">
+									<?php foreach($cats_array as $slug):
+											echo"<li><a href='#$' class='$slug' name='now-showing'>$slug</a></li>";
+											endforeach;	
+									   ?>
+										
+									</ul>
+								</li>
 							</ul>
-						</li><li>
+						</li>
+						<li>
 							<a href="#tab2">coming soon</a>
-							<ul class="filter">
-								<?php foreach($cats_array as $slug):
-									echo"<li><a href='#$' class='$slug' name='coming-soon'>$slug</a></li>";
-									endforeach;	
-							   ?>
+							<ul>
+								<li class="coming_soon">
+									<a href="#">genre</a>
+									<ul class="filter">
+										<?php foreach($cats_array as $slug):
+											echo"<li><a href='#$' class='$slug' name='coming-soon'>$slug</a></li>";
+											endforeach;	
+									   ?>
+									</ul>
+								</li>
 							</ul>
 						</li>
 					</ul>

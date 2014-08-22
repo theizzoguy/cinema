@@ -19,14 +19,14 @@ jQuery(document).ready(function($) {
 		 
 		
 		$('.now-showing').bxSlider({
-		 	slideWidth: 200,minSlides:1,maxSlides:maxslides,moveslides:1,auto: true,controls: true,speed:500,pause:5000,autoHover:true, 
+		 	slideWidth: 200,minSlides:1,maxSlides:maxslides,moveslides:1,auto: true,controls: true,speed:500,pause:5000,autoHover:true,pager:false, 
   			onSlideBefore: function($slideElement, oldIndex, newIndex){
   				
 			}
 		});
 		
 		$('.coming-soon').bxSlider({
-		 	slideWidth: 200,minSlides:1,maxSlides:maxslides,moveslides:1,auto: true,controls: true,speed:500,pause:5000,autoHover:true, 
+		 	slideWidth: 200,minSlides:1,maxSlides:maxslides,moveslides:1,auto: true,controls: true,speed:500,pause:5000,autoHover:true,pager:false, 
   			onSlideBefore: function($slideElement, oldIndex, newIndex){
   				
 			}
