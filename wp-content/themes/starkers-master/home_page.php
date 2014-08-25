@@ -316,7 +316,11 @@ fndate($arr);
 						<li class="sign-in"><a href="#">sign in</a>
 					</li></ul>
 				</li>
-				<li class="search"></li>
+				<li class="search">
+					<form method="post" action="/search" id="search" >
+						<input name="search movies" type="text" size="40" placeholder="Search movies..."/>
+					</form>
+				</li>
 			</ul>
 			<ul class="feature-slider">
 				<?php
@@ -347,16 +351,16 @@ fndate($arr);
 								foreach ($mybuttons as $button):
 									if($button=='schedule'){
 										$currentdate=date('Y-m-d');
-										echo "<a href='' class=\"$button\">Date<span>$times $currentdate</span></a>";
+										echo "<a href='' class=\"$button\">Date<span></span>$times $currentdate</a>";
 										
 										}else if($button=='vote'){
 											$rating=Getratings($mymovie_name);
 											
-											echo "<a href='' class=\"$button\"><span class='count' name='$mymovie_name'>$rating</span></a>";
+											echo "<a href='' class=\"$button\"><span class='count pixels' name='$mymovie_name'></span>$rating</a>";
 											
 											}
 											else{
-												echo "<a href='' class=\"$button\"><span>$button</span></a>";
+												echo "<a href='' class=\"$button\"><span></span>$button</a>";
 												}
 									
 								endforeach; 
