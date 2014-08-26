@@ -157,4 +157,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 .like-buttons p{display:inline;}
 
 
- #tab2, .filter{display:none;}
+.filter{display:none;}
+#tab1,#tab2,.coming-soon,.now-showing{
+	height: 400px
+}
+ 
