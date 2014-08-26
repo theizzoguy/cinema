@@ -140,6 +140,10 @@ wp_reset_query();
 							}else{
 								//echo "already showing";
 							$showing_movie[]=$mymovie;
+							$movie_clean_name=str_replace(" ","",$mymovie);
+							$str=preg_replace('/[^A-Za-z0-9\-]/', '',$mymovie); 
+							$string=strtolower($str );
+							$clean_names[]=$string;
 							$show_times[]=$time_array[$key];
 							$showing_src[]=$slider[$key];
 							 }
@@ -153,7 +157,7 @@ wp_reset_query();
 				}//end if
 			}//end for
 	//echo'</ul>';	
-	
+	print_r($clean_names);
 #getting by category, category slugs are got from a function above
 	#get category names
 	#pass them as arguments
