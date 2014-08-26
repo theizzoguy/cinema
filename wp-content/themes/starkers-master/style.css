@@ -60,7 +60,7 @@ a:hover{text-decoration: underline}
 
 
 /*STRUCTURE*/
-body{width:100%;background-color: #000;font-family: avenir;font-size: 16px;color:#fff; }
+body{width:100%;background: #000 url("images/bkg.jpg") repeat-x bottom;font-family: avenir;font-size: 16px;color:#fff; }
 
 
 /*.bkg{width:100%;position:absolute;bottom:0px;}
@@ -124,9 +124,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 .buttons a:hover{opacity:1;text-decoration: none;}
 .buttons .trailer span{height:49px;width:87px;background-image:url("images/trailer.png");display:inline-block;position:relative;bottom:1.5em;left:28%;}
 .buttons .buy span{height:77px;width:87px;background-image:url("images/ticket.png");display:inline-block;position:relative;bottom:1.5em;left:25%; }
+.individual-movie-slider .buttons{top:35em;}
 
 
-/*2.0 MOVIE-SLIDER*/
+/*3.0 MOVIE-SLIDER*/
 .movie-slider{position:relative; top:-10em; width:92.5%; padding-left: 7.5%}
 .movie-slider li{display:inline-block;}
 #tabs > ul{margin-bottom: 2%;position:absolute;z-index:10;}
@@ -144,6 +145,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 #tabs .filter{top:1.4em;}
 .filter li{display:block;margin-top: 1.4em;}
 #tabs .filter li a{border:none;}
+.movie-slider{top:45em;}
 
 
 /*4.0 community*/
@@ -162,6 +164,28 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 .the-experience > li{width:100%;background: rgba(41,48,50, .7);padding:1.2em;}
 .the-experience > li > p > button{color:rgba(255,255,255,1);background-color: rgb(240,58,58);-moz-border-radius: 4px;-webkit-border-radius: 4px;-o-border-radius: 4px;-ms-border-radius: 4px;border-radius: 4px;border:none;font-size:1em;padding:0.5em 1em;margin-left: 2% }
 .like-buttons p{display:inline;}
+.community{top:58em;}
 
 
- #tab2{display:none;}
+/*5.0 INDIVIDUAL-MOVIE-SLIDER*/
+.vignette{position:relative;
+background: -moz-radial-gradient(right top, ellipse cover, rgba(0,0,0,0) 48%, rgba(0,0,0,1) 72%, rgba(0,0,0,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(radial, right right, 0px, top top, 100%, color-stop(48%,rgba(0,0,0,0)), color-stop(72%,rgba(0,0,0,1)), color-stop(100%,rgba(0,0,0,1))); /* Chrome,Safari4+ */
+background: -webkit-radial-gradient(right top, ellipse cover, rgba(0,0,0,0) 48%,rgba(0,0,0,1) 72%,rgba(0,0,0,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-radial-gradient(right top, ellipse cover, rgba(0,0,0,0) 48%,rgba(0,0,0,1) 72%,rgba(0,0,0,1) 100%); /* Opera 12+ */
+background: -ms-radial-gradient(right top, ellipse cover, rgba(0,0,0,0) 48%,rgba(0,0,0,1) 72%,rgba(0,0,0,1) 100%); /* IE10+ */
+background: radial-gradient(ellipse at right top, rgba(0,0,0,0) 48%,rgba(0,0,0,1) 72%,rgba(0,0,0,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+#bkg{position:relative;z-index:-1;min-width: 100%}
+.individual-movie-slider{position:absolute;top:0px;left:0px;width:100%;height:35.375em;}
+.screenshot-slider{width:60%;height:35.375em;float:right;}
+.movie-info{width:32.5%;float:left;color:rgba(255,255,255,0.7);background-color: black;height:40em;padding-left: 7.5%;padding-top: 10em}
+.movie-info h1{font-size: 2.5em;font-weight: 700;margin-bottom: 1em;text-transform: uppercase;}
+.movie-info h4{font-size: 0.85em;font-weight: 700;margin-bottom: .5em;text-transform: uppercase;}
+.movie-title, .movie-info p{color:rgba(255,255,255,1);}
+.age-rating{font-size: 0.85em;width:5%;text-transform:uppercase;font-weight:700;padding:0.5em 1em;border: 2px solid rgba(255,255,255,0.7);margin-bottom: 1em;-moz-border-radius: 3px;-webkit-border-radius: 3px;-o-border-radius: 3px;-ms-border-radius: 3px;border-radius: 3px;}
+.movie-info p{width:70%;font-weight: 300;line-height: 2;}
+
+
+ #tab2, .feature-slider, #bx-pager{display:none;}

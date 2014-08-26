@@ -248,7 +248,8 @@ fndate($arr);
 					</ul>
 				</li>
 				<li class="logo clearfix"><a href="#">logo</a></li>
-				<li class="quick-buy"><a href="#">quick buy</a>
+				<li class="quick-buy">
+					<a href="#">quick buy</a>
 					<ul>
 						<li class="what-movie"><a href="#">what movie would you like to watch?</a>
 							<ul>
@@ -322,7 +323,36 @@ fndate($arr);
 					</form>
 				</li>
 			</ul>
-			<ul class="feature-slider">
+			<ul class="individual-movie-slider clearfix">
+				<li class="screenshot-slider">
+					<ul class="screenshots">
+						<li>
+							<div class="vignette">
+								<img id="bkg" src="http://localhost/cinema/wp-content/uploads/2014/08/xmn-ss1.jpg"/>
+							</div>
+						</li>
+					</ul>			
+				</li>
+				<li class="movie-info">
+					<ul>
+						<li class="movie-title"><h1>xmen: days of future past</h1></li>
+						<li class="star-rating"></li>
+						<li class="genre"><h4>action/adventure</h4></li>
+						<li class="run-time"><h4>run time:  2hr 45 min</h4></li>
+						<li class="age-rating">pg-13</li>
+						<li class="synopsis">
+							<p>The ultimate X-Men ensemble fights a war for the survival of the species across two time periods in X-Men: Days of Future Past. The characters from the original X-Men film trilogy join forces with their younger selves from X-Men: First Class in an epic battle that must change the past - to save our FUTURE</p>
+						</li>
+						<li class="buttons">
+							<ul>
+								<!--<li class="buy"><a href="#"><span></span>buy ticket</a></li>-->
+								<li class="trailer"><a href="#"><span></span>trailer</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="feature-slider clearfix">
 				<?php
 				#check if post is a movie and is currently showing
 				$showing=false;
@@ -378,7 +408,7 @@ fndate($arr);
 			endforeach;
 			?>
 			</div>
-			<div class="movie-slider">
+			<div class="movie-slider clearfix">
 				<div class="highlight-slider"></div>
 				<div id="tabs">
 					<ul>
