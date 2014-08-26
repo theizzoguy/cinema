@@ -167,6 +167,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 .community{top:58em;}
 
 
+<<<<<<< HEAD
 /*5.0 INDIVIDUAL-MOVIE-SLIDER*/
 .vignette{position:relative;
 background: -moz-radial-gradient(right top, ellipse cover, rgba(0,0,0,0) 48%, rgba(0,0,0,1) 72%, rgba(0,0,0,1) 100%); /* FF3.6+ */
@@ -189,3 +190,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
 
  #tab2, .feature-slider, #bx-pager{display:none;}
+=======
+<<<<<<< HEAD
+.filter{display:none;}
+#tab1,#tab2,.coming-soon,.now-showing{
+	height: 400px
+}
+ 
+=======
+ #tab2{display:none;}
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD

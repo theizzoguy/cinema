@@ -41,7 +41,6 @@ while ($featured->have_posts()) : $featured->the_post();
 endwhile;
 }// end if
 wp_reset_query(); 
-
 $type = 'movie';
 $args=array('post_type' => $type,'post_status' => 'publish','posts_per_page' => -1,'ignore_sticky_posts"'=> 1);
 global $post;
@@ -141,6 +140,10 @@ wp_reset_query();
 							}else{
 								//echo "already showing";
 							$showing_movie[]=$mymovie;
+							$movie_clean_name=str_replace(" ","",$mymovie);
+							$str=preg_replace('/[^A-Za-z0-9\-]/', '',$mymovie); 
+							$string=strtolower($str );
+							$clean_names[]=$string;
 							$show_times[]=$time_array[$key];
 							$showing_src[]=$slider[$key];
 							 }
@@ -154,7 +157,7 @@ wp_reset_query();
 				}//end if
 			}//end for
 	//echo'</ul>';	
-	
+	print_r($clean_names);
 #getting by category, category slugs are got from a function above
 	#get category names
 	#pass them as arguments
@@ -237,6 +240,7 @@ $arr=MydateRange($startdate_cat[0],$enddate_cat[0]);
 fndate($arr);
 	?>
 <?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header' ) ); ?>
+
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
 <div class="container">
 	<ul class="header">
@@ -433,8 +437,8 @@ fndate($arr);
 								<li class="coming_soon">
 									<a href="#">genre</a>
 									<ul class="filter">
-										<?php foreach($cats_array as $slug):
-											echo"<li><a href='#$' class='$slug' name='coming-soon'>$slug</a></li>";
+										<?php foreach($cats_array as $key=>$slug):
+											echo"<li><a href='#$' class='$slug' name='coming-soon' >$slug</a></li>";
 											endforeach;	
 									   ?>
 									</ul>
@@ -446,8 +450,8 @@ fndate($arr);
 						<ul class="now-showing">
 						<?php
 							#getting all current images
-							foreach ($showing_src as $src):
-								echo"<li> <img src=\"$src\"/></li>";
+							foreach ($showing_src as $key=>$src):
+								echo"<li index=\"$key\"><img src=\"$src\" class=\"$movie_names[$key]\"/></li>";
 								endforeach; 
 							?>
 						</ul>
@@ -457,8 +461,8 @@ fndate($arr);
 						<ul class="coming-soon">
 						<?php
 							#getting all coming soon images
-							foreach ($coming_soon_src as $src):
-								echo"<li> <img src=\"$src\"/></li>";
+							foreach ($coming_soon_src as $key=>$src):
+								echo"<li index=\"$key\"> <img src=\"$src\" class=\"$movie_names[$key]\"/></li>";
 								endforeach; 
 							?>
 						</ul>
