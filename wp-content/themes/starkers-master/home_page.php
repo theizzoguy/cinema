@@ -351,7 +351,7 @@ fndate($arr);
 								foreach ($mybuttons as $button):
 									if($button=='schedule'){
 										$currentdate=date('Y-m-d');
-										echo "<a href='' class=\"$button\">Date<span></span>$times $currentdate</a>";
+										echo "<a href='' class=\"$button\">Date<span></span>$currentdate</a>";
 										
 										}else if($button=='vote'){
 											$rating=Getratings($mymovie_name);
