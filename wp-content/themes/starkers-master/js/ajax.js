@@ -210,6 +210,7 @@ $(function(){
 		 success: function(data,state) {
 		 			console.log(data);
 		 			$('#multiple').html("<ul class='mult'></ul");
+		 			$('.mult').html(data);
 		 			$('.mult').bxSlider({
 					 	minSlides:1,maxSlides:1,moveSlides:1,auto: true,controls: true,speed:500,pause:10000,autoHover:true
 			  			});

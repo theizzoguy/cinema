@@ -127,6 +127,7 @@ wp_reset_query();
 					$showtime[]=$time_array[$key];
 					// comming soon , first show date is greater than current date
 					if($start>$currentdate){
+							$coming_soon_ids[]=$ids[$key];
 							$days_between = ceil(abs($start_date - $current) / 86400); //using cieling to round off
 							$coming_soon[]=$mymovie;
 							$coming_soon_src[]=$slider[$key];
@@ -135,6 +136,7 @@ wp_reset_query();
 							$coming_soon_clean[]=$string;
 							}else{
 								//echo "already showing";
+							$showing_ids[]=$ids[$key];	
 							$showing_movie[]=$mymovie;
 							$str=preg_replace('/[^A-Za-z0-9\-]/', '',$mymovie); 
 							$string=strtolower($str );
@@ -474,7 +476,8 @@ fndate($arr);
 						<?php
 							#getting all current images
 							foreach ($showing_src as $key=>$src):
-								echo"<li index=\"$key\"><img src=\"$src\" class=\"$showing_movie[$key]\ id=\"$ids[$key]\"/></li>";
+							
+								echo"<li index=\"$key\" id=\"$showing_ids[$key]\" ><img src=\"$src\" class=\"$showing_movie[$key]\" /></li>";
 								endforeach; 
 							?>
 						</ul>
@@ -486,7 +489,8 @@ fndate($arr);
 							#getting all coming soon images
 							if(!empty($coming_soon_src)):
 								foreach ($coming_soon_src as $key=>$src):
-									echo"<li index=\"$key\"> <img src=\"$src\" class=\"$coming_soon[$key]\ id=\"$ids[$key]\" /></li>";
+								
+									echo"<li id=\"$coming_soon_ids[$key]\" index=\"$key\"><img src=\"$src\" class=\"$coming_soon[$key]\"  /></li>";
 									endforeach; 
 								endif;
 							?>
