@@ -67,9 +67,11 @@ $(function(){
 		   if($class=='now-showing'){
 				arg=1;
 				show =true
+				$('.now').html('genre');
 			}else{
 				arg=0;
 				counter++;
+				$('.soon').html('genre');
 			}
 		getMovies(arg,$class);
 		event.preventDefault();
@@ -119,14 +121,14 @@ $(function(){
 		$str=$this.attr('name');
 		$class=$str.substring(1)
 		console.log($class);
-		//$filter=$this.html();
-		//console.log=('filter: '+ $filter);	  		  
+		filter=$this.text();
+		//console.log=($filter);	  		  
 		if($class=='now-showing'){
 				arg=1;
-				//$('.now').html($filter);
+				$('.now').html(filter);
 			}else{
 				arg=0;
-				//$('.soon').html($filter);
+				$('.soon').html($filter);
 			}
 		
 	getCategory(arg,slug,$class);
