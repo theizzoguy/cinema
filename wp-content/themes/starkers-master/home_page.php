@@ -157,7 +157,7 @@ wp_reset_query();
 				}//end if
 			}//end for
 	//echo'</ul>';	
-	print_r($clean_names);
+	//print_r($clean_names);
 #getting by category, category slugs are got from a function above
 	#get category names
 	#pass them as arguments
@@ -379,28 +379,30 @@ fndate($arr);
 					echo "<div class='gradient-overlay'><img id='bkg' src=\"$f_image\"/></div>";
 					echo "<ul>
 							<li class='caption'><h1>$mycaption</h1>";
-							echo"<h2>$mycopy</h2></li>";
-							echo "<li class='buttons'>";
-							if(!empty($mybuttons)):
-								foreach ($mybuttons as $button):
-									if($button=='schedule'){
-										$currentdate=date('Y-m-d');
-										echo "<a href='' class=\"$button\">Date<span></span>$currentdate</a>";
-										
-										}else if($button=='vote'){
-											$rating=Getratings($mymovie_name);
+							echo"<h2>$mycopy</h2>";
+							echo "<ul>
+								<li class='buttons'>";
+								if(!empty($mybuttons)):
+									foreach ($mybuttons as $button):
+										if($button=='schedule'){
+											$currentdate=date('Y-m-d');
+											echo "<a href='' class=\"$button\">Date<span></span>$currentdate</a>";
 											
-											echo "<a href='' class=\"$button\"><span class='count pixels' name='$mymovie_name'></span>$rating</a>";
-											
-											}
-											else{
-												echo "<a href='' class=\"$button\"><span></span>$button</a>";
+											}else if($button=='vote'){
+												$rating=Getratings($mymovie_name);
+												
+												echo "<a href='' class=\"$button\"><span class='count pixels' name='$mymovie_name'></span>$rating</a>";
+												
 												}
-									
-								endforeach; 
-							endif;
-							echo"</li>
-						</ul>";
+												else{
+													echo "<a href='' class=\"$button\"><span></span>$button</a>";
+													}
+										
+									endforeach; 
+								endif;
+								echo"</li></ul>";
+							echo"</li>";
+					echo"</ul>";
 				    echo "</li>";	 
 					endforeach
 				?>
@@ -476,7 +478,7 @@ fndate($arr);
 					<p>join our social media family and stand a chance to win great prizes <i>every week</i></p>
 					<li class="facebook">
 						<h3><span></span>facebook</h3>
-						<p>like and/or comment on Cinema Magic facebook posts for free tickets to the movies</p>
+						<p>like and/or comment on Cinema Magic facebook posts for free cinema tickets</p>
 						<div class="like-buttons">
 							<button>like</button>
 							<button>share</button>
