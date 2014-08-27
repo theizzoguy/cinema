@@ -382,8 +382,13 @@ fndate($arr);
 						#echo "my key is $mymovie_name"; 
 						#get key of that movie to get its url
 						$key = array_search($featured_clean,$showing_clean);
-						#echo "my key is $key"; 
+						#echo "my key is $key";
+						 
 						$movie_url=$link[$key];
+						if(empty($movie_url)):
+							$movie_url=null;
+							endif;
+						
 						$myId=$ids[$key];
 						#echo "my url $movie_url";
 						
@@ -396,9 +401,13 @@ fndate($arr);
 					echo "<li class='hottest'>";
 					echo "<div class='gradient-overlay'><img id='bkg' src=\"$f_image\"/></div>";
 					echo "<ul>
-							<li class='caption'><h1>$mycaption</h1>";
-							echo"<h2>$mycopy</h2></li>";
-							echo "<li class='buttons'>";
+							<li class='caption'>
+							<h1>$mycaption</h1>";
+							echo"<h2>$mycopy</h2>";
+							echo "
+							<ul>
+								<li class='buttons'>";
+							
 							if(!empty($mybuttons)):
 								foreach ($mybuttons as $button):
 									if($button=='schedule'){
@@ -412,19 +421,17 @@ fndate($arr);
 											
 											}
 											else if($button=='trailer'){
-												echo "<a href='' class=\"$button\" name='$movie_url'><span></span>$button</a>";
+												echo "<a href='' class=\"$button\" name=''><span></span>$button</a>";
 
 												}
 												else{
 													echo "<a href='' class=\"$button\"><span></span>$button</a>";
 													}
-										
-									endforeach; 
-								endif;
-								echo"</li></ul>";
-							echo"</li>";// end hottest li
-					
-				endforeach
+										endforeach;// getting buttons 
+						endif;
+				echo"</li></ul><li></ul>";
+			echo"</li>";// end hottest li
+			endforeach;//for fetching images
 				?>
 			</ul><!-- feature slider-->
 			<div id="bx-pager">
