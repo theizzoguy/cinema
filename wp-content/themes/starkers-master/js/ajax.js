@@ -88,64 +88,144 @@ $(function(){
 	var $comingSoon=$('.coming-soon').bxSlider(config);
 		//going to next slide on click		
 	
-//getting movie details
- $('#tab1').on('click','.now-showing li',function(){
- 	//moving to seletcted slide
- 	 $this=$(this);
- 	 myIndex=$this.attr('index');
-	 slider.goToSlide(myIndex);
-	 //getting movie details
-	 var  movie =$this.children('img').attr('class');
-	 console.log(movie);
-	 var movie_arr=movie.split(" ");
-	 var movie_str=movie_arr.join("+");
-	 var $url="http://www.omdbapi.com/?i=&t="+movie_str;
-	
-	 $.ajax({
-			url:$url,
-			type: "POST",
-			success: function(data,state){
-				alert(state)
-				console.log(data);
-				var json=eval("(" + data + ")");
-				
-				//$('.title').html(json.Title);
-				//$('.poster').attr('src',json.Poster);
-				//$('.plot').html(json.Plot);
-				//$('.director').html(json.Director);
-				}
-		});// end ajax
-});
+	//getting movie details
+	 $('#tab1').on('click','.now-showing li',function(){
+	 	//moving to seletcted slide
+	 	 $this=$(this);
+	 	 myIndex=$this.attr('index');
+		 slider.goToSlide(myIndex);
+		 //getting movie details
+		 var  movie =$this.children('img').attr('class');
+		 console.log(movie);
+		 var movie_arr=movie.split(" ");
+		 var movie_str=movie_arr.join("+");
+		 var $url="http://www.omdbapi.com/?i=&t="+movie_str;
+		
+		 $.ajax({
+				url:$url,
+				type: "POST",
+				success: function(data,state){
+					alert(state)
+					console.log(data);
+					var json=eval("(" + data + ")");
+					
+					//$('.title').html(json.Title);
+					//$('.poster').attr('src',json.Poster);
+					//$('.plot').html(json.Plot);
+					//$('.director').html(json.Director);
+					}
+			});// end ajax
+		});
 
 		
-	/*	$('.bxslider').on('click','.trailer', function(){
-		 $trailer=$(this).children('a');
-		 $url=$trailer.attr('class');
-		     alert($url);
-			 jQuery.ajax({
+	$('.trailer').click(function(event){
+		 $url=$(this).attr('name');
+		 event.preventDefault();
+		 jQuery.ajax({
 			 url: MyAjax.ajaxurl,
 			 type:'POST',
 			 dataType: 'html',
 			 data: ({action : 'get_movie_trailer',url:$url}),
-			 beforeSend: function() {
-				 $('.loader').show();
-			  },
-			  complete: function(){
-				 $('.loader').hide();
-			  },
-			success: function(data,state) {
-					alert(state);
-					$('.movie_content').show();
-					$('.movie_details').html(data);
+			 success: function(data,state) {
+			         console.log(data);
+					//$('.movie_content').show();
+					//$('.feature-slider').html(data);
 					
 					}
 			 });//end ajax
 		
-		})	*/
+		})// end click function	
 		
+	//************************calender **************/
+	  //getting default date
+	  var availableDates=new Array();
+	  var month = new Array();
+		month[0] = "January";
+		month[1] = "February";
+		month[2] = "March";
+		month[3] = "April";
+		month[4] = "May";
+		month[5] = "June";
+		month[6] = "July";
+		month[7] = "August";
+		month[8] = "September";
+		month[9] = "October";
+		month[10] = "November";
+		month[11] = "December";
+		
+	 //toggle on calender			
+	  $('.schedule').click(function(event){
+		  	  $this=$(this);
+		  	  $id=$this.attr('id');
+			  ajax_events($id);
+			event.preventDefault();	  
+		  }) 
+	   //getting events	
+	 function ajax_events($id){
+	  jQuery.ajax({
+		 url: MyAjax.ajaxurl,
+		 type:'POST',
+		 dataType: 'json',
+		 data: ({action : 'get_my_dates',id:$id}),
+		 success: function(data,state) {
+				//
+				
+				dates=data[0];
+				times=data[1];
+				availableDates=Array.prototype.slice.call(dates)
+				//getting calender dates
+				$('#datepicker').datepicker({ 
+				beforeShowDay: available, 
+				onSelect: function(){ 
+					var dateObject = $('#date').datepicker('getDate'); 
+					//getting date
+					selected_date=get_date(dateObject)
+					}//end on select
+				});// end date picker
+			mytimes=times.toString();
+			var desired = mytimes.replace(/^"/, "");
+			console.log(desired);
+			setTimeout(addText(dates,desired),1000);
+			}// end sucess
+		 });//end ajax
+		
+	}// end ajax_events
 	
-	
+  function addText(dates,times){
+	   for (i=0;i<dates.length;i++){
+		  var strDate=dates[i];
+		  var dateParts = strDate.split("-");
+		  var date = new Date(dateParts[2], (dateParts[1] - 1), dateParts[0]);
+		  var myMonth = month[date.getMonth()];
+		  var date=date.getDate();
+		  $(".ui-datepicker-calendar .ui-state-default").each(function () {
+              //you can get the year using below code.
+              var year = $(".ui-datepicker-year").first().html();
+              if ($(".ui-datepicker-month").first().html() == myMonth && $(this).html() == date){
+                      //add custome text to date cel
+                      $(this).html("<span class='selectedDate'>"+date+"</span>"+"<span class='time'>"+times+"</span>");
+                  
+                   }// end if
+            
+              });//end for each
+		}// end for
 
-	
+	 }// end function
+	 
+  function available(date) {
+  		//dmy is calender dates
+		  dmy = date.getDate() + "-" + (date.getMonth()+1) + "-" + date.getFullYear();
+		  
+		  //finding if calender dates are with in the returned dates
+		  if ($.inArray(dmy, availableDates) != -1) {
+		  	//console.log('dmy is '+ dmy+' avaible dates '+ availableDates)
+			return [true, "Available","Available"];
+				
+			} else {
+			return [false,"unAvailable","unAvailable"];
+			console.log('dmy is '+ dmy+' avaible dates '+ availableDates)
+		  }
+		}
+  	
 	});// end jquery function
 });// end document ready

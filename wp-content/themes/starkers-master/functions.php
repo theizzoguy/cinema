@@ -65,17 +65,45 @@
 	 * @return void
 	 * @author Keir Whitaker
 	*/
+	function modify_jquery() {
+			if (!is_admin()) {
+				// comment out the next two lines to load the local copy of jQuery
+				wp_deregister_script('jquery');
+				wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js', false, '1.8.1',false);
+				wp_enqueue_script('jquery');
+				wp_register_script('underscore',"http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js");
+				wp_enqueue_script('underscore');
 
-	function starkers_script_enqueuer() {
-		wp_register_script( 'bxslider', get_template_directory_uri().'/js/jquery.bxslider.min.js', array( 'jquery' ) );
-		wp_enqueue_script('bxslider');
+			}
+		}
 		
+	add_action('init', 'modify_jquery');
+	
+	function starkers_script_enqueuer() {
+			
 		wp_register_style( 'bxcss', get_stylesheet_directory_uri().'/css/jquery.bxslider.css', '', '', 'screen' );
         wp_enqueue_style( 'bxcss' );
+        	
+		wp_register_style( 'calender', get_stylesheet_directory_uri().'/css/fullcalendar.css', '', '', 'screen' );
+        wp_enqueue_style( 'calender' );
         
+        wp_register_script( 'bxslider', get_template_directory_uri().'/js/jquery.bxslider.min.js', array('jquery') );
+		wp_enqueue_script('bxslider');
+	
+ 
         wp_register_script( 'site', get_template_directory_uri().'/js/site.js', array( 'jquery' ) );
 		wp_enqueue_script('site');
 		
+		wp_register_script( 'moment', get_template_directory_uri().'/js/moment.min.js', array( 'jquery' ) );
+		wp_enqueue_script( 'moment' );
+		
+		wp_register_script( 'clndr', get_template_directory_uri().'/js/fullcalendar.min.js', array( 'jquery' ) );
+		wp_enqueue_script( 'clndr' );
+	       
+		wp_register_script( 'date', get_template_directory_uri().'/js/jquery.ui.datepicker.css', '', '', 'screen' );
+		wp_enqueue_script( 'date' );
+		
+			
 		#wp_register_style( 'slick', get_stylesheet_directory_uri().'/css/slick.css', '', '', 'screen' );
         #wp_enqueue_style( 'slick' );
         
@@ -87,18 +115,19 @@
 		wp_register_script( 'widget', get_template_directory_uri().'/js/jquery.ui.widget.js', array( 'jquery' ) );
 		wp_enqueue_script( 'widget' );
 		
+		wp_register_script( 'date', get_template_directory_uri().'/js/jquery.ui.datepicker.min.js', array( 'jquery' ) );
+		wp_enqueue_script( 'date' );
+		
 		wp_register_script( 'slick', get_template_directory_uri().'/js/slick.min.js', array( 'jquery' ) );
 		wp_enqueue_script( 'slick' );
 		wp_register_script( 'countdown', get_template_directory_uri().'/js/jquery.countdown.min.js', array( 'jquery' ) );
 		wp_enqueue_script( 'countdown' );
 		wp_register_script( 'validate', get_template_directory_uri().'/js/jquery.validate.min.js', array( 'jquery' ) );
 		wp_enqueue_script( 'validate' );
-		wp_register_style( 'juicalender', get_stylesheet_directory_uri().'/css/jquery-ui-custom.css', '', '', 'screen' );
-        wp_enqueue_style( 'juicalender' );
+		
 		wp_register_style( 'slick', get_stylesheet_directory_uri().'/css/slick.css', '', '', 'screen' );
         wp_enqueue_style( 'slick' );
-				wp_register_script( 'date', get_template_directory_uri().'/js/jquery.ui.datepicker.min.js', array( 'jquery' ) );
-		wp_enqueue_script( 'date' );*/
+		*/
 		}	
 	function my_theme_styles() {
 			// replace "10" with your version number; increment as you push changes
