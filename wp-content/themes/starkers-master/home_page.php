@@ -445,11 +445,11 @@ fndate($arr);
 				<div class="highlight-slider"></div>
 				<div id="tabs">
 					<ul>
-						<li>
+						<li id="in-cinema-now" >
 							<a href="#tab1" class='tab_names' id='now-showing'>in cinema now</a>
-							<ul>
-								<li class="in-cinema-now">
-								<a  class='now'>genre</a>
+							<ul class="now-filter">
+								<li class="now-filter-genre">
+									<a href="#" class="genre">genre</a>
 									<ul class="filter">
 									<?php foreach($cats_array as $slug):
 											echo"<li><a href='#$' class='$slug' name='#now-showing'>$slug</a></li>";
@@ -460,11 +460,11 @@ fndate($arr);
 								</li>
 							</ul>
 						</li>
-						<li>
+						<li id="coming-soon">
 							<a  href="#tab2" class='tab_names' id='coming-soon'>coming soon</a>
-							<ul>
-								<li class="in-coming_soon">
-									<a  class='soon'>genre</a>
+							<ul class="soon-filter">
+								<li class="soon-filter-genre">
+									<a  href="#" class="genre">genre</a>
 									<ul class="filter">
 										<?php foreach($cats_array as $key=>$slug):
 											echo"<li><a href='#$' class='$slug' name='#coming-soon' >$slug</a></li>";
