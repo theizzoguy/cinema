@@ -365,7 +365,7 @@ fndate($arr);
 			</ul><!--end individual -->
 		<div id='video'></div>
 		<div id="datepicker"></div>	
-		</div>
+	</div>
 			<ul class="feature-slider clearfix">
 				<?php
 				#check if post is a movie and is currently showing

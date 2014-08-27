@@ -29,7 +29,7 @@ $(function(){
 				}
 		 });//end ajax
 		}// end send vote
-/*****filters tABS*******************************************************************************/	
+/*****filters tABS and slider*******************************************************************************/	
 	$( "#tabs" ).tabs();
 	var maxslides;
 	var width= $(window).width();
@@ -54,7 +54,7 @@ $(function(){
 				
 		}
 	}
-	$('.now-showing').bxSlider(config);
+	var slider = $('.now-showing').bxSlider(config);
 	
 	var counter=0;
 	var show= false
@@ -87,10 +87,10 @@ $(function(){
 		 			
 		 			if(counter == 1 ){
 			 			//clicked first time
-			 		  $('.coming-soon').bxSlider(config);
+			 		  slider=$('.coming-soon').bxSlider(config);
 			 		  console.log('data:'+data);
 					   setTimeout(function(){
-				 			$('.coming-soon').css('opacity',1)
+				 		$('.coming-soon').css('opacity',1)
 			 			
 			 			},500);
 			 			
@@ -103,7 +103,7 @@ $(function(){
 				 			$parent_03=$parent_02.parent();
 				 			$parent_03.html("<ul class="+$class+"></ul")
 				 			$('.'+$class).html(data);
-						    $('.'+$class).bxSlider(config);
+						    slider = $('.'+$class).bxSlider(config);
 					 			
 			 			}
 		 			
@@ -154,6 +154,8 @@ $(function(){
 		 });//end ajax
 		
 	}
+/********Going to Individual Page ********************************************************/
+
 	
 /******************************Ajax get movie info***************************************/
    
@@ -161,6 +163,15 @@ $(function(){
 	
 	//getting movie details
 	 $('#tab1').on('click','.now-showing li',function(){
+	 	//go to next staf
+	 	if($('.individual').is(":visible")){
+		 	
+		 	// do nothing
+	 	}else{
+		 	$('.feature-slider ').fadeOut(100);
+		 	$('.individual').fadeIn('fast');
+	 	}
+	 	
 	 	//moving to seletcted slide
 	 	 $this=$(this);
 	 	 myIndex=$this.attr('index');
