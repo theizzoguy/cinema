@@ -27,6 +27,7 @@ if( $featured->have_posts() ) {
 while ($featured->have_posts()) : $featured->the_post(); 
  $f_name= get_the_title();	
  $featured_name[]=$f_name;
+ $f_ids[]=get_the_ID();
  //getting cinema room
  $grp= get_post_meta( get_the_ID(), '_featured_repeat_group', true );
  foreach ($grp  as $grp_val){
@@ -137,13 +138,15 @@ wp_reset_query();
 							$days_between = ceil(abs($start_date - $current) / 86400); //using cieling to round off
 							$coming_soon[]=$mymovie;
 							$coming_soon_src[]=$slider[$key];
+							$str=preg_replace('/[^A-Za-z0-9\-]/', '',$mymovie); 
+							$string=strtolower($str );
+							$coming_soon_clean[]=$string;
 							}else{
 								//echo "already showing";
 							$showing_movie[]=$mymovie;
-							$movie_clean_name=str_replace(" ","",$mymovie);
 							$str=preg_replace('/[^A-Za-z0-9\-]/', '',$mymovie); 
 							$string=strtolower($str );
-							$clean_names[]=$string;
+							$showing_clean[]=$string;
 							$show_times[]=$time_array[$key];
 							$showing_src[]=$slider[$key];
 							 }
@@ -151,13 +154,19 @@ wp_reset_query();
 					$movie_arr[]=$mymovie;
 					$movie_name=$mymovie;
 				  //remove spaces between movie names 
-					$movie=str_replace(" ","",$mymovie);
+					$str=preg_replace('/[^A-Za-z0-9\-]/', '',$mymovie); 
+					$string=strtolower($str );
+					$valid_movies_clean[]=$string;
 					    //$date=$startdate[$key];
 					$i++;
 				}//end if
 			}//end for
 	//echo'</ul>';	
+<<<<<<< HEAD
 	//print_r($clean_names);
+=======
+	#print_r($clean_names);
+>>>>>>> FETCH_HEAD
 #getting by category, category slugs are got from a function above
 	#get category names
 	#pass them as arguments
@@ -240,7 +249,6 @@ $arr=MydateRange($startdate_cat[0],$enddate_cat[0]);
 fndate($arr);
 	?>
 <?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header' ) ); ?>
-
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
 <div class="container">
 	<ul class="header">
@@ -362,13 +370,23 @@ fndate($arr);
 				$showing=false;
 				
 				
-				
-				if(in_array($f_name,$showing_movie)){
+				$str=preg_replace('/[^A-Za-z0-9\-]/', '',$f_name); 
+				$featured_clean=strtolower($str );
+							
+				if(in_array($featured_clean,$showing_clean)){
 						#get show times and date
 						$showing=true;
 						$array=array_unique($show_times);
 						$times=implode(" ",$array);
 						$mymovie_name=$f_name;
+						#echo "my key is $mymovie_name"; 
+						#get key of that movie to get its url
+						$key = array_search($featured_clean,$showing_clean);
+						#echo "my key is $key"; 
+						$movie_url=$link[$key];
+						$myId=$ids[$key];
+						#echo "my url $movie_url";
+						
 					}
 				foreach($featured_images as $key=>$f_image):
 					$mycopy=$copy[$key];
@@ -379,6 +397,7 @@ fndate($arr);
 					echo "<div class='gradient-overlay'><img id='bkg' src=\"$f_image\"/></div>";
 					echo "<ul>
 							<li class='caption'><h1>$mycaption</h1>";
+<<<<<<< HEAD
 							echo"<h2>$mycopy</h2>";
 							echo "<ul>
 								<li class='buttons'>";
@@ -393,6 +412,24 @@ fndate($arr);
 												
 												echo "<a href='' class=\"$button\"><span class='count pixels' name='$mymovie_name'></span>$rating</a>";
 												
+=======
+							echo"<h2>$mycopy</h2></li>";
+							echo "<li class='buttons'>";
+							if(!empty($mybuttons)):
+								foreach ($mybuttons as $button):
+									if($button=='schedule'){
+										$currentdate=date('Y-m-d');
+										echo "<a href='' id=\"$myId\" class=\"$button\">Date<span></span></a>";
+										
+										}else if($button=='vote'){
+											$rating=Getratings($mymovie_name);
+											
+											echo "<a href='' class=\"$button\"><span class='count pixels' name='$mymovie_name'></span>$rating</a>";
+											
+											}
+											else if($button=='trailer'){
+												echo "<a href='' class=\"$button\" name='$movie_url'><span></span>$button</a>";
+>>>>>>> FETCH_HEAD
 												}
 												else{
 													echo "<a href='' class=\"$button\"><span></span>$button</a>";
@@ -463,9 +500,11 @@ fndate($arr);
 						<ul class="coming-soon">
 						<?php
 							#getting all coming soon images
-							foreach ($coming_soon_src as $key=>$src):
-								echo"<li index=\"$key\"> <img src=\"$src\" class=\"$movie_names[$key]\"/></li>";
-								endforeach; 
+							if(!empty($coming_soon_src)):
+								foreach ($coming_soon_src as $key=>$src):
+									echo"<li index=\"$key\"> <img src=\"$src\" class=\"$movie_names[$key]\"/></li>";
+									endforeach; 
+								endif;
 							?>
 						</ul>
 					</div>
@@ -515,6 +554,8 @@ fndate($arr);
 				</ul>
 			</div>
 		</div>
-</body>
+	<div id="datepicker"></div>
+ </body>
 </html>
+
 <?php #Starkers_Utilities::get_template_parts( array( 'parts/shared/footer','parts/shared/html-footer') ); ?>

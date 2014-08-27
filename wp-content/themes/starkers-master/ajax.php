@@ -144,5 +144,70 @@ function now_comingSoon($movie_names,$end_arr,$start_arr,$slider){
 	return $array;
 	
 }
+
+/**************Movie trailer ***************/
+function get_movie_trailer(){
+	//get trailer url
+	$url=$_POST['url'];
+	$embed_code = wp_oembed_get($url,array('width'=>500)); 	
+	echo $embed_code;
+	
+	die();
+	}		
+add_action("wp_ajax_get_movie_trailer", "get_movie_trailer");
+/********Movie time date/ event ***************************/
+function get_my_dates(){
+		$id=$_POST['id'];
+		movie_event($id); 
+		die(); 
+		}
+	//add_action("wp_ajax_nopriv_get_my_dates", "get_my_dates");
+	add_action("wp_ajax_get_my_dates", "get_my_dates");
+// function for getting dates and time of a particular movie
+function movie_event($id){
+		$cinema= get_post_meta( $id, 'movie_select', true );
+ 		//getting movie start date
+ 		$start= get_post_meta( $id, 'movie_start_date', true ); //2014 07 10  , 2014 07 15
+ 		//getting end date
+ 		$end= get_post_meta( $id, 'movie_end_date', true );
+		// getting in between dates
+		$dates_arr=dateRange($start,$end);
+		//getting movie times
+		$times=movie_times($id);
+		$events=array($dates_arr,$times);
+		echo json_encode($events);
+		
+	}// end function
+// date range function
+function dateRange($first, $last, $step = '+1 day', $format = 'j-n-Y' ) { 
+	$dates = array();
+    $current = strtotime($first);
+    $last = strtotime($last);
+	while( $current <= $last ) { 
+		$dates[] = date($format, $current);
+    	 $current = strtotime($step, $current);
+    }
+	//eliminating dates that are past todays date
+	$today=date('Y-m-d');
+	foreach($dates as $mydate){
+		$date= date('Y-m-d',strtotime($mydate));
+		if($today <= $date){
+			$new_dates[]=$mydate;
+			}
+	}// end for
+ 	return $new_dates;
+		
+}	
+ function movie_times($id){
+	//getting movie times
+	$data= get_post_meta( $id, 'movie_repeatable', true );
+	foreach ($data as $val){
+	    foreach($val as $val2){
+						$time_array[] = $val2;
+						 }//end inner for loop
+				}// end outer for loop
+       return $time_array;
+		}// end function	
+		
 	
 ?>
