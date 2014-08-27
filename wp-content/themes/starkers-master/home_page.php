@@ -456,7 +456,7 @@ fndate($arr);
 				<div id="tabs">
 					<ul>
 						<li>
-							<a href="#tab1">in cinema now</a>
+							<a href="#tab1" class='tab_names' name='now-showing'>in cinema now</a>
 							<ul>
 								<li class="in-cinema-now">
 								<a href="#">genre</a>
@@ -471,7 +471,7 @@ fndate($arr);
 							</ul>
 						</li>
 						<li>
-							<a href="#tab2">coming soon</a>
+							<a  href="#tab2" class='tab_names' name='coming_soon'>coming soon</a>
 							<ul>
 								<li class="coming_soon">
 									<a href="#">genre</a>

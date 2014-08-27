@@ -59,6 +59,59 @@ function ratings(){
  die(); 
 }
 add_action("wp_ajax_ratings", "ratings");
+/******************coming soon and now filters**************/
+
+//function for fetching content by category
+function main_filter(){
+	$state=$_POST['state'];
+	$type = 'movie';
+	$args=array('post_type' => $type,'post_status' => 'publish','posts_per_page' => -1,'ignore_sticky_posts"'=> 1);
+	global $post;
+	$movie= new WP_Query($args);
+	if( $movie->have_posts() ) {
+		while ($movie->have_posts()) : $movie->the_post(); 
+			 $ids[]=get_the_ID();
+			 $name= get_the_title();	
+			 $names_arr[]=$name;
+			 //getting cinema room
+			 $cinema= get_post_meta( get_the_ID(), 'movie_select', true );
+			 $cinema_arr[]=$cinema;
+			//getting movie start date
+			 $start= get_post_meta( get_the_ID(), 'movie_start_date', true );
+			 $startdate[]=$start;
+			 //getting end date
+			 $end= get_post_meta( get_the_ID(), 'movie_end_date', true );
+			 $enddate[]=$end;
+			 //getting youtube url movie_text
+			 $url= get_post_meta( get_the_ID(), 'movie_text', true );
+			 $link[]=$url;
+			 $slide_img= get_post_meta( get_the_ID(), '_cmb_slider_image', true );
+			 $slider_imgs[]=$slide_img;
+			 //getting movie times
+			  $data= get_post_meta( get_the_ID(), 'movie_repeatable', true );
+				foreach ($data as $val){
+						foreach($val as $val2){
+							$time_array[] = $val2;
+						 }
+					}
+		endwhile;
+		}// end if
+		wp_reset_query();  
+		$array=now_comingSoon($names_arr,$enddate,$startdate,$slider_imgs);
+			if($state==1){
+				#in cinema_now
+				$images_cinema=$array[0];
+			}else{
+				#in cinema later
+				$images_cinema=$array[1];
+			}
+		#loop through the images
+		foreach ($images_cinema as $image){
+			echo "<li> <img src=\"$image\"/></li>";
+		}
+	die();
+	}
+add_action("wp_ajax_main_filter", "main_filter");
 
 //function for fetching content by category
 function cat_filter(){
@@ -91,6 +144,7 @@ function cat_filter(){
 				$slider_cat[]=$slide_img;
 			    #echo"<img src=\"$slide_img\">";
 			endwhile;
+			
 		$arr=now_comingSoon($names,$enddate_cat,$startdate_cat,$slider_cat);
 		if($state==1){
 			#in cinema_now
@@ -102,6 +156,7 @@ function cat_filter(){
 	foreach ($images_cinema as $image){
 		echo "<li> <img src=\"$image\"/></li>";
 	}
+	wp_reset_query();  
 	die();
 	}
 add_action("wp_ajax_cat_filter", "cat_filter");

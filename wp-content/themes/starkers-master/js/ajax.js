@@ -31,36 +31,7 @@ $(function(){
 		}// end send vote
 /*****filters tABS*******************************************************************************/	
 	 $( "#tabs" ).tabs();
-		
-	//get category name
-	$('.filter a').click(function(){
-		slug=$(this).attr('class');
-		$class=$(this).attr('name');
-		if($class=='now-showing'){
-				arg=1;
-			}else{
-				arg=0;
-			}
-		console.log(slug);
-	getCategory(arg,slug,$class);
-	})
-	
-	function getCategory($state,$slug,$class){
-		jQuery.ajax({
-		 url: MyAjax.ajaxurl,
-		 type:'POST',
-		 dataType: 'html',
-		 data: ({action : 'cat_filter',slug:$slug,state:$state}),
-		 success: function(data,state) {
-		 			console.log(data);
-				    $('.'+$class).html(data);
-				}
-		 });//end ajax
-		
-	}
-	
-/******************************Ajax get movie info***************************************/
-    var maxslides;
+	 var maxslides;
 	var width= $(window).width();
 	if(width>2500){
 		
@@ -86,7 +57,74 @@ $(function(){
 	}
 	var slider=$('.now-showing').bxSlider(config);
 	var $comingSoon=$('.coming-soon').bxSlider(config);
-		//going to next slide on click		
+	
+	$('.tab_names').click(function(event){
+		$this=$(this);
+		$class=$this.attr('id');
+		if($class=='now-showing'){
+				arg=1;
+			}else{
+				arg=0;
+			}
+		getMovies(arg,$class);
+	})
+	
+	function getMovies($state,$class){
+		jQuery.ajax({
+		 url: MyAjax.ajaxurl,
+		 type:'POST',
+		 dataType: 'html',
+		 data: ({action : 'main_filter',state:$state}),
+		 success: function(data,state) {
+		 			console.log(data);
+		 			$parent=$('.'+$class).parent();
+		 			$parent_02=$parent.parent();
+		 			$parent_03=$parent_02.parent();
+		 			$parent_03.html("<ul class="+$class+"></ul")
+		 			$('.'+$class).html(data);
+				    $('.'+$class).bxSlider(config);
+				}
+		 });//end ajax
+		
+	}
+
+	
+		
+	//get category name
+	$('.filter a').click(function(){
+		slug=$(this).attr('class');
+		$class=$(this).attr('name');
+		if($class=='now-showing'){
+				arg=1;
+			}else{
+				arg=0;
+			}
+		console.log(slug);
+	getCategory(arg,slug,$class);
+	})
+	
+	function getCategory($state,$slug,$class){
+		jQuery.ajax({
+		 url: MyAjax.ajaxurl,
+		 type:'POST',
+		 dataType: 'html',
+		 data: ({action : 'cat_filter',slug:$slug,state:$state}),
+		 success: function(data,state) {
+		 			console.log(data);
+		 			$parent=$('.'+$class).parent();
+		 			$parent_02=$parent.parent();
+		 			$parent_03=$parent_02.parent();
+		 			$parent_03.html("<ul class="+$class+"></ul")
+		 			$('.'+$class).html(data);
+				    $('.'+$class).bxSlider(config);
+				}
+		 });//end ajax
+		
+	}
+	
+/******************************Ajax get movie info***************************************/
+   
+	//going to next slide on click		
 	
 	//getting movie details
 	 $('#tab1').on('click','.now-showing li',function(){
