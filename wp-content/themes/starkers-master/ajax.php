@@ -65,7 +65,7 @@ function multiple_images(){
 	$img_a= get_post_meta($mult_id, '_cmb_multiple_images', true );
     if(!empty($img_a)):
 	    foreach($img_a as $img):
-	         echo"<li><img id='bkg' src=\"$img\" /></li>";
+	         echo"<li class='vignette'><img id='bkg' src=\"$img\" /></li>";
 	         endforeach;
 	 endif;
   die();
