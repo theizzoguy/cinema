@@ -94,11 +94,11 @@
         wp_register_script( 'site', get_template_directory_uri().'/js/site.js', array( 'jquery' ) );
 		wp_enqueue_script('site');
 		
-		wp_register_script( 'moment', get_template_directory_uri().'/js/moment.min.js', array( 'jquery' ) );
-		wp_enqueue_script( 'moment' );
+		#wp_register_script( 'moment', get_template_directory_uri().'/js/moment.min.js', array( 'jquery' ) );
+		#wp_enqueue_script( 'moment' );
 		
-		wp_register_script( 'clndr', get_template_directory_uri().'/js/fullcalendar.min.js', array( 'jquery' ) );
-		wp_enqueue_script( 'clndr' );
+		#wp_register_script( 'clndr', get_template_directory_uri().'/js/fullcalendar.min.js', array( 'jquery' ) );
+		#wp_enqueue_script( 'clndr' );
 	       
 		wp_register_script( 'date', get_template_directory_uri().'/js/jquery.ui.datepicker.css', '', '', 'screen' );
 		wp_enqueue_script( 'date' );

@@ -155,50 +155,69 @@ $(function(){
 		
 	}
 /********Going to Individual Page ********************************************************/
-
-	
 /******************************Ajax get movie info***************************************/
    
-	//going to next slide on click		
+		
 	
 	//getting movie details
 	 $('#tab1').on('click','.now-showing li',function(){
-	 	//go to next staf
-	 	if($('.individual').is(":visible")){
-		 	
-		 	// do nothing
-	 	}else{
-		 	$('.feature-slider ').fadeOut(100);
-		 	$('.individual').fadeIn('fast');
-	 	}
-	 	
+	 	//go to next page
+		 if($('.individual').is(":visible")){
+			 	// do nothing
+		 	}else{
+			 	$('.feature-slider ').fadeOut(100);
+			 	$('#bx-pager').fadeOut(100);
+			 	$('.individual').fadeIn('fast');
+		 	}
 	 	//moving to seletcted slide
 	 	 $this=$(this);
 	 	 myIndex=$this.attr('index');
 		 slider.goToSlide(myIndex);
+		 //getting multiple images for slider
+		 slide_id=$this.attr('id');
+		 console.log('slide id: '+slide_id);
+		 multipleSlides(slide_id);
 		 //getting movie details
 		 var  movie =$this.children('img').attr('class');
 		 console.log(movie);
+		 
 		 var movie_arr=movie.split(" ");
 		 var movie_str=movie_arr.join("+");
 		 var $url="http://www.omdbapi.com/?i=&t="+movie_str;
-		
 		 $.ajax({
 				url:$url,
 				type: "POST",
 				success: function(data,state){
-					
 					console.log(data);
 					var json=eval("(" + data + ")");
-					
-					//$('.title').html(json.Title);
+					$('.movie-title h1').html(json.Title);
+					$('.genre h4').html(json.Genre)
+					$('.age-rating').html(json.Rated)
 					//$('.poster').attr('src',json.Poster);
-					//$('.plot').html(json.Plot);
+					$('.synopsis p').html(json.Plot);
 					//$('.director').html(json.Director);
+					$('.run-time h4').html(json.Runtime)
 					}
 			});// end ajax
 		});
-
+	  function multipleSlides($id){
+			//ajax function for getting slides
+		jQuery.ajax({
+		 url: MyAjax.ajaxurl,
+		 type:'POST',
+		 dataType: 'html',
+		 data: ({action : 'multiple_images',id:$id}),
+		 success: function(data,state) {
+		 			console.log(data);
+		 			$('#multiple').html("<ul class='mult'></ul");
+		 			$('.mult').bxSlider({
+					 	minSlides:1,maxSlides:1,moveSlides:1,auto: true,controls: true,speed:500,pause:10000,autoHover:true
+			  			});
+				  }// end sucess
+		 });//end ajax
+	
+			
+		}	
 		
 	$('.trailer').click(function(event){
 		 $url=$(this).attr('name');

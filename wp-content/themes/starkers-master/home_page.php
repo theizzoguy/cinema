@@ -80,14 +80,6 @@ while ($movie->have_posts()) : $movie->the_post();
   $slide_img= get_post_meta( get_the_ID(), '_cmb_slider_image', true );
   $slider[]=$slide_img;
   #print_r($slide_img);
-  $img_a= get_post_meta( get_the_ID(), '_cmb_multiple_images', true );
-    if(!empty($img_a)):
-	    foreach($img_a as $img):
-	         $cmb_multiple[]=$img;
-	         #print_r($img);
-	         endforeach;
-	         endif;
-         
   $cap= get_post_meta( get_the_ID(), '_cmb_ cap_text', true );
   $caption[]=$cap;
    #print_r($cap);
@@ -337,8 +329,10 @@ fndate($arr);
 				<li class="screenshot-slider">
 					<ul class="screenshots">
 						<li>
-							<div class="vignette">
-								<img id="bkg" src="http://localhost/cinema/wp-content/uploads/2014/08/xmn-ss1.jpg"/>
+							<div class="vignette" id='multiple'>
+									<ul class='mult'>
+										<li><img id="bkg" src="http://localhost/cinema/wp-content/uploads/2014/08/xmn-ss1.jpg"/></li>
+									</ul>
 							</div>
 						</li>
 					</ul>			
@@ -480,7 +474,7 @@ fndate($arr);
 						<?php
 							#getting all current images
 							foreach ($showing_src as $key=>$src):
-								echo"<li index=\"$key\"><img src=\"$src\" class=\"$movie_names[$key]\"/></li>";
+								echo"<li index=\"$key\"><img src=\"$src\" class=\"$showing_movie[$key]\ id=\"$ids[$key]\"/></li>";
 								endforeach; 
 							?>
 						</ul>
@@ -492,7 +486,7 @@ fndate($arr);
 							#getting all coming soon images
 							if(!empty($coming_soon_src)):
 								foreach ($coming_soon_src as $key=>$src):
-									echo"<li index=\"$key\"> <img src=\"$src\" class=\"$movie_names[$key]\"/></li>";
+									echo"<li index=\"$key\"> <img src=\"$src\" class=\"$coming_soon[$key]\ id=\"$ids[$key]\" /></li>";
 									endforeach; 
 								endif;
 							?>
