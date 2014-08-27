@@ -32,6 +32,7 @@ while ($featured->have_posts()) : $featured->the_post();
  $grp= get_post_meta( get_the_ID(), '_featured_repeat_group', true );
  foreach ($grp  as $grp_val){
 	$caption[]=$grp_val['_featured_caption'];
+	$trailer_f[]=$grp_val['trailer'];
 	$copy[]=$grp_val['_featured_copy'];
 	$tab_name[]=$grp_val['tab'];
 	$featured_images[]=$grp_val['image'];
@@ -331,9 +332,9 @@ fndate($arr);
 				<li class="screenshot-slider">
 					<ul class="screenshots">
 						<li>
-							<div class="vignette" id='multiple'>
+							<div id='multiple'>
 									<ul class='mult'>
-										<li><img id="bkg" src="http://localhost/cinema/wp-content/uploads/2014/08/xmn-ss1.jpg"/></li>
+										<li class="vignette"><img id="bkg" src="http://localhost/cinema/wp-content/uploads/2014/08/xmn-ss1.jpg"/></li>
 									</ul>
 							</div>
 						</li>
@@ -359,9 +360,7 @@ fndate($arr);
 				</li>
 				
 			</ul><!--end individual -->
-		<div id='video'></div>
-		<div id="datepicker"></div>	
-	</div>
+		</div>
 			<ul class="feature-slider clearfix">
 				<?php
 				#check if post is a movie and is currently showing
@@ -394,6 +393,7 @@ fndate($arr);
 					$mycaption=$caption[$key];
 					$mybuttons=$buttons[$key];
 					$mytab_name=$tab_name[$key];
+					$featured_trailer=$trailer_f[$key];
 					echo "<li class='hottest'>";
 					echo "<div class='gradient-overlay'><img id='bkg' src=\"$f_image\"/></div>";
 					echo "<ul>
@@ -417,7 +417,7 @@ fndate($arr);
 											
 											}
 											else if($button=='trailer'){
-												echo "<a href='' class=\"$button\" name=''><span></span>$button</a>";
+												echo "<a href='' class=\"$button\" name=\"$featured_trailer\"><span></span>$button</a>";
 
 												}
 												else{
@@ -542,8 +542,8 @@ fndate($arr);
 				</ul>
 			</div>
 		</div>
-	
-	
+<div id='video'></div>
+<div id="datepicker"></div>		
  </body>
 </html>
 

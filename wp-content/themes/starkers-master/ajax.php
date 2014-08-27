@@ -63,9 +63,11 @@ add_action("wp_ajax_ratings", "ratings");
 function multiple_images(){
 	$mult_id=$_POST['id'];
 	$img_a= get_post_meta($mult_id, '_cmb_multiple_images', true );
+	//getting youtube url movie_text
+    $url= get_post_meta($mult_id, 'movie_text', true );
     if(!empty($img_a)):
 	    foreach($img_a as $img):
-	         echo"<li class='vignette'><img id='bkg' src=\"$img\" /></li>";
+	         echo"<li class='vignette' name=\"$url\"><img id='bkg' src=\"$img\" /></li>";
 	         endforeach;
 	 endif;
   die();

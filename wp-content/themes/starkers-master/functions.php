@@ -367,7 +367,12 @@
 						'id'   => 'image',
 						'type' => 'file',
 					),
-				
+				  array(
+						'name' => 'Trailer',
+						'description' => 'Youtube vimeo link',
+						'id'   => 'trailer',
+						'type' => 'text',
+					),
 				   array(
 					'name'    => __( 'Buttons', 'cmb' ),
 					'desc'    => __( 'select buttons to appear on the slide', 'cmb' ),

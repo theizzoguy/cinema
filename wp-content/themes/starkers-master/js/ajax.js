@@ -230,7 +230,7 @@ $(function(){
 			 data: ({action : 'get_movie_trailer',url:$url}),
 			 success: function(data,state) {
 			         console.log(data);
-					//$('.movie_content').show();
+			         $('#video').html(data);
 					//$('.feature-slider').html(data);
 					
 					}
