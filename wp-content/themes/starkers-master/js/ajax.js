@@ -212,7 +212,7 @@ $(function(){
 		 			$('#multiple').html("<ul class='mult'></ul");
 		 			$('.mult').html(data);
 		 			$('.mult').bxSlider({
-					 	minSlides:1,maxSlides:1,moveSlides:1,auto: true,controls: true,speed:500,pause:10000,autoHover:true
+					 	minSlides:1,maxSlides:1,moveSlides:1,auto: true,controls: true,speed:500,pause:10000,autoHover:true,pager:false
 			  			});
 				  }// end sucess
 		 });//end ajax
@@ -230,7 +230,7 @@ $(function(){
 			 data: ({action : 'get_movie_trailer',url:$url}),
 			 success: function(data,state) {
 			         console.log(data);
-			         $('#video').html(data);
+					$('#video').html(data);
 					//$('.feature-slider').html(data);
 					
 					}

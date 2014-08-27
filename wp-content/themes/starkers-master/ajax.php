@@ -67,7 +67,7 @@ function multiple_images(){
     $url= get_post_meta($mult_id, 'movie_text', true );
     if(!empty($img_a)):
 	    foreach($img_a as $img):
-	         echo"<li class='vignette' name=\"$url\"><img id='bkg' src=\"$img\" /></li>";
+	         echo"<li class='vignette' ><img id='bkg' src=\"$img\" name=\"$url\"/></li>";
 	         endforeach;
 	 endif;
   die();
@@ -220,9 +220,12 @@ function now_comingSoon($movie_names,$end_arr,$start_arr,$slider){
 function get_movie_trailer(){
 	//get trailer url
 	$url=$_POST['url'];
-	$embed_code = wp_oembed_get($url,array('width'=>500)); 	
-	echo $embed_code;
-	
+	if(!empty($url)){
+		$embed_code = wp_oembed_get($url,array('width'=>500)); 	
+		echo $embed_code;
+		
+		}
+		
 	die();
 	}		
 add_action("wp_ajax_get_movie_trailer", "get_movie_trailer");
