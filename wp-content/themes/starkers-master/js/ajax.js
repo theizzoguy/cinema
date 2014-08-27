@@ -30,8 +30,8 @@ $(function(){
 		 });//end ajax
 		}// end send vote
 /*****filters tABS*******************************************************************************/	
-	 $( "#tabs" ).tabs();
-	 var maxslides;
+	$( "#tabs" ).tabs();
+	var maxslides;
 	var width= $(window).width();
 	if(width>2500){
 		
@@ -47,26 +47,32 @@ $(function(){
 	}else{
 		maxslides=3
 	}
-	//toogle coming soon and now showing
-	 
+		 
 	config={
 	 	slideWidth: 200,minSlides:1,maxSlides:maxslides,moveSlides:1,auto: true,controls: true,speed:750,pause:6000,autoHover:true,pager:false, 
 			onSlideBefore: function($slideElement, oldIndex, newIndex){
 				
 		}
 	}
-	var slider=$('.now-showing').bxSlider(config);
-	var $comingSoon=$('.coming-soon').bxSlider(config);
+	$('.now-showing').bxSlider(config);
 	
+	var counter=0;
+	var show= false
+	$('.coming-soon').css('opacity',0);
 	$('.tab_names').click(function(event){
 		$this=$(this);
 		$class=$this.attr('id');
-		if($class=='now-showing'){
+		// toggle off cuurent slider
+		
+		   if($class=='now-showing'){
 				arg=1;
+				show =true
 			}else{
 				arg=0;
+				counter++;
 			}
 		getMovies(arg,$class);
+		event.preventDefault();
 	})
 	
 	function getMovies($state,$class){
@@ -76,13 +82,29 @@ $(function(){
 		 dataType: 'html',
 		 data: ({action : 'main_filter',state:$state}),
 		 success: function(data,state) {
-		 			console.log(data);
-		 			$parent=$('.'+$class).parent();
-		 			$parent_02=$parent.parent();
-		 			$parent_03=$parent_02.parent();
-		 			$parent_03.html("<ul class="+$class+"></ul")
-		 			$('.'+$class).html(data);
-				    $('.'+$class).bxSlider(config);
+		 			
+		 			if(counter == 1 ){
+			 			//clicked first time
+			 		  $('.coming-soon').bxSlider(config);
+			 		  console.log('data:'+data);
+					   setTimeout(function(){
+				 			$('.coming-soon').css('opacity',1)
+			 			
+			 			},500);
+			 			
+			 			}else{
+				 								
+			 				console.log('my counter:'+counter);
+			 				console.log('class is: '+$class + 'arg is: '+ $state+ ' data after 1:  '+data);
+				 			$parent=$('.'+$class).parent();
+				 			$parent_02=$parent.parent();
+				 			$parent_03=$parent_02.parent();
+				 			$parent_03.html("<ul class="+$class+"></ul")
+				 			$('.'+$class).html(data);
+						    $('.'+$class).bxSlider(config);
+					 			
+			 			}
+		 			
 				}
 		 });//end ajax
 		
@@ -91,16 +113,25 @@ $(function(){
 	
 		
 	//get category name
-	$('.filter a').click(function(){
-		slug=$(this).attr('class');
-		$class=$(this).attr('name');
+	$('.filter a').click(function(event){
+	    $this=$(this);
+		slug=$this.attr('class');
+		$str=$this.attr('name');
+		$class=$str.substring(1)
+		console.log($class);
+		//$filter=$this.html();
+		//console.log=('filter: '+ $filter);	  		  
 		if($class=='now-showing'){
 				arg=1;
+				//$('.now').html($filter);
 			}else{
 				arg=0;
+				//$('.soon').html($filter);
 			}
-		console.log(slug);
+		
 	getCategory(arg,slug,$class);
+	//$('#'+$class).click();	
+	event.preventDefault();
 	})
 	
 	function getCategory($state,$slug,$class){
@@ -143,7 +174,7 @@ $(function(){
 				url:$url,
 				type: "POST",
 				success: function(data,state){
-					alert(state)
+					
 					console.log(data);
 					var json=eval("(" + data + ")");
 					

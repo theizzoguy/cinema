@@ -162,11 +162,8 @@ wp_reset_query();
 				}//end if
 			}//end for
 	//echo'</ul>';	
-<<<<<<< HEAD
-	//print_r($clean_names);
-=======
-	#print_r($clean_names);
->>>>>>> FETCH_HEAD
+
+
 #getting by category, category slugs are got from a function above
 	#get category names
 	#pass them as arguments
@@ -334,7 +331,8 @@ fndate($arr);
 						<input name="search movies" type="text" size="40" placeholder="Search movies..."/>
 					</form>
 				</li>
-			</ul>
+			</ul><!-- end quick dropdown-->
+		<div class='individual'>	
 			<ul class="individual-movie-slider clearfix">
 				<li class="screenshot-slider">
 					<ul class="screenshots">
@@ -363,13 +361,15 @@ fndate($arr);
 						</li>
 					</ul>
 				</li>
-			</ul>
+				
+			</ul><!--end individual -->
+		<div id='video'></div>
+		<div id="datepicker"></div>	
+		</div>
 			<ul class="feature-slider clearfix">
 				<?php
 				#check if post is a movie and is currently showing
 				$showing=false;
-				
-				
 				$str=preg_replace('/[^A-Za-z0-9\-]/', '',$f_name); 
 				$featured_clean=strtolower($str );
 							
@@ -397,22 +397,6 @@ fndate($arr);
 					echo "<div class='gradient-overlay'><img id='bkg' src=\"$f_image\"/></div>";
 					echo "<ul>
 							<li class='caption'><h1>$mycaption</h1>";
-<<<<<<< HEAD
-							echo"<h2>$mycopy</h2>";
-							echo "<ul>
-								<li class='buttons'>";
-								if(!empty($mybuttons)):
-									foreach ($mybuttons as $button):
-										if($button=='schedule'){
-											$currentdate=date('Y-m-d');
-											echo "<a href='' class=\"$button\">Date<span></span>$currentdate</a>";
-											
-											}else if($button=='vote'){
-												$rating=Getratings($mymovie_name);
-												
-												echo "<a href='' class=\"$button\"><span class='count pixels' name='$mymovie_name'></span>$rating</a>";
-												
-=======
 							echo"<h2>$mycopy</h2></li>";
 							echo "<li class='buttons'>";
 							if(!empty($mybuttons)):
@@ -429,7 +413,7 @@ fndate($arr);
 											}
 											else if($button=='trailer'){
 												echo "<a href='' class=\"$button\" name='$movie_url'><span></span>$button</a>";
->>>>>>> FETCH_HEAD
+
 												}
 												else{
 													echo "<a href='' class=\"$button\"><span></span>$button</a>";
@@ -438,16 +422,15 @@ fndate($arr);
 									endforeach; 
 								endif;
 								echo"</li></ul>";
-							echo"</li>";
-					echo"</ul>";
-				    echo "</li>";	 
-					endforeach
+							echo"</li>";// end hottest li
+					
+				endforeach
 				?>
-			</ul>
+			</ul><!-- feature slider-->
 			<div id="bx-pager">
 			<?php
 			foreach ($tab_name as $key=>$tab):
-			   echo "<a data-slide-index=\"$key\" href='#'>$tab</a>";
+			   echo "<a class='bx-pager_default' data-slide-index=\"$key\" href='#'>$tab</a>";
 			endforeach;
 			?>
 			</div>
@@ -456,13 +439,13 @@ fndate($arr);
 				<div id="tabs">
 					<ul>
 						<li>
-							<a href="#tab1" class='tab_names' name='now-showing'>in cinema now</a>
+							<a href="#tab1" class='tab_names' id='now-showing'>in cinema now</a>
 							<ul>
 								<li class="in-cinema-now">
 								<a href="#">genre</a>
 									<ul class="filter">
 									<?php foreach($cats_array as $slug):
-											echo"<li><a href='#$' class='$slug' name='now-showing'>$slug</a></li>";
+											echo"<li><a href='#$' class='$slug' name='#now-showing'>$slug</a></li>";
 											endforeach;	
 									   ?>
 										
@@ -471,13 +454,13 @@ fndate($arr);
 							</ul>
 						</li>
 						<li>
-							<a  href="#tab2" class='tab_names' name='coming_soon'>coming soon</a>
+							<a  href="#tab2" class='tab_names' id='coming-soon'>coming soon</a>
 							<ul>
-								<li class="coming_soon">
-									<a href="#">genre</a>
+								<li class="in-coming_soon">
+									<a href="#" >genre</a>
 									<ul class="filter">
 										<?php foreach($cats_array as $key=>$slug):
-											echo"<li><a href='#$' class='$slug' name='coming-soon' >$slug</a></li>";
+											echo"<li><a href='#$' class='$slug' name='#coming-soon' >$slug</a></li>";
 											endforeach;	
 									   ?>
 									</ul>
@@ -554,7 +537,8 @@ fndate($arr);
 				</ul>
 			</div>
 		</div>
-	<div id="datepicker"></div>
+	
+	
  </body>
 </html>
 
