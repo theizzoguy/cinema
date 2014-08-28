@@ -22,7 +22,18 @@ jQuery(document).ready(function($) {
 
 			
 			});*/
-   
+     $(".tab_names" ).click(function() {
+	    //mouse enter
+	   
+	  if($('.now-showing').hasClass('in-cinema-default')){
+			  // remove it
+			$('.now-showing').removeClass('in-cinema-default')
+			console.log('heyy');
+		  
+		  }
+	
+	});
+		   
 			
 });// end document ready
 

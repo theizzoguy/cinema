@@ -373,7 +373,7 @@
 						'id'   => 'trailer',
 						'type' => 'text',
 					),
-				   array(
+				array(
 					'name'    => __( 'Buttons', 'cmb' ),
 					'desc'    => __( 'select buttons to appear on the slide', 'cmb' ),
 					'id'      => $prefix . 'icons',
@@ -386,6 +386,20 @@
 					),
 					// 'inline'  => true, // Toggles display to inline
 				),
+				
+				
+				  array(
+					'name'    => __( 'Notifications', 'cmb' ),
+					'desc'    => __( 'select notifications to appear on the slide', 'cmb' ),
+					'id'      => $prefix . 'notificatios',
+					'type'    => 'multicheck',
+					'options' => array(
+						'Count Down' => __('Count_down', 'cmb' ),
+						'Showing Today' => __('showing_today', 'cmb' ),
+						),
+					),
+				
+				
 					
 				),
 			),

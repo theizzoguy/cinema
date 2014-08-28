@@ -32,13 +32,12 @@ while ($featured->have_posts()) : $featured->the_post();
  $grp= get_post_meta( get_the_ID(), '_featured_repeat_group', true );
  foreach ($grp  as $grp_val){
 	$caption[]=$grp_val['_featured_caption'];
-		
-		if(!empty($grp_val['trailer'])){
+	
+	if(!empty($grp_val['trailer'])){
 			$trailer_f[]=$grp_val['trailer'];
 		}else{
-			
 			$trailer_f[]=null;
-		}
+}
 	$copy[]=$grp_val['_featured_copy'];
 	$tab_name[]=$grp_val['tab'];
 	$featured_images[]=$grp_val['image'];
@@ -353,9 +352,7 @@ fndate($arr);
 						<li class="genre"><h4>genre:<span></span></h4></li>
 						<li class="run-time"><h4>run time:<span></span></h4></li>
 						<li class="age-rating"><p>pg-13</p></li>
-						<li class="synopsis">
-							<p>The ultimate X-Men ensemble fights a war for the survival of the species across two time periods in X-Men: Days of Future Past. The characters from the original X-Men film trilogy join forces with their younger selves from X-Men: First Class in an epic battle that must change the past - to save our FUTURE</p>
-						</li>
+						<li class="synopsis"><p>synopsis<span></span></p></li>
 						<li class="buttons">
 							<ul>
 								<!--<li class="buy"><a href="#"><span></span>buy ticket</a></li>-->

@@ -59,15 +59,27 @@ $(function(){
 	var counter=0;
 	var show= false
 	$('.coming-soon').css('opacity',0);
+	
 	$('.tab_names').click(function(event){
 		$this=$(this);
+		
 		$class=$this.attr('id');
+		if($('#now-showing').hasClass('in-cinema-default')){
+			
+			$('#now-showing').removeClass('in-cinema-default')
+			
+		}
+	$('.tab_names').removeClass('in-cinema-default');
+	$(this).addClass('in-cinema-default');
+
+
 		// toggle off cuurent slider
 		
 		   if($class=='now-showing'){
 				arg=1;
 				show =true
 				$('.now').html('genre');
+				
 			}else{
 				arg=0;
 				counter++;
@@ -169,7 +181,7 @@ $(function(){
 			 	$('#bx-pager').fadeOut(100);
 			 	$('.individual').fadeIn('fast');
 		 	}
-	 	//moving to seletcted slide
+	 	//moving to selected slide
 	 	 $this=$(this);
 	 	 myIndex=$this.attr('index');
 		 slider.goToSlide(myIndex);
