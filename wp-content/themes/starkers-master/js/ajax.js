@@ -183,18 +183,18 @@ $(function(){
 		 
 		 var movie_arr=movie.split(" ");
 		 var movie_str=movie_arr.join("+");
-		 var $url="http://www.omdbapi.com/?i=&t="+movie_str;
+		 var $url="http://www.omdbapi.com/?i=&t="+movie_str+" plot=full";
 		 $.ajax({
 				url:$url,
 				type: "POST",
 				success: function(data,state){
 					console.log(data);
 					var json=eval("(" + data + ")");
-					$('.movie-title h1').html(json.Title);
-					$('.genre h4').html(json.Genre)
+					$('.movie-title h1 span').html(json.Title);
+					$('.genre h4 span').html(json.Genre)
 					$('.age-rating p').html(json.Rated)
-					//$('.poster').attr('src',json.Poster);
-					$('.synopsis p').html(json.Plot);
+					//$('.poster').attr('src',json.Poster);x
+					$('.synopsis p span').html(json.Plot);
 					//$('.director').html(json.Director);
 					$('.run-time h4').html(json.Runtime)
 					}

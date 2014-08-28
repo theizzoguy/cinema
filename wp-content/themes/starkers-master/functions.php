@@ -77,7 +77,7 @@
 			}
 		}
 		
-	add_action('init', 'modify_jquery');
+	add_action('wp_enqueue_scripts', 'modify_jquery');
 	
 	function starkers_script_enqueuer() {
 			
