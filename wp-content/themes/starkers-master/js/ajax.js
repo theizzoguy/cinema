@@ -192,7 +192,7 @@ $(function(){
 					var json=eval("(" + data + ")");
 					$('.movie-title h1').html(json.Title);
 					$('.genre h4').html(json.Genre)
-					$('.age-rating').html(json.Rated)
+					$('.age-rating p').html(json.Rated)
 					//$('.poster').attr('src',json.Poster);
 					$('.synopsis p').html(json.Plot);
 					//$('.director').html(json.Director);

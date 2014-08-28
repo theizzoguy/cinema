@@ -129,6 +129,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
 /*3.0 MOVIE-SLIDER*/
 .movie-slider{position:relative; top:-10em; width:92.5%; padding-left: 7.5%}
+.showing-movie-slider{position:relative; top:-20em; width:92.5%; padding-left: 7.5%}
 .movie-slider li{display:inline-block;}
 #tabs > ul{margin-bottom: 2%;position:absolute;z-index:10;}
 /*#tabs > ul > li{width:7%;}*/
@@ -145,6 +146,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
 #tabs .in-cinema-default {color:rgba(255,255,255,1);background-color: rgba(255,255,255,0.18);text-decoration: none;border-bottom:none;}
 #in-cinema-now .now-default{opacity:1;}
+
 #tabs .filter{top:1.4em;}
 .filter li{display:block;margin-top: 1.4em;}
 #tabs .filter li a{border:none;}
@@ -182,12 +184,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 #bkg{position:relative;z-index:-1;min-width: 100%}
 .individual-movie-slider{position:absolute;top:0px;left:0px;width:100%;height:35.375em;z-index: 3}
-.screenshot-slider{width:60%;height:35.375em;float:right;}
+.screenshot-slider{width:60%;height:50em;float:right;overflow:hidden;}
 .movie-info{width:32.5%;float:left;color:rgba(255,255,255,0.7);background-color: black;height:40em;padding-left: 7.5%;padding-top: 10em}
 .movie-info h1{font-size: 2.5em;font-weight: 700;margin-bottom: 1em;text-transform: uppercase;}
 .movie-info h4{font-size: 0.85em;font-weight: 700;margin-bottom: .5em;text-transform: uppercase;}
 .movie-title, .movie-info p{color:rgba(255,255,255,1);}
-.age-rating{font-size: 0.85em;width:5%;text-transform:uppercase;font-weight:700;padding:0.5em 1em;border: 2px solid rgba(255,255,255,0.7);margin-bottom: 1em;-moz-border-radius: 3px;-webkit-border-radius: 3px;-o-border-radius: 3px;-ms-border-radius: 3px;border-radius: 3px;}
+.age-rating p{font-size: 0.85em;width:5%;text-transform:uppercase;font-weight:700;padding:0.5em 1em;border: 2px solid rgba(255,255,255,0.7);margin-bottom: 1em;-moz-border-radius: 3px;-webkit-border-radius: 3px;-o-border-radius: 3px;-ms-border-radius: 3px;border-radius: 3px;}
 .movie-info p{width:70%;font-weight: 300;line-height: 2;}
 
 

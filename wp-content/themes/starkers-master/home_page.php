@@ -348,11 +348,11 @@ fndate($arr);
 				</li>
 				<li class="movie-info">
 					<ul>
-						<li class="movie-title"><h1>xmen: days of future past</h1></li>
+						<li class="movie-title"><h1></h1></li>
 						<li class="star-rating"></li>
-						<li class="genre"><h4>action/adventure</h4></li>
-						<li class="run-time"><h4>run time:  2hr 45 min</h4></li>
-						<li class="age-rating">pg-13</li>
+						<li class="genre"><h4>genre:<span></span></h4></li>
+						<li class="run-time"><h4>run time:<span></span></h4></li>
+						<li class="age-rating"><p>pg-13</p></li>
 						<li class="synopsis">
 							<p>The ultimate X-Men ensemble fights a war for the survival of the species across two time periods in X-Men: Days of Future Past. The characters from the original X-Men film trilogy join forces with their younger selves from X-Men: First Class in an epic battle that must change the past - to save our FUTURE</p>
 						</li>
@@ -443,7 +443,7 @@ fndate($arr);
 			endforeach;
 			?>
 			</div>
-			<div class="movie-slider clearfix">
+			<div class="movie-slider showing-movie-slider clearfix">
 				<div class="highlight-slider"></div>
 				<div id="tabs">
 					<ul>
