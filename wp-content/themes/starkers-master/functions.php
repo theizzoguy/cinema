@@ -233,7 +233,7 @@
 			'fields'     => array(
 				
 				array(
-					'name' => __( 'Multiple images', 'cmb' ),
+					'name' => __( 'Screen Shots', 'cmb' ),
 					'desc' => __( 'Upload an image or enter a URL.', 'cmb' ),
 					'id'   => $prefix . 'multiple_images',
 					'description' => 'images for individuals page',
@@ -241,7 +241,7 @@
 				),
 				
 				array(
-					'name' => __( 'Slider', 'cmb' ),
+					'name' => __( 'Thumbnail', 'cmb' ),
 					'desc' => __( 'Upload an image or enter a URL.', 'cmb' ),
 					'id'   => $prefix . 'slider_image',
 					'type' => 'file',
@@ -357,9 +357,23 @@
 					#'options' => array( 'textarea_rows' => 5, ),
 					),
 					array(
-						'name' => 'Slide Name',
+					'name'    => __( 'Copy', 'cmb' ),
+					'desc'    => __( '', 'cmb' ),
+					'id'      => $prefix . 'copy',
+					'type'    => 'textarea',
+					#'options' => array( 'textarea_rows' => 5, ),
+					),
+
+					array(
+						'name' => 'Tab Name',
 						'description' => 'Tab name',
 						'id'   => 'tab',
+						'type' => 'text',
+					),
+					array(
+						'name' => 'Movie Name',
+						'description' => 'movie name',
+						'id'   => 'movie',
 						'type' => 'text',
 					),
 					array(

@@ -194,11 +194,11 @@ $(function(){
 		 multipleSlides(slide_id);
 		 //getting movie details
 		 var  movie =$this.children('img').attr('class');
-		 console.log(movie);
-		 
+		 		 
 		 var movie_arr=movie.split(" ");
 		 var movie_str=movie_arr.join("+");
-		 var $url="http://www.omdbapi.com/?i=&t="+movie_str+" plot=full";
+		
+		 var $url="http://www.omdbapi.com/?i=&t="+movie_str+"&plot=full";
 		 $.ajax({
 				url:$url,
 				type: "POST",
@@ -215,6 +215,7 @@ $(function(){
 					}
 			});// end ajax
 		});
+	 
 	  function multipleSlides($id){
 			//ajax function for getting slides
 		jQuery.ajax({
