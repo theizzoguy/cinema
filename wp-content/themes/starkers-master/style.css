@@ -122,8 +122,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 .buttons{margin-top:5em;}
 .buttons a{color:rgba(255,255,255,1);margin-right: 10%;font-size: 1.2em;text-transform: uppercase;font-weight: 700;opacity:.5;text-align: center;display:inline-block;}
 .buttons a:hover{opacity:1;text-decoration: none;}
-.buttons .trailer span{height:49px;width:85px;background-image:url("images/trailer.png");background-repeat:no-repeat;background-position: center center; display:block;margin-bottom: 22%;}
-.buttons .buy span{height:77px;width:87px;background-image:url("images/ticket.png");display:block;margin-bottom: 22%;}
+.buttons .schedule span{height:77px;width:87px;background-image:url("images/schedule.png");background-repeat:no-repeat;background-position: center center; display:block;margin-bottom: 10%;}
+.buttons .trailer span{height:77px;width:87px;background-image:url("images/trailer.png");background-repeat:no-repeat;background-position: center center; display:block;margin-bottom: 10%;}
+.buttons .buy span{height:77px;width:87px;background-image:url("images/ticket.png");display:block;margin-bottom: 10%;}
 /*.individual-movie-slider .buttons{top:35em;}*/
 
 
@@ -133,8 +134,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 .movie-slider li{display:inline-block;}
 #tabs > ul{margin-bottom: 2%;position:absolute;z-index:10;}
 /*#tabs > ul > li{width:7%;}*/
-.now-showing li{position:relative;width:10%;background-color: #000;}
-#tabs img{width:100%;opacity:0.4;}
+.now-showing li{position:relative;width:10%;background-color: #000;opacity:0.4;}
+.now-showing li:hover{opacity:1;}
+#tabs img{width:100%;}
 #tabs img: hover{opacity:1;}
 #tabs button{position:absolute;bottom:0.5em;left:50%;}
 #tabs a{font-size:1.2em;color:rgba(255,255,255,0.2);padding:10px 15px;border-bottom: 2px solid rgba(255,255,255, 0.2)}
