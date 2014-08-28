@@ -448,8 +448,8 @@ fndate($arr);
 				<div id="tabs">
 					<ul>
 						<li id="in-cinema-now" >
-							<a href="#tab1" class='tab_names' id='now-showing'>in cinema now</a>
-							<ul class="now-filter">
+							<a href="#tab1" class='tab_names in-cinema-default' id='now-showing'>in cinema now</a>
+							<ul class="now-filter now-default">
 								<li class="now-filter-genre">
 									<a href="#" class="genre">genre</a>
 									<ul class="filter">

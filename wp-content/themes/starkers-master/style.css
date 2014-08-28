@@ -141,7 +141,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 #in-cinema-now .now-filter,#in-cinema-now .filter, #coming-soon .filter, #coming-soon .soon-filter{position:absolute;opacity:0;top:2.8em;}
 #tabs ul li ul li a{color:rgba(255,255,255,0.7);background-color:none;border:1px 0px 1px 1px solid rgba(255,255,255,0.9);padding:5px 10px; white-space:nowrap;}
 #tabs ul li ul li a:hover{color:rgba(255,255,255,1);background:rgba(255,255,255,0.15);text-decoration: none;}
-#in-cinema-now:hover .now-filter, #in-cinema-now .now-filter-genre:hover .filter, #coming-soon:hover .soon-filter, #coming-soon .soon-filter-genre:hover .filter{opacity:1;}
+#in-cinema-now:active .now-filter, #in-cinema-now .now-filter-genre:active .filter, #coming-soon:active .soon-filter, #coming-soon .soon-filter-genre:active .filter{opacity:1;}
+
+#tabs .in-cinema-default {color:rgba(255,255,255,1);background-color: rgba(255,255,255,0.18);text-decoration: none;border-bottom:none;}
+#in-cinema-now .now-default{opacity:1;}
 #tabs .filter{top:1.4em;}
 .filter li{display:block;margin-top: 1.4em;}
 #tabs .filter li a{border:none;}
