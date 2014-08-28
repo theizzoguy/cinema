@@ -25,24 +25,23 @@ global $post;
 $featured= new WP_Query($args);
 if( $featured->have_posts() ) {
 while ($featured->have_posts()) : $featured->the_post(); 
- $f_name= get_the_title();	
- $featured_name[]=$f_name;
  $f_ids[]=get_the_ID();
  //getting cinema room
  $grp= get_post_meta( get_the_ID(), '_featured_repeat_group', true );
+ #print_r($grp);
  foreach ($grp  as $grp_val){
 	$caption[]=$grp_val['_featured_caption'];
+	if(isset($grp_val['movie'])){
+		$featured_name[]=$grp_val['movie'];
 	
-	if(!empty($grp_val['trailer'])){
-			$trailer_f[]=$grp_val['trailer'];
-		}else{
-			$trailer_f[]=null;
-}
+	}else{
+		$featured_name[]=' ';
+	}
 	$copy[]=$grp_val['_featured_copy'];
 	$tab_name[]=$grp_val['tab'];
 	$featured_images[]=$grp_val['image'];
 	$buttons[]=$grp_val['_featured_icons'];
-	#print_r($grp_val);
+	
 }
 
 endwhile;
@@ -119,7 +118,7 @@ wp_reset_query();
 
 ?>
 <?php
-			$i=0;
+		$i=0;
 		$currentdate=date('Y-m-d');
 		foreach( $movie_names as $key=> $mymovie){
 		       $myend=$enddate[$key];
@@ -367,36 +366,35 @@ fndate($arr);
 			<ul class="feature-slider clearfix">
 				<?php
 				#check if post is a movie and is currently showing
-				$showing=false;
-				$str=preg_replace('/[^A-Za-z0-9\-]/', '',$f_name); 
-				$featured_clean=strtolower($str );
-				$myId= null;			
-				if(in_array($featured_clean,$showing_clean)){
+				foreach ($featured_name as $key=>$f_name){
+					$str=preg_replace('/[^A-Za-z0-9\-]/', '',$f_name); 
+					$featured_clean_str=strtolower($str );
+					
+				 if(in_array($featured_clean_str,$valid_movies_clean)){
 						#get show times and date
-						$showing=true;
 						$array=array_unique($show_times);
 						$times=implode(" ",$array);
-						$mymovie_name=$f_name;
-						#echo "my key is $mymovie_name"; 
-						#get key of that movie to get its url
-						$key = array_search($featured_clean,$showing_clean);
-						#echo "my key is $key";
-						 
+						$key = array_search($featured_clean_str,$showing_clean);
 						$movie_url=$link[$key];
-						if(empty($movie_url)):
-							$movie_url=null;
-							endif;
-						
 						$myId=$ids[$key];
-						#echo "my url $movie_url";
+						if(empty($movie_url)):
+							$movie_url='';
+							$myId='';
+							endif;
+					   $f_ids[]=$myId;
+					   $movie_url_f[]=$movie_url;
+					   $featured_clean[]=$featured_clean_str;
 						
-					}
-				foreach($featured_images as $key=>$f_image):
+					}// end if
+					
+				}// end for each
+		foreach($featured_images as $key=>$f_image):
 					$mycopy=$copy[$key];
 					$mycaption=$caption[$key];
 					$mybuttons=$buttons[$key];
 					$mytab_name=$tab_name[$key];
-					$featured_trailer=$trailer_f[$key];
+					$featured_trailer=$movie_url_f[$key];
+					$mymovie_name=$featured_clean[$key];
 					echo "<li class='hottest'>";
 					echo "<div class='gradient-overlay'><img id='bkg' src=\"$f_image\"/></div>";
 					echo "<ul>
@@ -410,8 +408,8 @@ fndate($arr);
 							if(!empty($mybuttons)):
 								foreach ($mybuttons as $button):
 									if($button=='schedule'){
-										$currentdate=date('Y-m-d');
-										echo "<a href='' id=\"$myId\" class=\"$button\"><span></span>Date</a>";
+										//$currentdate=date('Y-m-d');
+										echo "<a href='' id=\"$f_ids[$key]\" class=\"$button\"><span></span></a>";
 										
 										}else if($button=='vote'){
 											$rating=Getratings($mymovie_name);
