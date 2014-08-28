@@ -351,7 +351,7 @@ fndate($arr);
 						<li class="star-rating"></li>
 						<li class="genre"><h4>genre:<span></span></h4></li>
 						<li class="run-time"><h4>run time:<span></span></h4></li>
-						<li class="age-rating"><p>pg-13</p></li>
+						<li class="age-rating"><span>pg-13</span></li>
 						<li class="synopsis"><p>synopsis<span></span></p></li>
 						<li class="buttons">
 							<ul>

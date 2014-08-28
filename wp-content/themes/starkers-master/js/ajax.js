@@ -204,7 +204,7 @@ $(function(){
 					var json=eval("(" + data + ")");
 					$('.movie-title h1 span').html(json.Title);
 					$('.genre h4 span').html(json.Genre)
-					$('.age-rating p').html(json.Rated)
+					$('.age-rating span').html(json.Rated)
 					//$('.poster').attr('src',json.Poster);x
 					$('.synopsis p span').html(json.Plot);
 					//$('.director').html(json.Director);
