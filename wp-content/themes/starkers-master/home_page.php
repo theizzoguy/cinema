@@ -373,7 +373,7 @@ fndate($arr);
 				$showing=false;
 				$str=preg_replace('/[^A-Za-z0-9\-]/', '',$f_name); 
 				$featured_clean=strtolower($str );
-							
+				$myId= null;			
 				if(in_array($featured_clean,$showing_clean)){
 						#get show times and date
 						$showing=true;

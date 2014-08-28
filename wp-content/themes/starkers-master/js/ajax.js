@@ -49,7 +49,7 @@ $(function(){
 	}
 		 
 	config={
-	 	slideWidth: 200,minSlides:1,maxSlides:maxslides,moveSlides:1,auto: true,controls: true,speed:750,pause:6000,autoHover:true,pager:false, 
+	 	slideWidth: 250,minSlides:1,maxSlides:maxslides,moveSlides:1,auto: true,controls: true,speed:750,pause:6000,autoHover:true,pager:false, 
 			onSlideBefore: function($slideElement, oldIndex, newIndex){
 				
 		}
