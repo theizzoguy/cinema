@@ -174,12 +174,15 @@ $(function(){
 	//getting movie details
 	 $('#tab1').on('click','.now-showing li',function(){
 	 	//go to next page
-		 if($('.individual').is(":visible")){
+		if($('.individual').is(":visible")){
 			 	// do nothing
 		 	}else{
-			 	$('.feature-slider ').fadeOut(100);
+			 	$('.feature-slider').fadeOut(100);
+			 	//add class to shift movie slider up
+			 	$('.movie-slider').addClass('showing-movie-slider ');
 			 	$('#bx-pager').fadeOut(100);
 			 	$('.individual').fadeIn('fast');
+			 	
 		 	}
 	 	//moving to selected slide
 	 	 $this=$(this);

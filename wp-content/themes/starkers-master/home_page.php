@@ -440,7 +440,7 @@ fndate($arr);
 			endforeach;
 			?>
 			</div>
-			<div class="movie-slider showing-movie-slider clearfix">
+			<div class="movie-slider clearfix">
 				<div class="highlight-slider"></div>
 				<div id="tabs">
 					<ul>
