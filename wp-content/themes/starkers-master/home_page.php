@@ -418,11 +418,11 @@ fndate($arr);
 											
 											}
 											else if($button=='trailer'){
-												echo "<a href='' class=\"$button\" name=\"$featured_trailer\"><span></span>$button</a>";
+												echo "<a href='' class=\"$button\" name=\"$featured_trailer\"><span></span></a>";
 
 												}
 												else{
-													echo "<a href='' class=\"$button\"><span></span>$button</a>";
+													echo "<a href='' class=\"$button\"><span></span></a>";
 													}
 										endforeach;// getting buttons 
 						endif;
@@ -477,8 +477,12 @@ fndate($arr);
 						<?php
 							#getting all current images
 							foreach ($showing_src as $key=>$src):
-							
-								echo"<li index=\"$key\" id=\"$showing_ids[$key]\" ><img src=\"$src\" class=\"$showing_movie[$key]\" /></li>";
+								if($key==0){
+									echo"<li index=\"$key\" id=\"$showing_ids[$key]\" class='activeSlide slides' ><img src=\"$src\" class=\"$showing_movie[$key]\" /></li>";
+								}else{
+									echo"<li index=\"$key\" id=\"$showing_ids[$key] class='slides'\" ><img src=\"$src\" class=\"$showing_movie[$key]\" /></li>";
+								}
+								
 								endforeach; 
 							?>
 						</ul>
@@ -490,8 +494,12 @@ fndate($arr);
 							#getting all coming soon images
 							if(!empty($coming_soon_src)):
 								foreach ($coming_soon_src as $key=>$src):
-								
-									echo"<li id=\"$coming_soon_ids[$key]\" index=\"$key\"><img src=\"$src\" class=\"$coming_soon[$key]\"  /></li>";
+									if($key==0){
+										echo"<li id=\"$coming_soon_ids[$key]\" class='activeSlide slides' index=\"$key\"><img src=\"$src\" class=\"$coming_soon[$key]\"  /></li>";
+									}else{
+										echo"<li id=\"$coming_soon_ids[$key]\" class='slides' index=\"$key\"><img src=\"$src\" class=\"$coming_soon[$key]\"  /></li>";
+									}
+									
 									endforeach; 
 								endif;
 							?>

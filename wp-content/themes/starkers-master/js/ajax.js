@@ -51,7 +51,8 @@ $(function(){
 	config={
 	 	slideWidth: 250,minSlides:1,maxSlides:maxslides,moveSlides:1,auto: true,controls: true,speed:750,pause:6000,autoHover:true,pager:false, 
 			onSlideBefore: function($slideElement, oldIndex, newIndex){
-				
+				$('.slides').removeClass('activeSlide');
+				$slideElement.addClass('activeSlide');
 		}
 	}
 	var slider = $('.now-showing').bxSlider(config);
