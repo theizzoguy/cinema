@@ -377,9 +377,10 @@ fndate($arr);
 						$key = array_search($featured_clean_str,$showing_clean);
 						$movie_url=$link[$key];
 						$myId=$ids[$key];
-						if(empty($movie_url)):
-							$movie_url='';
-							$myId='';
+						if(empty($key)):
+							echo "NO key";
+							$movie_url='none';
+							$myId=0;
 							endif;
 					   $f_ids[]=$myId;
 					   $movie_url_f[]=$movie_url;
