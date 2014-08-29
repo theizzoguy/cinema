@@ -426,7 +426,7 @@ fndate($arr);
 													}
 										endforeach;// getting buttons 
 						endif;
-				echo"</li></ul><li></ul>";
+				echo"</li></ul></li></ul>";
 			echo"</li>";// end hottest li
 			endforeach;//for fetching images
 				?>
