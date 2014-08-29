@@ -410,20 +410,20 @@ fndate($arr);
 								foreach ($mybuttons as $button):
 									if($button=='schedule'){
 										//$currentdate=date('Y-m-d');
-										echo "<a href='' id=\"$f_ids[$key]\" class=\"$button\"><span>$button</span></a>";
+										echo "<a href='' id=\"$f_ids[$key]\" class=\"$button\"><span></span>$button</a>";
 										
 										}else if($button=='vote'){
 											$rating=Getratings($mymovie_name);
 											
-											echo "<a href='' class=\"$button\"><span class='count pixels' name='$mymovie_name'></span>$rating</a>";
+											echo "<a href='' class=\"$button\"><span class='count pixels' name='$mymovie_name'></span></a>";
 											
 											}
 											else if($button=='trailer'){
-												echo "<a href='' class=\"$button\" name=\"$featured_trailer\"><span>$button</span></a>";
+												echo "<a href='' class=\"$button\" name=\"$featured_trailer\"><span></span>$button</a>";
 
 												}
 												else{
-													echo "<a href='' class=\"$button\"><span>$button</span></a>";
+													echo "<a href='' class=\"$button\"><span></span>$button</a>";
 													}
 										endforeach;// getting buttons 
 						endif;
