@@ -156,12 +156,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 #tab1,#tab2,.coming-soon,.now-showing{height: 400px}
 
 /*4.0 community*/
-.community{position:relative; width:92.5%; padding-left: 7.5%; margin-bottom: 3em}
-.social{float:left; width:55%;margin-bottom: 3em}
+.community{position:relative; width:92.5%; padding-left: 7.5%;top:-14em;}
+.social{float:left; width:55%;}
 .social h2, .the-experience h2{font-size:1.2em; margin-bottom: 1em;}
-.social h3{font-size: 1em; font-weight:100;margin-bottom: 1.5em; }
+.social h3{font-size: 1em; font-weight:100;margin-bottom: 3.5em; }
 .social p, .the-experience p, .the-experience ol{font-size:0.8em;margin-bottom: 1em;line-height: 1.3;}
-.social li{display:inline-block; width:25%;background: rgba(41,48,50, .7);padding:1.2em;margin-right: 1.5%;height:8em;}
+.social li{display:inline-block; width:25%;background: rgba(41,48,50, .7);padding:1.2em;margin-right: 1.5%;height:9.8em;}
 .facebook,.twitter,.instagram{text-transform: capitalize;}
 .facebook span{display: inline-block; width:33px;height:33px;background-image:url("images/fb(h).png");margin-right: 2%;vertical-align: middle;}
 .twitter span{display: inline-block; width:33px;height:33px;background-image:url("images/twt(h).png");margin-right: 2%;vertical-align: middle;}
@@ -188,11 +188,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 .individual-movie-slider{position:absolute;top:0px;left:0px;width:100%;height:35.375em;z-index: 3}
 .screenshot-slider{width:60%;height:50em;float:right;overflow:hidden;}
 .movie-info{width:32.5%;float:left;color:rgba(255,255,255,0.7);background-color: black;height:40em;padding-left: 5.5%;padding-top: 10em}
+.movie-info li{margin-bottom: 1.2em;}
 .movie-info h1{font-size: 2.5em;font-weight: 700;margin-bottom: 1em;text-transform: uppercase;}
-.movie-info h4{font-size: 0.85em;font-weight: 700;margin-bottom: .5em;text-transform: uppercase;}
+.movie-info h4{font-size: 0.85em;font-weight: 700;text-transform: uppercase;}
 .movie-title, .movie-info p{color:rgba(255,255,255,1);}
-.age-rating p{font-size: 0.85em;width:5%;text-transform:uppercase;font-weight:700;padding:0.5em 1em;border: 2px solid rgba(255,255,255,0.7);margin-bottom: 1em;-moz-border-radius: 3px;-webkit-border-radius: 3px;-o-border-radius: 3px;-ms-border-radius: 3px;border-radius: 3px;}
-.movie-info p{width:70%;font-weight: 300;line-height: 2;}
+.age-rating span{font-size: 0.85em;width:5%;text-transform:uppercase;font-weight:700;padding:0.5em 1em;border: 2px solid rgba(255,255,255,0.7);margin-bottom: 1em;-moz-border-radius: 3px;-webkit-border-radius: 3px;-o-border-radius: 3px;-ms-border-radius: 3px;border-radius: 3px;}
+.movie-info p{font-weight: 300;line-height: 1.7;}
 
 
 .individual{display:none;}
