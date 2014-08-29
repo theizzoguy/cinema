@@ -480,7 +480,7 @@ fndate($arr);
 								if($key==0){
 									echo"<li index=\"$key\" id=\"$showing_ids[$key]\" class='activeSlide slides' ><img src=\"$src\" class=\"$showing_movie[$key]\" /></li>";
 								}else{
-									echo"<li index=\"$key\" id=\"$showing_ids[$key] class='slides'\" ><img src=\"$src\" class=\"$showing_movie[$key]\" /></li>";
+									echo"<li index=\"$key\" id=\"$showing_ids[$key]\" class='slides' ><img src=\"$src\" class=\"$showing_movie[$key]\" /></li>";
 								}
 								
 								endforeach; 
