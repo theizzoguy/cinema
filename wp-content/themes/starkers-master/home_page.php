@@ -378,9 +378,9 @@ fndate($arr);
 						$movie_url=$link[$key];
 						$myId=$ids[$key];
 						if(empty($key)):
-							echo "NO key";
+							//echo "NO key";
 							$movie_url='none';
-							$myId=0;
+							$myId=10000;
 							endif;
 					   $f_ids[]=$myId;
 					   $movie_url_f[]=$movie_url;
@@ -410,7 +410,7 @@ fndate($arr);
 								foreach ($mybuttons as $button):
 									if($button=='schedule'){
 										//$currentdate=date('Y-m-d');
-										echo "<a href='' id=\"$f_ids[$key]\" class=\"$button\"><span></span></a>";
+										echo "<a href='' id=\"$f_ids[$key]\" class=\"$button\"><span>$button</span></a>";
 										
 										}else if($button=='vote'){
 											$rating=Getratings($mymovie_name);
@@ -419,11 +419,11 @@ fndate($arr);
 											
 											}
 											else if($button=='trailer'){
-												echo "<a href='' class=\"$button\" name=\"$featured_trailer\"><span></span></a>";
+												echo "<a href='' class=\"$button\" name=\"$featured_trailer\"><span>$button</span></a>";
 
 												}
 												else{
-													echo "<a href='' class=\"$button\"><span></span></a>";
+													echo "<a href='' class=\"$button\"><span>$button</span></a>";
 													}
 										endforeach;// getting buttons 
 						endif;

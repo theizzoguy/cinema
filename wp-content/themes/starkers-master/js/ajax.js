@@ -276,7 +276,7 @@ $(function(){
 	  $('.schedule').click(function(event){
 		  	  $this=$(this);
 		  	  $id=$this.attr('id');
-		  	  //console.log('schedule id'+ $id);
+		  	  console.log('schedule id'+ $id);
 			  ajax_events($id);
 			event.preventDefault();	  
 		  }) 
@@ -285,10 +285,10 @@ $(function(){
 	  jQuery.ajax({
 		 url: MyAjax.ajaxurl,
 		 type:'POST',
-		 dataType: 'json',
+		 dataType: 'html',
 		 data: ({action : 'get_my_dates',id:$id}),
 		 success: function(data,state) {
-		       console.log(data)
+		       	console.log(data)
 				dates=data[0];
 				times=data[1];
 				availableDates=Array.prototype.slice.call(dates)

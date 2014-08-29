@@ -232,7 +232,9 @@ add_action("wp_ajax_get_movie_trailer", "get_movie_trailer");
 /********Movie time date/ event ***************************/
 function get_my_dates(){
 		$id=$_POST['id'];
-		movie_event($id); 
+		echo "id from php: $id";
+		movie_event($id);
+		 
 		die(); 
 		}
 	//add_action("wp_ajax_nopriv_get_my_dates", "get_my_dates");
@@ -240,10 +242,13 @@ function get_my_dates(){
 // function for getting dates and time of a particular movie
 function movie_event($id){
 		$cinema= get_post_meta( $id, 'movie_select', true );
+		
  		//getting movie start date
  		$start= get_post_meta( $id, 'movie_start_date', true ); //2014 07 10  , 2014 07 15
+ 		echo 'start date is '.$start;
  		//getting end date
  		$end= get_post_meta( $id, 'movie_end_date', true );
+ 		echo 'end date is'.$end;
 		// getting in between dates
 		$dates_arr=dateRange($start,$end);
 		//getting movie times
