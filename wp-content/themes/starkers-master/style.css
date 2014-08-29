@@ -154,6 +154,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 #tabs .filter li a{border:none;}
 /*.movie-slider{top:45em;}*/
 #tab1,#tab2,.coming-soon,.now-showing{height: 400px}
+.activeSlide{transform: scale(1.2);border: 2px solid rgba(255,255,255,1)}
 
 /*4.0 community*/
 .community{position:relative; width:92.5%; padding-left: 7.5%;top:-14em;}
