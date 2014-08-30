@@ -245,10 +245,10 @@ function movie_event($id){
 		
  		//getting movie start date
  		$start= get_post_meta( $id, 'movie_start_date', true ); //2014 07 10  , 2014 07 15
- 		echo 'start date is '.$start;
+ 		//echo 'start date is '.$start;
  		//getting end date
  		$end= get_post_meta( $id, 'movie_end_date', true );
- 		echo 'end date is'.$end;
+ 		//echo 'end date is'.$end;
 		// getting in between dates
 		$dates_arr=dateRange($start,$end);
 		//getting movie times

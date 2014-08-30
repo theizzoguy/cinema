@@ -285,7 +285,7 @@ $(function(){
 	  jQuery.ajax({
 		 url: MyAjax.ajaxurl,
 		 type:'POST',
-		 dataType: 'html',
+		 dataType: 'json',
 		 data: ({action : 'get_my_dates',id:$id}),
 		 success: function(data,state) {
 		       	console.log(data)
