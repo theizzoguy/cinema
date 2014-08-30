@@ -232,7 +232,7 @@ add_action("wp_ajax_get_movie_trailer", "get_movie_trailer");
 /********Movie time date/ event ***************************/
 function get_my_dates(){
 		$id=$_POST['id'];
-		echo "id from php: $id";
+		//echo "id from php: $id";
 		movie_event($id);
 		 
 		die(); 

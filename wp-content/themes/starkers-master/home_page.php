@@ -552,8 +552,9 @@ fndate($arr);
 				</ul>
 			</div>
 		</div>
-<div id='video'></div>
-<div id="datepicker"></div>		
+<div class='videoDiv'><div id='video'></div></div>
+<div class='calender'><div id="datepicker"></div></div>
+	
  </body>
 </html>
 
