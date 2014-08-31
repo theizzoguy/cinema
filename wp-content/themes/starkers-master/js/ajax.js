@@ -49,11 +49,22 @@ $(function(){
 	}
 		 
 	config={
-	 	slideWidth: 250,minSlides:1,maxSlides:maxslides,moveSlides:1,auto: true,controls: true,speed:750,pause:6000,autoHover:true,pager:false, 
+	 	slideWidth: 250,minSlides:1,maxSlides:maxslides,moveSlides:1,auto: true,controls: true,speed:750,pause:	6000,autoHover:true,pager:false, 
 			onSlideBefore: function($slideElement, oldIndex, newIndex){
+			//adding active class
 				$('.slides').removeClass('activeSlide');
 				$slideElement.addClass('activeSlide');
-		}
+		},
+			onSliderLoad:function(){
+			 // removing some of the css and adding custom ones
+		    	$bx=$('#tab1').find('.bx-viewport');
+		    	$bx.removeAttr('style');
+				$bx.css({
+					'width': '100%', 
+					'position': 'relative', 
+					'height': '377px'
+				});
+			}
 	}
 	var slider = $('.now-showing').bxSlider(config);
 	
@@ -181,6 +192,7 @@ $(function(){
 			 	$('.feature-slider').fadeOut(100);
 			 	//add class to shift movie slider up
 			 	$('.movie-slider').addClass('showing-movie-slider ');
+			 	$('.community').addClass('moveup');
 			 	$('#bx-pager').fadeOut(100);
 			 	$('.individual').fadeIn('fast');
 			 	
