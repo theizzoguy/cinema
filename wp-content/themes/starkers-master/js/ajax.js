@@ -53,12 +53,21 @@ $(function(){
 	 	slideWidth:250,minSlides:1,maxSlides:maxslides,moveSlides:1,auto: true,controls: true,speed:750,pause:pause,autoHover:true,pager:false, 
 			onSlideBefore: function($slideElement, oldIndex, newIndex){
 				//adding active class
+				
+				
 				$('.slides').removeClass('activeSlide');
-				//$slideElement.addClass('activeSlide');
-				$slideActive=false
 				//$('.slides').removeClass('test');
 				
-		},onSliderLoad:function(){
+		},
+		onSlideAfter:function($slideElement, oldIndex, newIndex){
+			
+			if($slideActive){
+					$slideElement.addClass('activeSlide');
+					$slideActive=false;
+					}
+				
+		},
+		onSliderLoad:function(){
 			 // removing some of the css and adding custom ones
 		    	$bx=$('#tab1').find('.bx-viewport');
 		    	$bx.removeAttr('style');

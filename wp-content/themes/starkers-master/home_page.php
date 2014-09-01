@@ -490,12 +490,7 @@ fndate($arr);
 						<?php
 							#getting all current images
 							foreach ($showing_src as $key=>$src):
-								if($key==0){
-									echo"<li index=\"$key\" id=\"$showing_ids[$key]\" class='slides myslide$key' ><img src=\"$src\" class=\"$showing_movie[$key]\" /></li>";
-								}else{
-									echo"<li index=\"$key\" id=\"$showing_ids[$key]\" class='slides myslide$key' ><img src=\"$src\" class=\"$showing_movie[$key]\" /></li>";
-								}
-								
+								echo"<li index=\"$key\" id=\"$showing_ids[$key]\" class='slides myslide$key' ><img src=\"$src\" class=\"$showing_movie[$key]\" /></li>";
 								endforeach; 
 							?>
 						</ul>
