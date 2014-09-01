@@ -459,7 +459,7 @@ fndate($arr);
 							<a href="#tab1" class='tab_names in-cinema-default' id='now-showing'>in cinema now</a>
 							<ul class="now-filter now-default">
 								<li class="now-filter-genre">
-									<a href="#" class="genre">genre</a>
+									<a href="#" class="genre" name='#now-showing'>genre</a>
 									<ul class="filter">
 									<?php foreach($cats_array as $slug):
 											echo"<li><a href='#' class='$slug' name='#now-showing'>$slug</a></li>";
@@ -474,12 +474,13 @@ fndate($arr);
 							<a  href="#tab2" class='tab_names' id='coming-soon'>coming soon</a>
 							<ul class="soon-filter">
 								<li class="soon-filter-genre">
-									<a  href="#" class="genre">genre</a>
+									<a  href="#" class="genre"  name='#coming-soon'>genre</a>
 									<ul class="filter">
-										<?php foreach($cats_array as $key=>$slug):
-											echo"<li><a href='#$' class='$slug' name='#coming-soon' >$slug</a></li>";
+									<?php foreach($cats_array as $slug):
+											echo"<li><a href='#' class='$slug' name='#coming-soon' >$slug</a></li>";
 											endforeach;	
 									   ?>
+										
 									</ul>
 								</li>
 							</ul>

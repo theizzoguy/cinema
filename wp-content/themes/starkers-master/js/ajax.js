@@ -82,8 +82,9 @@ $(function(){
 	
 	var counter=0;
 	var show= false
+	//disables intial flicker on load
 	$('.coming-soon').css('opacity',0);
-	
+	//main filters on click handler
 	$('.tab_names').click(function(event){
 		$this=$(this);
 		$class=$this.attr('id');
@@ -98,18 +99,39 @@ $(function(){
 		   if($class=='now-showing'){
 				arg=1;
 				show =true
-				$(".now-filter-genre a").first().removeClass('tab_names');	
+				$(".now-filter-genre a").first().removeClass('all');	
 				$(".now-filter-genre a").first().html('genre');
 			}else{
 				arg=0;
 				counter++;
-				
-				$('.soon-filter-genre').first().html('genre');
-				(".soon-filter-genre").first().removeClass('tab_names');
+				$(".soon-filter-genre a").first().removeClass('all');
+				$('.soon-filter-genre a').first().html('genre');
 			}
 		getMovies(arg,$class);
 		event.preventDefault();
 	})
+	// on clicking genre
+	$('.genre').click(function(event){
+		$this=$(this);
+		$str=$this.attr('name');
+		$class=$str.substring(1);
+		if($class=='now-showing'){
+				arg=1;
+				show =true
+				$(".now-filter-genre a").first().removeClass('all');	
+				$(".now-filter-genre a").first().html('genre');
+			}else{
+				arg=0;
+				counter++;
+				$(".soon-filter-genre a").first().removeClass('all');
+				$('.soon-filter-genre a').first().html('genre');
+				
+			}
+		getMovies(arg,$class);
+		event.preventDefault();
+	})
+
+	
 	
 	function getMovies($state,$class){
 		jQuery.ajax({
@@ -165,11 +187,11 @@ $(function(){
 		if($class=='now-showing'){
 				arg=1;
 				$(".now-filter-genre a").first().html('All');
-				$(".now-filter-genre a").first().addClass('tab_names');	 
+				$(".now-filter-genre a").first().addClass('all');	 
 			}else{
 				arg=0;
-				$('.soon-filter-genre').first().html('All');
-				$(".soon-filter-genre").first().addClass('tab_names');	 
+				$('.soon-filter-genre a').first().html('All');
+				$(".soon-filter-genre a").first().addClass('all');	 
 			}
 		
 	getCategory(arg,slug,$class);
@@ -340,8 +362,8 @@ $(function(){
 			 data: ({action : 'get_movie_trailer',url:$url}),
 			 success: function(data,state) {
 			         console.log(data);
-			        $('#video').removeClass('loader')
-					$('#video').html(data);
+			       // $('#video').removeClass('loader')
+					//$('#video').html(data);
 										
 					}
 			 });//end ajax
@@ -390,13 +412,13 @@ $(function(){
 		month[11] = "December";
 		
 	 //toggle on calender			
-	  $('.schedule').click(function(event){
+	/*  $('.schedule').click(function(event){
 		  	  $this=$(this);
 		  	  $id=$this.attr('id');
 		  	  console.log('schedule id'+ $id);
 		  	  //getting thumbnail
 		  	  url=$this.attr('thumb');
-		  	  $('.movie-thumb').html('<img src='+url+'>')	
+		  	 $('.movie-thumb').html('<img src='+url+'>')	
 		  	  //get movie details
 		  	  $name=$this.attr('name');
 		      getMovieInfo($name);
@@ -407,7 +429,7 @@ $(function(){
 			  //display calender
 			  $('.calender').fadeIn(500);
 			  event.preventDefault();	  
-		  }) 
+		  }) */
 	   //getting events	
 	 function ajax_events($id){
 	  jQuery.ajax({
@@ -480,10 +502,10 @@ $(function(){
 		  //finding if calender dates are with in the returned dates
 		  if ($.inArray(dmy, availableDates) != -1) {
 		  	//console.log('dmy is '+ dmy+' avaible dates '+ availableDates)
-			return [true, "Available","Available"];
+			return [true, "Available",""];
 				
 			} else {
-			return [false,"unAvailable","unAvailable"];
+			return [false,"unAvailable",""];
 			console.log('dmy is '+ dmy+' avaible dates '+ availableDates)
 		  }
 		}
