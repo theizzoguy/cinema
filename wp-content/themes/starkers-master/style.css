@@ -205,9 +205,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
  
  
  /*6.0 CALENDAR*/
- .calender{position:absolute;left:0px;top:0px;width:100%;background-color: rgba(0,0,0,0.75);}
- #datepicker{position:relative;left:0px;top:0px;}
- #datepicker td{font-family:avenir;font-size:2em;font-weight:100;padding:1em;border: 2px solid rgba(255,255,255, 1)}
+.calender{position:absolute;z-index:10;left:0px;top:0px;width:100%;background-color: rgba(0,0,0,0.85);padding:5em;}
+.cal-movie-info{margin-bottom: 3em;}
+.cal-movie-info li{display:inline-block;vertical-align:top;font-size: 1em;}
+.cal-movie-details{margin-left: 1%}
+.cal-movie-details li{display:block;}
+.cal-movie-details h1{font-size: 1.5em;font-weight: 700;margin-bottom: 1em;text-transform: uppercase;margin-bottom: 1.5em;}
+.cal-movie-details h4{font-size: 1em;font-weight: 700;text-transform: uppercase;margin-bottom: 1em;}
+.cal-movie-details p{width:20%;margin-top: 2em;line-height: 1.5;}
+#datepicker th{padding: 2em 0px;}
+#datepicker{position:relative;left:0px;top:0px;}
+#datepicker .ui-datepicker-unselectable{border:none;}
+#datepicker td,#datepicker .unAvailable{font-family:avenir;font-size:2em;font-weight:100;padding:1em;border: 1px solid rgba(255,255,255, 1);margin: 0.2em;}
+.ui-datepicker-title span{font-size: 1.5em;font-weight:300;margin-bottom: 2em;text-align: left;}
+.ui-datepicker-month{padding-left: 25%}
+
 .time{display:block;color:brown;font-size: 0.5em;}
 
 
