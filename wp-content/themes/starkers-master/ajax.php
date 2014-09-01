@@ -122,8 +122,9 @@ function main_filter(){
 				$images_cinema=$array[1];
 			}
 		#loop through the images
-		foreach ($images_cinema as $image){
-			echo "<li> <img src=\"$image\"/></li>";
+		foreach ($images_cinema as $key=>$image){
+			//echo "<li> <img src=\"$image\"/></li>";
+			echo"<li index=\"$key\" id=\"$ids[$key]\" class='slides myslide$key' ><img  src=\"$image\" class=\" $names_arr[$key]\"  /></li>";
 		}
 	die();
 	}
@@ -147,6 +148,7 @@ function cat_filter(){
 		  query_posts( $args );
 		   // Loop through categories
 		  while ( have_posts() ) : the_post();
+		  		$ids[]=get_the_ID();
 			  	$name= get_the_title();
 			  	$names[]=$name;
 			    $start= get_post_meta( get_the_ID(), 'movie_start_date', true );
@@ -169,8 +171,10 @@ function cat_filter(){
 			$images_cinema=$arr[1];
 		}
 	#loop through the images
-	foreach ($images_cinema as $image){
-		echo "<li> <img src=\"$image\"/></li>";
+	foreach ($images_cinema as $key=>$image){
+		echo"<li index=\"$key\" id=\"$ids[$key]\" class='slides myslide$key' ><img  src=\"$image\" class=\"$names[$key]\"  /></li>";
+
+		//echo "<li> <img src=\"$image\"/></li>";
 	}
 	wp_reset_query();  
 	die();

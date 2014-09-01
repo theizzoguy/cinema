@@ -47,14 +47,15 @@ $(function(){
 	}else{
 		maxslides=3
 	}
-	pause=6000;	 
+	var pause=6000;	
+	var $slideActive=false 
 	config={
 	 	slideWidth:250,minSlides:1,maxSlides:maxslides,moveSlides:1,auto: true,controls: true,speed:750,pause:pause,autoHover:true,pager:false, 
 			onSlideBefore: function($slideElement, oldIndex, newIndex){
 				//adding active class
 				$('.slides').removeClass('activeSlide');
 				//$slideElement.addClass('activeSlide');
-				
+				$slideActive=false
 				//$('.slides').removeClass('test');
 				
 		},onSliderLoad:function(){
@@ -199,6 +200,7 @@ $(function(){
 	});// end click	
 	
 	//getting movie details
+	
 	 $('#tab1,#tab2').on('click','.now-showing li, .coming-soon li',function(){
 	 	//go to next page
 	 	if($('.individual').is(":visible")){
@@ -218,8 +220,9 @@ $(function(){
 	 	 $this=$(this);
 	 	 myIndex=$this.attr('index');
 		 slider.goToSlide(myIndex);
+		 $slideActive=true;
 		 //scaling slide
-		 $('.myslide'+myIndex).addClass('activeSlide');
+		 //$('.myslide'+myIndex).addClass('activeSlide');
 		 //$( ".now-showing li:eq("+myIndex+")" ).addClass('activeSlide');
 		 //$this.addClass('activeSlide');
 		 //getting multiple images for slider
@@ -433,8 +436,10 @@ $(function(){
               var year = $(".ui-datepicker-year").first().html();
               if ($(".ui-datepicker-month").first().html() == myMonth && $(this).html() == date){
                       //add custom text to date cell
-                      $(this).html("<span class='time'>"+times+"</span>");
-                      $(this).parent().append("<span class='selectedDate'>"+date+"</span>");
+                    $(this).parent().html("<span class='selectedDate'>"+date+"</span><a class='ui-state-default' href='#'><span class='time'>"+times+"</span></a>");
+                      
+                      
+                    
                   
                    }// end if
             

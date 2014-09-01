@@ -377,12 +377,23 @@ fndate($arr);
 						$times=implode(" ",$array);
 						$k = array_search($featured_clean_str,$showing_clean);
 						//echo "..keys $k...end";
-						$movie_url=$link[$k];
-						$fId[]=$ids[$k];
-						$movie_url_f[]=$movie_url;
-					   $featured_clean[]=$featured_clean_str;
-					   $thumb[]=$slider[$k];
+						if(!$k){
+							$movie_url=null;
+						    $fId[]=null;
+						    $movie_url_f[]=null;
+					        $featured_clean[]=null;
+					        $thumb[]=null;
 					   	
+						}else{
+							
+							$movie_url=$link[$k];
+							$fId[]=$ids[$k];
+							$movie_url_f[]=$movie_url;
+							$featured_clean[]=$featured_clean_str;
+							$thumb[]=$slider[$k];
+
+						}
+											   	
 					}// end if
 					
 				}// end for each
