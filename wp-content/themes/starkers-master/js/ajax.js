@@ -178,40 +178,78 @@ $(function(){
 		 });//end ajax
 		
 	}
-/********Going to Individual Page ********************************************************/
+/********Going to 2nd page ********************************************************/
 /******************************Ajax get movie info***************************************/
-   
-		
+   	//Going to the whats showing page/ 2nd page from the main menu
+	$('.menu li a,#logo').click(function(event){
+		menu=true
+		switchBtnpages();
+		//get id of now showing movie, its the first item in the feature slider
+		$li=$('.buttons_0');
+		$id=$li.children('.schedule').attr('id');
+		//use id to start up multiple slider
+		console.log($id);
+		multipleSlides($id)
+		//get movie details
+		$name=$li.children('.schedule').attr('name');
+		getMovieInfo($name);
+		event.preventDefault();
+	});// end click	
 	
 	//getting movie details
 	 $('#tab1').on('click','.now-showing li',function(){
 	 	//go to next page
-		if($('.individual').is(":visible")){
-			 	// do nothing
+	 	if($('.individual').is(":visible")){
+			 //do nothing
+			 
 		 	}else{
 			 	$('.feature-slider').fadeOut(100);
 			 	//add class to shift movie slider up
 			 	$('.movie-slider').addClass('showing-movie-slider ');
-			 	$('.community').addClass('moveup');
+			 	$('.community').addClass('community-showing');
 			 	$('#bx-pager').fadeOut(100);
 			 	$('.individual').fadeIn('fast');
 			 	
 		 	}
+
 	 	//moving to selected slide
 	 	 $this=$(this);
 	 	 myIndex=$this.attr('index');
 		 slider.goToSlide(myIndex);
 		 //getting multiple images for slider
 		 slide_id=$this.attr('id');
-		 console.log('slide id: '+slide_id);
+		 //multiple slider
 		 multipleSlides(slide_id);
 		 //getting movie details
 		 var  movie =$this.children('img').attr('class');
-		 		 
-		 var movie_arr=movie.split(" ");
-		 var movie_str=movie_arr.join("+");
+		 
+		 getMovieInfo(movie)	 
 		
-		 var $url="http://www.omdbapi.com/?i=&t="+movie_str+"&plot=full";
+		});
+		
+	function switchBtnpages(){
+		if($('.individual').is(":visible")){
+			 //go back to the home page
+			 $('.individual').fadeOut('fast');
+			 $('.feature-slider').fadeIn(100);	
+			 $('#bx-pager').fadeIn(100);
+			 $('.movie-slider').removeClass('showing-movie-slider ');
+			 $('.community').removeClass('community-showing');	
+		 	}else{
+			 	$('.feature-slider').fadeOut(100);
+			 	//add class to shift movie slider up
+			 	$('.movie-slider').addClass('showing-movie-slider ');
+			 	$('.community').addClass('community-showing');
+			 	$('#bx-pager').fadeOut(100);
+			 	$('.individual').fadeIn('fast');
+			 	
+		 	}
+		}	
+	
+	function getMovieInfo($name){
+		 var movie_arr=$name.split(" ");
+		 var movie_str=movie_arr.join("+");
+		 var $url="http://www.omdbapi.com/?i=&t="+movie_str+"&plot=full"+"&tomatoes=true";
 		 $.ajax({
 				url:$url,
 				type: "POST",
@@ -221,14 +259,25 @@ $(function(){
 					$('.movie-title h1').html(json.Title);
 					$('.genre h4 span').html(json.Genre)
 					$('.age-rating span').html(json.Rated)
-					//$('.poster').attr('src',json.Poster);x
+					//$('.poster').attr('src',json.Poster);
+					alert('synopsis is short'+json.Plot.length);
+					//imdb stars are out of 10, ours are out of 5
+					stars=(json.imdbRating/10)*5;
+					//first empty the span
+					$('.stars').html(' ');
+					for (i=0;i<stars;i++){
+						    stars_html='<span>&#9734</span>';
+							$('.stars').append(stars_html);
+						}
 					$('.synopsis p span').html(json.Plot);
 					//$('.director').html(json.Director);
 					$('.run-time h4').html(json.Runtime)
 					}
 			});// end ajax
-		});
-	 
+		
+	}	
+	
+	
 	  function multipleSlides($id){
 			//ajax function for getting slides
 		jQuery.ajax({
@@ -248,10 +297,10 @@ $(function(){
 	
 			
 		}	
-		
-	$('.trailer').click(function(event){
+/************************Trailer*************************************/		
+	$('.buttons a.trailer').click(function(event){
 		 $url=$(this).attr('name');
-		 event.preventDefault();
+		 $('#video').addClass('loader')
 		 jQuery.ajax({
 			 url: MyAjax.ajaxurl,
 			 type:'POST',
@@ -259,15 +308,16 @@ $(function(){
 			 data: ({action : 'get_movie_trailer',url:$url}),
 			 success: function(data,state) {
 			         console.log(data);
+			        $('#video').removeClass('loader')
 					$('#video').html(data);
-					//$('.feature-slider').html(data);
-					
+										
 					}
 			 });//end ajax
-		
+		 event.preventDefault();
+
 		})// end click function	
 		
-	//************************calender **************/
+//**********************************************************calender **************/
 	  //getting default date
 	  var availableDates=new Array();
 	  var month = new Array();

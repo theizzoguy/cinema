@@ -33,7 +33,15 @@ jQuery(document).ready(function($) {
 		  }
 	
 	});
-		   
+	/*********open external links in different tabs**********/
+	  $('.social a').click(function(event){
+     	  $this=$(this);
+	      url = $this.attr("href");
+	      window.open(url,'_blank');
+	      window.open(url); 
+	      event.preventDefault();
+     })
+       
 			
 });// end document ready
 

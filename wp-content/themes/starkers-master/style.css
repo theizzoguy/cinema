@@ -159,16 +159,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 #tabs .bx-viewport{overflow: visible;}
 
 /*4.0 community*/
-.community{position:relative; width:92.5%; padding-left: 7.5%;top:-14em;}
+.community{position:relative; width:92.5%; padding-left: 7.5%;top:-24em;}
+.community-showing{top:-14em;}
 .social{float:left; width:55%;}
 .social h2, .the-experience h2{font-size:1.2em; margin-bottom: 1em;}
 .social h3{font-size: 1em; font-weight:100;margin-bottom: 3.5em; }
 .social p, .the-experience p, .the-experience ol{font-size:0.8em;margin-bottom: 1em;line-height: 1.3;}
 .social li{display:inline-block; width:25%;background: rgba(41,48,50, .7);padding:1.2em;margin-right: 1.5%;height:9.8em;}
 .facebook,.twitter,.instagram{text-transform: capitalize;}
-.facebook span{display: inline-block; width:33px;height:33px;background-image:url("images/fb(h).png");margin-right: 2%;vertical-align: middle;}
-.twitter span{display: inline-block; width:33px;height:33px;background-image:url("images/twt(h).png");margin-right: 2%;vertical-align: middle;}
-.instagram span{display: inline-block; width:33px;height:33px;background-image:url("images/inst(h).png");margin-right: 2%;vertical-align: middle;}
+.facebook a{display: inline-block; width:33px;height:33px;background-image:url("images/fb(h).png");margin-right: 2%;vertical-align: middle;}
+.twitter a{display: inline-block; width:33px;height:33px;background-image:url("images/twt(h).png");margin-right: 2%;vertical-align: middle;}
+.instagram a{display: inline-block; width:33px;height:33px;background-image:url("images/inst(h).png");margin-right: 2%;vertical-align: middle;}
 .the-experience{float:left;width:25%;margin-bottom: 3em}
 .the-experience ol li{margin-bottom: 0.5em;}
 .the-experience > li{width:100%;background: rgba(41,48,50, .7);padding:1.2em;}
@@ -301,6 +302,9 @@ and (max-width : 320px) {
 
 
 .header .quick-buy{display: none}
+
+.loader{height:500px;width:500px;background-image:url("images/ajax_loader.gif");background-repeat:no-repeat;background-position: center center; display:block}
+#video{height:500px;width:500px;display:block}
 
 
 

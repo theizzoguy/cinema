@@ -532,53 +532,54 @@ class custom_add_meta_box {
 	 */
 	 
 	function creating_tables(){
-	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-	global $wpdb;
-	$id=get_the_ID();
-	 //get table name
-	$movie = get_the_title();
-	 $movie=str_replace(" ","",$movie);
-	 $first= get_post_meta( $id, 'movie_start_date', true );//select intial date
- 	 $last= get_post_meta( $id, 'movie_end_date', true ); //select last date
-	 $format = ('Y-m-d'); //date format
-	 $current = strtotime($first);
-	 $last = strtotime($last);
-  	 $dates = array();
-	 $step = '+1 day';
-	 // getting dates btn the 1st and last dates(range)
-	 while( $current <= $last ) { 
-			$dates[] = date($format, $current);
-			$current = strtotime($step, $current); // gets the next date, we loop till the last date
-		}
-	 //getting movie times
- 	$data= get_post_meta( get_the_ID(), 'movie_repeatable', true );
-
- 	if(!empty($data)):
-		foreach ($data as $val){
-				foreach($val as $val2){
-					$time_array[] = $val2;
-				 }
+		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+		global $wpdb;
+		$id=get_the_ID();
+		 //get table name
+		 $movie = get_the_title();
+		 $movie=preg_replace('/[^A-Za-z0-9\-]/', '',$movie);
+		// $movie=str_replace(" ","",$movie);
+		 $first= get_post_meta( $id, 'movie_start_date', true );//select intial date
+	 	 $last= get_post_meta( $id, 'movie_end_date', true ); //select last date
+		 $format = ('Y-m-d'); //date format
+		 $current = strtotime($first);
+		 $last = strtotime($last);
+	  	 $dates = array();
+		 $step = '+1 day';
+		 // getting dates btn the 1st and last dates(range)
+		 while( $current <= $last ) { 
+				$dates[] = date($format, $current);
+				$current = strtotime($step, $current); // gets the next date, we loop till the last date
 			}
-		endif;
-		//getting cinema
-	 $cinema= get_post_meta( get_the_ID(), 'movie_select', true );
-	  if(!empty($cinema)):
-	  $cloned_table = $cinema;
-		  foreach($dates as $key=>$mydate){
-			  // create a table names
-				foreach($time_array as $time){
-						$t=str_replace(":","",$time);
-						$d=str_replace("-","",$mydate);
-						$table_name=$movie.$d.$t;
-						$table_name=strtolower ($table_name);
-						if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
-							$sql = "CREATE TABLE $table_name select * from $cloned_table;";
-								dbDelta( $sql );
-							}// end if for creating table
-						}// end for each time array
-			 	 
-				  }//end for loop
-		endif; // end if cinema room is empty
+		 //getting movie times
+	 	$data= get_post_meta( get_the_ID(), 'movie_repeatable', true );
+	
+	 	if(!empty($data)):
+			foreach ($data as $val){
+					foreach($val as $val2){
+						$time_array[] = $val2;
+					 }
+				}
+			endif;
+			//getting cinema
+		 $cinema= get_post_meta( get_the_ID(), 'movie_select', true );
+		  if(!empty($cinema)):
+		  $cloned_table = $cinema;
+			  foreach($dates as $key=>$mydate){
+				  // create a table names
+					foreach($time_array as $time){
+							$t=str_replace(":","",$time);
+							$d=str_replace("-","",$mydate);
+							$table_name=$movie.$d.$t;
+							$table_name=strtolower ($table_name);
+							if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
+								$sql = "CREATE TABLE $table_name select * from $cloned_table;";
+									dbDelta( $sql );
+								}// end if for creating table
+							}// end for each time array
+				 	 
+					  }//end for loop
+			endif; // end if cinema room is empty
 		
 		}
 	function meta_box_callback() {

@@ -146,6 +146,22 @@
 	 * @return void
 	 * @author Keir Whitaker
 	 */
+	
+	
+	function starkers_comment( $comment, $args, $depth ) {
+		$GLOBALS['comment'] = $comment; 
+		?>
+		<?php if ( $comment->comment_approved == '1' ): ?>	
+		<li>
+			<article id="comment-<?php comment_ID() ?>">
+				<?php echo get_avatar( $comment ); ?>
+				<h4><?php comment_author_link() ?></h4>
+				<time><a href="#comment-<?php comment_ID() ?>" pubdate><?php comment_date() ?> at <?php comment_time() ?></a></time>
+				<?php comment_text() ?>
+			</article>
+		<?php endif;
+	}	
+	
 	 /*metaboxes for home page*/
 	
 	 /*========================================================================================================================
@@ -381,12 +397,7 @@
 						'id'   => 'image',
 						'type' => 'file',
 					),
-				  array(
-						'name' => 'Trailer',
-						'description' => 'Youtube vimeo link',
-						'id'   => 'trailer',
-						'type' => 'text',
-					),
+				 
 				array(
 					'name'    => __( 'Buttons', 'cmb' ),
 					'desc'    => __( 'select buttons to appear on the slide', 'cmb' ),
@@ -430,17 +441,20 @@
 		require_once 'Custom-Metaboxes-and-Fields-for-WordPress-master/init.php';
 
       }
-
-	function starkers_comment( $comment, $args, $depth ) {
-		$GLOBALS['comment'] = $comment; 
-		?>
-		<?php if ( $comment->comment_approved == '1' ): ?>	
-		<li>
-			<article id="comment-<?php comment_ID() ?>">
-				<?php echo get_avatar( $comment ); ?>
-				<h4><?php comment_author_link() ?></h4>
-				<time><a href="#comment-<?php comment_ID() ?>" pubdate><?php comment_date() ?> at <?php comment_time() ?></a></time>
-				<?php comment_text() ?>
-			</article>
-		<?php endif;
-	}
+    // Filter video output
+add_filter('oembed_result','lc_oembed_result', 10, 3);
+function lc_oembed_result($html, $url, $args) {
+ 
+    // $args includes custom argument
+ 
+	$newargs = $args;
+	// get rid of discover=true argument
+	array_pop( $newargs );
+ 
+	$parameters = http_build_query( $newargs );
+ 
+	// Modify video parameters
+	$html = str_replace( '?feature=oembed', '?feature=oembed'.'&amp;'.$parameters, $html );
+ 
+    return $html;
+}

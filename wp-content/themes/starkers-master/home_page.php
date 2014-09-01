@@ -246,16 +246,17 @@ fndate($arr);
 	?>
 <?php Starkers_Utilities::get_template_parts( array( 'parts/shared/html-header', 'parts/shared/header' ) ); ?>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+
 <div class="container">
 	<ul class="header">
 				<li class="menu">
 					<ul>
-						<li><a href="#">home</a></li>
-						<li><a href="#">what's showing</a></li>
-						<li><a href="#">community</a></li>
+						<li><a href="#" id='home'>home</a></li>
+						<li><a href="#" id='whatsShowing'>what's showing</a></li>
+						<li><a href="#" style="display:none">community</a></li>
 					</ul>
 				</li>
-				<li class="logo clearfix"><a href="#">logo</a></li>
+				<li class="logo clearfix"><a href="#" id='logo'>logo</a></li>
 				<li class="quick-buy">
 					<a href="#">quick buy</a>
 					<ul>
@@ -319,13 +320,13 @@ fndate($arr);
 						</li>
 					</ul>
 				</li>
-				<li class="sign-up clearfix">
+				<li class="sign-up clearfix" style="opacity:0" >
 					<ul>
 						<li><a href="#">sign-up</a></li>
 						<li class="sign-in"><a href="#">sign in</a>
 					</li></ul>
 				</li>
-				<li class="search">
+				<li class="search" style="opacity:0" >
 					<form method="post" action="/search" id="search" >
 						<input name="search movies" type="text" size="40" placeholder="Search movies..."/>
 					</form>
@@ -347,7 +348,7 @@ fndate($arr);
 				<li class="movie-info">
 					<ul>
 						<li class="movie-title"><h1></h1></li>
-						<li class="star-rating"></li>
+						<li class="star-rating"><h4>Rating:<span class='stars'></span></h4></li>
 						<li class="genre"><h4>genre:<span></span></h4></li>
 						<li class="run-time"><h4>run time:<span></span></h4></li>
 						<li class="age-rating"><span>pg-13</span></li>
@@ -374,21 +375,18 @@ fndate($arr);
 						#get show times and date
 						$array=array_unique($show_times);
 						$times=implode(" ",$array);
-						$key = array_search($featured_clean_str,$showing_clean);
-						$movie_url=$link[$key];
-						$myId=$ids[$key];
-						if(empty($key)):
-							//echo "NO key";
-							$movie_url='none';
-							$myId=10000;
-							endif;
-					   $f_ids[]=$myId;
-					   $movie_url_f[]=$movie_url;
+						$k = array_search($featured_clean_str,$showing_clean);
+						//echo "..keys $k...end";
+						$movie_url=$link[$k];
+						$fId[]=$ids[$k];
+						$movie_url_f[]=$movie_url;
 					   $featured_clean[]=$featured_clean_str;
-						
+					   	
 					}// end if
 					
 				}// end for each
+		//print_r($f_ids);
+		//print_r($featured_clean);		
 		foreach($featured_images as $key=>$f_image):
 					$mycopy=$copy[$key];
 					$mycaption=$caption[$key];
@@ -404,13 +402,13 @@ fndate($arr);
 							echo"<h2>$mycopy</h2>";
 							echo "
 							<ul>
-								<li class='buttons'>";
+								<li class='buttons buttons_$key'>";
 							
 							if(!empty($mybuttons)):
 								foreach ($mybuttons as $button):
 									if($button=='schedule'){
 										//$currentdate=date('Y-m-d');
-										echo "<a href='' id=\"$f_ids[$key]\" class=\"$button\"><span></span>$button</a>";
+										echo "<a href='' id=\"$fId[$key]\" name='$featured_name[$key]' cleanName='$mymovie_name' class=\"$button\"><span></span>$button</a>";
 										
 										}else if($button=='vote'){
 											$rating=Getratings($mymovie_name);
@@ -450,7 +448,7 @@ fndate($arr);
 									<a href="#" class="genre">genre</a>
 									<ul class="filter">
 									<?php foreach($cats_array as $slug):
-											echo"<li><a href='#$' class='$slug' name='#now-showing'>$slug</a></li>";
+											echo"<li><a href='#' class='$slug' name='#now-showing'>$slug</a></li>";
 											endforeach;	
 									   ?>
 										
@@ -514,30 +512,28 @@ fndate($arr);
 					<h2>social media freebies</h2>
 					<p>join our social media family and stand a chance to win great prizes <i>every week</i></p>
 					<li class="facebook">
-						<h3><span></span>facebook</h3>
+						<h3><a href="https://www.facebook.com/CinemaMagic"></a>facebook</h3>
 						<p>like and/or comment on Cinema Magic facebook posts for free cinema tickets</p>
 						<div class="like-buttons">
-							<button>like</button>
-							<button>share</button>
-							<p>500k people like this</p>
+							<div class="fb-like" data-href="https://www.facebook.com/CinemaMagic" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
 						</div>
 					</li>
 					<li class="twitter">
-						<h3><span></span>twitter</h3>
+						<h3><a href="https://twitter.com/cinemamagic3D"></a>twitter</h3>
 						<p>Follow us on twitter and win a ticket to the premiere of <b>Guardian's of the Galaxy</b></p>
 						<div class="like-buttons">
-							<button>follow @cinemagicUg</button>
+						<a href="https://twitter.com/cinemamagic3D" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @cinemamagic3D</a>
 						</div>
 					</li>
-					<li class="instagram">
-						<h3><span></span>instagram</h3>
+					<li class="instagram" style="display:none">
+						<h3><a href="https://www.facebook.com/CinemaMagic"></a>instagram</h3>
 						<p>post a selfie at the cinema and stand a chance to be featured on the site</p>
 						<div class="like-buttons">
 							<button>follow @cinemagicUg</button>
 						</div>
 					</li>
 				</ul>
-				<ul class="the-experience clearfix">
+				<ul class="the-experience clearfix" style="display:none">
 					<h2>our community</h2>
 					<li>
 						<h2>the <span><b>cine-magic</b> experience</span></h2>
@@ -554,8 +550,18 @@ fndate($arr);
 		</div>
 <div class='videoDiv'><div id='video'></div></div>
 <div class='calender'><div id="datepicker"></div></div>
-	
- </body>
+</body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 </html>
 
 <?php #Starkers_Utilities::get_template_parts( array( 'parts/shared/footer','parts/shared/html-footer') ); ?>
