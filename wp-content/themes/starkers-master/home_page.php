@@ -352,7 +352,7 @@ fndate($arr);
 						<li class="genre"><h4>genre:<span></span></h4></li>
 						<li class="run-time"><h4>run time:<span></span></h4></li>
 						<li class="age-rating"><span>pg-13</span></li>
-						<li class="synopsis"><p>synopsis<span></span></p></li>
+						<li class="synopsis"><p><h4>synopsis</h4><span></span></p></li>
 						<li class="buttons">
 							<ul>
 								<!--<li class="buy"><a href="#"><span></span>buy ticket</a></li>-->

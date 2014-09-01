@@ -134,8 +134,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 .movie-slider li{display:inline-block;}
 #tabs > ul{margin-bottom: 2%;position:absolute;z-index:10;}
 /*#tabs > ul > li{width:7%;}*/
-.now-showing li{position:relative;width:10%;background-color: #000;opacity:0.4;}
-.now-showing li:hover{opacity:1;}
+.now-showing li, .coming-soon li{position:relative;width:10%;background-color: #000;opacity:0.4;}
+.now-showing li:hover, .coming-soon li:hover{opacity:1;}
 #tabs img{width:100%;}
 #tabs img: hover{opacity:1;}
 #tabs button{position:absolute;bottom:0.5em;left:50%;}
