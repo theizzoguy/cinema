@@ -454,13 +454,14 @@ $(function(){
               var year = $(".ui-datepicker-year").first().html();
               if ($(".ui-datepicker-month").first().html() == myMonth && $(this).html() == date){
                       //add custom text to date cell
-                      $this.remove('a');
+                      
                       for(j=0;j<times.length;j++){
 	                      
 	                      $(this).parent().append("<span class='time'>"+times[j]+"</span>");
                       }
-                   
-                   // $(this).append("<span class='selectedDate'>"+date+"</span>");
+                      //$this.html
+                    $(this).html("");
+                    $(this).parent().append("<span class='selectedDate ui-state-default'>"+date+"</span>");
                       
                       
                     
