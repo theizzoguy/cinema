@@ -152,7 +152,7 @@ wp_reset_query();
 					//getting movie src for movies that are valid
 					$movie_arr[]=$mymovie;
 					$movie_name=$mymovie;
-				  //remove spaces between movie names 
+				   //remove spaces between movie names 
 					$str=preg_replace('/[^A-Za-z0-9\-]/', '',$mymovie); 
 					$string=strtolower($str );
 					$valid_movies_clean[]=$string;
@@ -162,7 +162,7 @@ wp_reset_query();
 			}//end for
 	//echo'</ul>';	
 
-
+#print_r($valid_movies_clean);
 #getting by category, category slugs are got from a function above
 	#get category names
 	#pass them as arguments
@@ -369,13 +369,15 @@ fndate($arr);
 				#check if post is a movie and is currently showing
 				foreach ($featured_name as $key=>$f_name){
 					$str=preg_replace('/[^A-Za-z0-9\-]/', '',$f_name); 
+					//echo "cleaning ...$str...";
 					$featured_clean_str=strtolower($str );
+					//echo "cleaned ...$featured_clean_str...";
 					
 				 if(in_array($featured_clean_str,$valid_movies_clean)){
 						#get show times and date
 						$array=array_unique($show_times);
 						$times=implode(" ",$array);
-						$k = array_search($featured_clean_str,$showing_clean);
+						$k = array_search($featured_clean_str,$valid_movies_clean);
 						//echo "..keys $k...end";
 						if(!$k){
 							$movie_url=null;
@@ -398,7 +400,7 @@ fndate($arr);
 					
 				}// end for each
 		//print_r($f_ids);
-		//print_r($featured_clean);		
+		#print_r($featured_name);	
 		foreach($featured_images as $key=>$f_image):
 					$mycopy=$copy[$key];
 					$mycaption=$caption[$key];
