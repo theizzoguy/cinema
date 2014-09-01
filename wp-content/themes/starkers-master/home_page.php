@@ -381,6 +381,7 @@ fndate($arr);
 						$fId[]=$ids[$k];
 						$movie_url_f[]=$movie_url;
 					   $featured_clean[]=$featured_clean_str;
+					   $thumb[]=$slider[$k];
 					   	
 					}// end if
 					
@@ -408,7 +409,7 @@ fndate($arr);
 								foreach ($mybuttons as $button):
 									if($button=='schedule'){
 										//$currentdate=date('Y-m-d');
-										echo "<a href='' id=\"$fId[$key]\" name='$featured_name[$key]' cleanName='$mymovie_name' class=\"$button\"><span></span>$button</a>";
+										echo "<a href='' id=\"$fId[$key]\" name='$featured_name[$key]' cleanName='$mymovie_name' thumb='$thumb[$key]' class=\"$button\"><span></span>$button</a>";
 										
 										}else if($button=='vote'){
 											$rating=Getratings($mymovie_name);
@@ -477,9 +478,9 @@ fndate($arr);
 							#getting all current images
 							foreach ($showing_src as $key=>$src):
 								if($key==0){
-									echo"<li index=\"$key\" id=\"$showing_ids[$key]\" class='activeSlide slides' ><img src=\"$src\" class=\"$showing_movie[$key]\" /></li>";
+									echo"<li index=\"$key\" id=\"$showing_ids[$key]\" class='slides myslide$key' ><img src=\"$src\" class=\"$showing_movie[$key]\" /></li>";
 								}else{
-									echo"<li index=\"$key\" id=\"$showing_ids[$key]\" class='slides' ><img src=\"$src\" class=\"$showing_movie[$key]\" /></li>";
+									echo"<li index=\"$key\" id=\"$showing_ids[$key]\" class='slides myslide$key' ><img src=\"$src\" class=\"$showing_movie[$key]\" /></li>";
 								}
 								
 								endforeach; 
@@ -494,9 +495,9 @@ fndate($arr);
 							if(!empty($coming_soon_src)):
 								foreach ($coming_soon_src as $key=>$src):
 									if($key==0){
-										echo"<li id=\"$coming_soon_ids[$key]\" class='activeSlide slides' index=\"$key\"><img src=\"$src\" class=\"$coming_soon[$key]\"  /></li>";
+										echo"<li id=\"$coming_soon_ids[$key]\" class='slides myslide$key' index=\"$key\"><img src=\"$src\" class=\"$coming_soon[$key]\"  /></li>";
 									}else{
-										echo"<li id=\"$coming_soon_ids[$key]\" class='slides' index=\"$key\"><img src=\"$src\" class=\"$coming_soon[$key]\"  /></li>";
+										echo"<li id=\"$coming_soon_ids[$key]\" class='slides myslide$key' index=\"$key\"><img src=\"$src\" class=\"$coming_soon[$key]\"  /></li>";
 									}
 									
 									endforeach; 
@@ -548,8 +549,8 @@ fndate($arr);
 				</ul>
 			</div>
 		</div>
-<div class='videoDiv'><div id='video'></div></div>
-<div class='calender'>
+<div class='videoDiv' ><div id='video'></div></div>
+<div class='calender' style="display:none">
 	<div class="cal-movie-info">
 					<ul>
 						<li class="movie-thumb"></li>
@@ -562,7 +563,6 @@ fndate($arr);
 						<li class="buttons">
 							<ul>
 								<!--<li class="buy"><a href="#"><span></span>buy ticket</a></li>-->
-								<li class="trailer"><a href="#"><span></span>trailer</a></li>
 							</ul>
 						</li>
 					</ul>

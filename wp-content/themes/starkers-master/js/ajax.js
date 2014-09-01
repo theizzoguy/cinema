@@ -47,15 +47,17 @@ $(function(){
 	}else{
 		maxslides=3
 	}
-		 
+	pause=6000;	 
 	config={
-	 	slideWidth: 250,minSlides:1,maxSlides:maxslides,moveSlides:1,auto: true,controls: true,speed:750,pause:	6000,autoHover:true,pager:false, 
+	 	slideWidth:250,minSlides:1,maxSlides:maxslides,moveSlides:1,auto: true,controls: true,speed:750,pause:pause,autoHover:true,pager:false, 
 			onSlideBefore: function($slideElement, oldIndex, newIndex){
-			//adding active class
+				//adding active class
 				$('.slides').removeClass('activeSlide');
-				$slideElement.addClass('activeSlide');
-		},
-			onSliderLoad:function(){
+				//$slideElement.addClass('activeSlide');
+				
+				//$('.slides').removeClass('test');
+				
+		},onSliderLoad:function(){
 			 // removing some of the css and adding custom ones
 		    	$bx=$('#tab1').find('.bx-viewport');
 		    	$bx.removeAttr('style');
@@ -197,7 +199,7 @@ $(function(){
 	});// end click	
 	
 	//getting movie details
-	 $('#tab1').on('click','.now-showing li',function(){
+	 $('#tab1,#tab2').on('click','.now-showing li, .coming-soon li',function(){
 	 	//go to next page
 	 	if($('.individual').is(":visible")){
 			 //do nothing
@@ -216,6 +218,10 @@ $(function(){
 	 	 $this=$(this);
 	 	 myIndex=$this.attr('index');
 		 slider.goToSlide(myIndex);
+		 //scaling slide
+		 $('.myslide'+myIndex).addClass('activeSlide');
+		 //$( ".now-showing li:eq("+myIndex+")" ).addClass('activeSlide');
+		 //$this.addClass('activeSlide');
 		 //getting multiple images for slider
 		 slide_id=$this.attr('id');
 		 //multiple slider
@@ -260,15 +266,17 @@ $(function(){
 					$('.genre h4 span').html(json.Genre)
 					$('.age-rating span').html(json.Rated)
 					//$('.poster').attr('src',json.Poster);
-					alert('synopsis is short'+json.Plot.length);
+					//alert('synopsis is short'+json.Plot.length);
 					//imdb stars are out of 10, ours are out of 5
 					stars=(json.imdbRating/10)*5;
 					//first empty the span
 					$('.stars').html(' ');
 					for (i=0;i<stars;i++){
-						    stars_html='<span>&#9734</span>';
+						    stars_html='<a href="#" class="stars_a">&#9734</a>';
 							$('.stars').append(stars_html);
 						}
+					//adding image
+					//$('.movie-thumb').html('<img src='+json.Poster+'>')	
 					$('.synopsis p span').html(json.Plot);
 					//$('.director').html(json.Director);
 					$('.run-time h4').html(json.Runtime)
@@ -276,7 +284,14 @@ $(function(){
 			});// end ajax
 		
 	}	
-	
+	// clicking stars
+	$('.stars_a').click(function(event){
+		event.preventDefault();
+	})
+	function updateStars(){
+		
+		//updates stars
+	}
 	
 	  function multipleSlides($id){
 			//ajax function for getting slides
@@ -318,6 +333,29 @@ $(function(){
 		})// end click function	
 		
 //**********************************************************calender **************/
+	  //get movie info for selected movie for calender page
+	 
+	 	  //hide sliders //calender page
+	  function calenderPage(){
+		if($('.individual').is(":visible")){
+			 //go back to the home page
+			 $('.individual').fadeOut('fast');
+			 $('.feature-slider').fadeOut(100);	
+			 $('#bx-pager').fadeOut(100);
+			 $('.movie-slider').removeClass('showing-movie-slider ');
+			 $('.community').removeClass('community-showing');	
+			 
+		 	}else{
+			 	$('.feature-slider').fadeOut(100);
+			 	//add class to shift movie slider up
+			 	$('.movie-slider').addClass('showing-movie-slider ');
+			 	$('.community').addClass('community-showing');
+			 	$('#bx-pager').fadeOut(100);
+			 	$('.individual').fadeOut('fast');
+			 	
+		 	}
+		}	
+		
 	  //getting default date
 	  var availableDates=new Array();
 	  var month = new Array();
@@ -339,8 +377,19 @@ $(function(){
 		  	  $this=$(this);
 		  	  $id=$this.attr('id');
 		  	  console.log('schedule id'+ $id);
-			  ajax_events($id);
-			event.preventDefault();	  
+		  	  //getting thumbnail
+		  	  url=$this.attr('thumb');
+		  	  $('.movie-thumb').html('<img src='+url+'>')	
+		  	  //get movie details
+		  	  $name=$this.attr('name');
+		      getMovieInfo($name);
+		      //getting events
+		      ajax_events($id);
+			  //hide unncecessary staff
+			  // calenderPage();
+			  //display calender
+			  $('.calender').fadeIn(500);
+			  event.preventDefault();	  
 		  }) 
 	   //getting events	
 	 function ajax_events($id){
@@ -383,8 +432,9 @@ $(function(){
               //you can get the year using below code.
               var year = $(".ui-datepicker-year").first().html();
               if ($(".ui-datepicker-month").first().html() == myMonth && $(this).html() == date){
-                      //add custome text to date cel
-                      $(this).html("<span class='selectedDate'>"+date+"</span>"+"<span class='time'>"+times+"</span>");
+                      //add custom text to date cell
+                      $(this).html("<span class='time'>"+times+"</span>");
+                      $(this).parent().append("<span class='selectedDate'>"+date+"</span>");
                   
                    }// end if
             
