@@ -86,28 +86,26 @@ $(function(){
 	
 	$('.tab_names').click(function(event){
 		$this=$(this);
-		
 		$class=$this.attr('id');
 		if($('#now-showing').hasClass('in-cinema-default')){
-			
 			$('#now-showing').removeClass('in-cinema-default')
-			
-		}
-	$('.tab_names').removeClass('in-cinema-default');
-	$(this).addClass('in-cinema-default');
-
-
+			}
+		$('.tab_names').removeClass('in-cinema-default');
+		$(this).addClass('in-cinema-default');
+		
 		// toggle off cuurent slider
 		
 		   if($class=='now-showing'){
 				arg=1;
 				show =true
-				$('.now').html('genre');
-				
+				$(".now-filter-genre a").first().removeClass('tab_names');	
+				$(".now-filter-genre a").first().html('genre');
 			}else{
 				arg=0;
 				counter++;
-				$('.soon').html('genre');
+				
+				$('.soon-filter-genre').first().html('genre');
+				(".soon-filter-genre").first().removeClass('tab_names');
 			}
 		getMovies(arg,$class);
 		event.preventDefault();
@@ -158,13 +156,20 @@ $(function(){
 		$class=$str.substring(1)
 		console.log($class);
 		filter=$this.text();
-		//console.log=($filter);	  		  
+		//remove  active classe
+		$('.filter a').removeClass('in-cinema-default');	
+		//add active class
+		$this.addClass('in-cinema-default');
+		//turn genre to all
+				  
 		if($class=='now-showing'){
 				arg=1;
-				$('.now').html(filter);
+				$(".now-filter-genre a").first().html('All');
+				$(".now-filter-genre a").first().addClass('tab_names');	 
 			}else{
 				arg=0;
-				$('.soon').html($filter);
+				$('.soon-filter-genre').first().html('All');
+				$(".soon-filter-genre").first().addClass('tab_names');	 
 			}
 		
 	getCategory(arg,slug,$class);
@@ -424,19 +429,23 @@ $(function(){
 					selected_date=get_date(dateObject)
 					}//end on select
 				});// end date picker
-			mytimes=times.toString();
-			var desired = mytimes.replace(/^"/, "");
-			console.log(desired);
-			setTimeout(addText(dates,desired),1000);
+			//mytimes=times.toString();
+			//var desired = mytimes.replace(/^"/, "");
+			//console.log(times);
+			setTimeout(addText(dates,times),500);
 			}// end sucess
 		 });//end ajax
 		
 	}// end ajax_events
-	
+ 
+	//call back for times array
+  	
   function addText(dates,times){
+	   console.log('times: '+times);
 	   for (i=0;i<dates.length;i++){
 		  var strDate=dates[i];
 		  var dateParts = strDate.split("-");
+		  //creating date object
 		  var date = new Date(dateParts[2], (dateParts[1] - 1), dateParts[0]);
 		  var myMonth = month[date.getMonth()];
 		  var date=date.getDate();
@@ -445,7 +454,13 @@ $(function(){
               var year = $(".ui-datepicker-year").first().html();
               if ($(".ui-datepicker-month").first().html() == myMonth && $(this).html() == date){
                       //add custom text to date cell
-                    $(this).parent().html("<span class='selectedDate'>"+date+"</span><a class='ui-state-default' href='#'><span class='time'>"+times+"</span></a>");
+                      $this.remove('a');
+                      for(j=0;j<times.length;j++){
+	                      
+	                      $(this).parent().append("<span class='time'>"+times[j]+"</span>");
+                      }
+                   
+                   // $(this).append("<span class='selectedDate'>"+date+"</span>");
                       
                       
                     
