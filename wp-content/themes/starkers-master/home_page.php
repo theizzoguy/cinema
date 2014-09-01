@@ -549,7 +549,26 @@ fndate($arr);
 			</div>
 		</div>
 <div class='videoDiv'><div id='video'></div></div>
-<div class='calender'><div id="datepicker"></div></div>
+<div class='calender'>
+	<div class="cal-movie-info">
+					<ul>
+						<li class="movie-thumb"></li>
+						<li class="movie-title"><h1></h1></li>
+						<li class="star-rating"><h4>Rating:<span class='stars'></span></h4></li>
+						<li class="genre"><h4>genre:<span></span></h4></li>
+						<li class="run-time"><h4>run time:<span></span></h4></li>
+						<li class="age-rating"><span>pg-13</span></li>
+						<li class="synopsis"><p>synopsis<span></span></p></li>
+						<li class="buttons">
+							<ul>
+								<!--<li class="buy"><a href="#"><span></span>buy ticket</a></li>-->
+								<li class="trailer"><a href="#"><span></span>trailer</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+	<div id="datepicker"></div>
+</div>
 </body>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {

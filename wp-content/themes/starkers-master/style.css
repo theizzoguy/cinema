@@ -155,11 +155,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 /*.movie-slider{top:45em;}*/
 #tab1,#tab2,.coming-soon,.now-showing{height: 400px}
 .now-showing li.activeSlide{transform: scale(1.2);border: 2px solid rgba(255,255,255,1); opacity:1;z-index:5;}
-#tabs .bx-wrapper{overflow-x: hidden}
+#tabs .bx-wrapper{height:28em;overflow-x: hidden;overflow-y: hidden;}
 #tabs .bx-viewport{overflow: visible;}
 
 /*4.0 community*/
-.community{position:relative; width:92.5%; padding-left: 7.5%;top:-24em;}
+.community{position:relative; width:92.5%; padding-left: 7.5%;top:-4em;}
 .community-showing{top:-14em;}
 .social{float:left; width:55%;}
 .social h2, .the-experience h2{font-size:1.2em; margin-bottom: 1em;}
